@@ -689,6 +689,697 @@ file4              100%    0     0.0KB/s   00:00
 file5              100%    0     0.0KB/s   00:0
 ```
 
+#	DAY4
+
+#	AGENDA
+
+*	What is shell; What are different shells in Linux?
+*	Shell variables; Wildcard symbols
+*	Shell meta characters; Command line arguments; Read, Echo 
+*	Regular and root user diff
+*	System variables like – PS1, PS2 etc. How to set them
+*	Shell Programming
+
+Redirection 
+-----------
+```
+[root@localhost edac_os]# echo "hello"	## display on screen
+hello
+[root@localhost edac_os]# echo "hello" > file	## redirect content in the file
+[root@localhost edac_os]# cat file
+hello
+[root@localhost edac_os]# echo "world" > file ##overwrite content of file
+[root@localhost edac_os]# cat file
+world
+[root@localhost edac_os]# rm -rf *
+```
+#	repeat the same scenario for appending data
+
+```
+[root@localhost edac_os]# echo "hello" > file
+[root@localhost edac_os]# cat file
+hello
+[root@localhost edac_os]# echo "world" >> file
+[root@localhost edac_os]# cat file
+hello
+world
+```
+
+
+Running multiple commands in a single line
+------------------------------------------
+
+Create a file
+Display permissions of the file
+Change permissions of the file to 755
+Display new permissions of the file
+Enter content "hello edac" in this file
+Display content of the file
+
+```
+touch file
+stat -c %a file
+chmod 755 file
+stat -c %a file
+echo "hello edac" > file
+cat file
+```
+
+*Syntax: command1;command2;command3*
+
+```
+touch file;stat -c %a file;chmod 755 file;stat -c %a file;echo "hello edac" > file;cat file
+```
+Another way to do this is: *command1 && command2 && command3*
+
+Difference - if you use && - then it means the next command would run only if previous command ran successfully
+
+```
+[root@localhost edac_os]# stat -c %a file && chmod 755 file && stat -c %a file && echo "hello edac" > file && cat file
+stat: cannot stat ‘file’: No such file or directory
+[root@localhost edac_os]# ls
+[root@localhost edac_os]#
+```
+
+Usage of grep
+-------------
+
+grep is used to display a line on the basis of a word/pattern
+*Syntax: grep "word/pattern"*
+
+Options in grep
+---------------
+```
+[root@localhost edac_os]# cat things
+apple
+APPLE
+Apple
+ApplE
+Mango
+mangoes
+kiwi
+
+banana
+grape
+grapes
+GRapes are sour
+
+tomato.
+orange.
+Orange is nice fruit
+I like Taj mahal
+red fort is in Delhi
+My phone number is 9643546697
+My IP adress is 8.8.8.8
+Your IP adress is 192.168.10.142
+```
+
+Usecase: We want to fetch apple
+```
+[root@localhost edac_os]# cat things | grep "apple"
+apple
+```
+# Linux is case sensitive
+```
+[root@localhost edac_os]# cat things | grep -i "apple"
+apple
+APPLE
+Apple
+ApplE
+```
+# Case sensitivity is ignored
+```
+[root@localhost edac_os]# cat things | grep "mango"
+mangoes
+[root@localhost edac_os]# cat things | grep -i "mango"
+Mango
+mangoes
+[root@localhost edac_os]# cat things | grep -o "mango"
+mango
+```
+#	o is for only
+```
+[root@localhost edac_os]# cat things | grep -i -o "mango"
+Mango
+mango
+```
+```
+[root@localhost edac_os]# cat things | grep "orange"
+orange.
+[root@localhost edac_os]# cat things | grep -i "orange"
+orange.
+Orange is nice fruit
+[root@localhost edac_os]# cat things | grep -i -o "orange"
+orange
+Orange
+```
+#	just orange - without sentence
+
+
+*^ - starting*
+*$ - ending*
+
+```
+[root@localhost edac_os]# cat things | grep "^A"
+APPLE
+Apple
+ApplE
+```
+# all that started with cap A
+```
+[root@localhost edac_os]# cat things | grep "\."
+tomato.
+orange.
+My IP adress is 8.8.8.8
+Your IP adress is 192.168.10.142
+```
+# all lines which have '.'
+```
+[root@localhost edac_os]# cat things | grep "\.$"
+tomato.
+orange.
+```
+# ending with a dot
+```
+[root@localhost edac_os]# cat things | grep -P "\d{10}"
+My phone number is 9643546697
+[root@localhost edac_os]# cat things | grep -Po "\d{10}"
+9643546697
+[root@localhost edac_os]# cat things | grep -Po "\d\.\d\.\d\.\d"
+8.8.8.8
+[root@localhost edac_os]# cat things | grep -Po "\d+\.\d+\.\d+\.\d+"
+8.8.8.8
+192.168.10.142
+[root@localhost edac_os]# cat things | grep "^$"
+```
+
+#	it brings all the blank lines
+```
+[root@localhost edac_os]# cat things | grep tomato
+tomato.
+[root@localhost edac_os]# cat things | grep -v tomato #inverse
+apple
+APPLE
+Apple
+ApplE
+Mango
+mangoes
+kiwi
+
+banana
+grape
+grapes
+GRapes are sour
+
+orange.
+Orange is nice fruit
+I like Taj mahal
+red fort is in Delhi
+My phone number is 9643546697
+My IP adress is 8.8.8.8
+Your IP adress is 192.168.10.142
+```
+
+Pipe in commands
+----------------
+*syntax: command1 | command2 | command3 ......*
+
+#	What it means?
+Output of command1 will act as input of command2
+
+Usage
+-----
+```
+[root@localhost edac_os]# cat /etc/passwd | grep "rahul"
+rahul:x:1005:1005::/home/rahul:/bin/bash
+```
+
+Domain names from a random site
+-------------------------------
+```
+[root@localhost edac_os]# curl -s "https://www.paltalk.com/" | grep -Po "\w+\.com" | sort | uniq
+```
+
+*To show []*
+```
+[root@localhost edac_os]# cat things | grep "^[ap].*"
+apple
+[root@localhost edac_os]# cat things | grep -i "^[ap].*"
+```
+Putting command output in a variable
+------------------------------------
+
+*Syntax: variablename=$(command)*
+```
+[root@localhost edac_os]# fruits=$(cat things | grep -i "^[ap].*")
+[root@localhost edac_os]# echo "$fruits"
+apple
+APPLE
+Apple
+ApplE
+```
+*Syntax: variablename=`command`*
+```
+myfruit=`cat things | grep -i "^[ap].*"`
+
+[root@localhost edac_os]# echo "$myfruit"
+apple
+APPLE
+Apple
+ApplE
+```
+#	SHELL Scripting
+
+Steps:
+1. Enter the commands in a file
+*	Note: When you enter the commands in the file - the first thing that you need to enter is this -- #!/bin/bash
+*	This tells your kernel to execute this code in bash shell
+2. Save the file 
+3. Give executable permissions to the file 
+chmod +x <filename>
+4. To run this executable(script) - ./<filename>
+
+*[Task 1]*
+1. Create a directory named test
+2. Create 100 files and 100 directories under test
+3. Display permissions of test
+4. Modify permissions of test to 777
+5. Display new permissions of test
+
+```
+[root@localhost scripts]# cat task1.sh
+```
+*#!/bin/bash*
+
+1.	Create a directory named test
+2.	Create 100 files and 100 directories under test
+3.	Display permissions of test
+4.	Modify permissions of test to 777
+5.	Display new permissions of test
+```
+mkdir test
+touch test/file{1..100}
+mkdir test/folder{1..100}
+stat -c %a test
+#ls -l test
+chmod 777 test
+stat -c %a test
+#ls -l test
+```
+```
+[root@localhost scripts]# vi task2.sh
+[root@localhost scripts]# chmod +x task2.sh
+[root@localhost scripts]# ./task2.sh
+```
+
+*[Task 2]*
+Create a script that brings out all the users who are using bash shell
+
+
+```
+[root@localhost scripts]# cat task2.sh
+```
+*#!/bin/bash*
+
+#Create a script that brings out all the users who are using bash shell
+```
+echo "Following users are using bash shell on this Linux box"
+
+sleep 2s
+
+cat /etc/passwd | grep "bash"
+```
+
+cut and awk
+-----------
+
+cut
+---
+*Syntax: cut -d'<delimiter>' -f<fieldname>*
+
+Usage
+```
+[root@localhost scripts]# cat /etc/passwd | grep bash| cut -d':' -f1
+root
+lavishjhamb
+tom
+alice
+user1
+rahul
+shruti
+yash
+```
+awk
+---
+```
+awk -F'<field separator>' '{print $<fieldname>}'
+```
+Usage
+```
+[root@localhost scripts]# cat /etc/passwd | grep bash| awk -F':' '{print $1}'
+root
+lavishjhamb
+tom
+alice
+user1
+rahul
+shruti
+yash
+```
+
+*[Task3]*
+
+1. Create a script that stores the following information about all users using bash shell in a varibale named "info_user":  'username' and it's 'shell'. 
+
+2. Display the contents of the variable after initiating a wait period of 5s
+```
+[root@localhost scripts]# cat task3.sh
+#!/bin/bash
+```
+
+3. Create a script that stores the following information about all users using bash shell in a varibale named "info_user":  'username' and it's 'shell'.
+
+4. Display the contents of the variable after initiating a wait period of 5s
+
+
+*syntax to put in variable is - var=$(command)*
+```
+info_user=$(cat /etc/passwd | grep "bash" | awk -F':' '{print $1, $7}')
+
+sleep 5s
+
+echo "$info_user"
+```
+
+User input in scripts
+---------------------
+*	'read' is used to take input from user in a script
+
+Ex:
+``` 
+read -p "Enter your favourite monument name: " momument
+```
+So, here -p is used to prompt the content present in "" and read is used take input where the input is stored in the variable(like monument in this case)
+
+*[Task4]*
+
+1.	Create a script that asks for a user name displays the user ID of the user provided as input.
+
+*#!/bin/bash*
+```
+read -p "Enter the username: " usr
+echo "The user ID of $usr is as follows:"
+sleep 3s
+echo ""
+cat /etc/passwd | grep "bash" | grep "$usr" | awk -F':' '{print $3}'
+```
+
+If loop
+-------
+
+
+
+*[Task 5]*
+
+*	Create a script that asks for a user name displays the user ID of the user provided as input. If the user does not exists, then display the following error: "Entered user is not present on you Linux machine"
+```
+[root@localhost scripts]# cat task5.sh
+#!/bin/bash
+```
+*	Create a script that asks for a user name displays the user ID of the user provided as input.
+
+*	If the user does not exist, then display the following error: "Entered user is not present on you Linux machine"
+```
+read -p "Enter the username: " usr
+```
+*	Following variable will give the user ID only when user is presnt, else the variable will be blank.
+```
+var=$(cat /etc/passwd | grep "bash" | grep -w "$usr" | awk -F':' '{print $3}')
+```
+*	using if condition to check if var is blank or not
+```
+if [[ -n "$var" ]]
+	then
+        echo "User ID is: $var"
+	else
+        echo "User does not exist"
+fi
+```
+
+*	Create a script that displays all Linux users with ID greater than 1000
+```
+[root@localhost scripts]# cat task6.sh
+```
+*#!/bin/bash*
+
+*	Create a script that displays all Linux users with ID greater than 1000
+
+*https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php*
+```
+cat /etc/passwd|  awk -F':' '{if ($3 > 1000) {print $1, $3}}'
+```
+*	$3 is the userID
+*	$1 is the username
+
+**Task1**
+```
+#!/bin/bash
+
+#Create a directory named test
+#Create 100 files and 100 directories under test
+
+#Display permissions of test
+#Modify permissions of test to 777
+#Display new permissions of test
+
+mkdir test
+touch test/file{1..100}
+mkdir test/folder{1..100}
+
+stat -c %a test
+#ls -l test
+chmod 777 test
+stat -c %a test
+#ls -l test
+
+
+
+
+```
+
+**Task2**
+```
+#!/bin/bash
+
+#Create a script that brings out all the users who are using bash shell
+
+echo "Following users are using bash shell on this Linux box"
+
+sleep 2s
+
+cat /etc/passwd | grep "bash"
+
+```
+
+**Task3**
+```
+#!/bin/bash
+
+#Create a script that stores the following information about all users using bash shell in a varibale named "info_user":  'username' and it's 'shell'. 
+
+#Display the contents of the variable after initiating a wait period of 5s
+
+
+#syntax to put in variable is - var=$(command)
+
+info_user=$(cat /etc/passwd | grep "bash" | awk -F':' '{print $1, $7}')
+
+
+sleep 5s
+
+
+echo "$info_user"
+
+```
+
+**Task4**
+```
+#!/bin/bash
+
+#Create a script that asks for a user name displays the user ID of the user provided as input.
+
+read -p "Enter the username: " usr
+
+echo "The user ID of $usr is as follows:"
+sleep 3s
+echo ""
+cat /etc/passwd | grep "bash" | grep "$usr" | awk -F':' '{print $3}'
+```
+
+**Task5**
+```
+#!/bin/bash
+
+
+
+#Create a script that asks for a user name displays the user ID of the user provided as input.
+
+
+#If the user does not exist, then display the following error: "Entered user is not present on you Linux machine"
+
+###############
+
+
+
+read -p "Enter the username: " usr
+
+
+##Following variable will give the user ID only when user is presnt, else the variable will be blank.
+
+var=$(cat /etc/passwd | grep "bash" | grep -w "$usr" | awk -F':' '{print $3}')
+
+##using if condition to check if var is blank or not
+
+if [[ -n "$var" ]]
+	then
+		echo "User ID is: $var"
+	else
+		echo "User does not exist"
+fi
+```
+
+**Task6**
+```
+#!/bin/bash
+##Create a script that displays all Linux users with ID greater than 1000
+
+#https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php
+
+cat /etc/passwd|  awk -F':' '{if ($3 > 1000) {print $1, $3}}'
+```
+
+Lab - 25/09/2021
+---------------
+[task1_lab]
+Create a script that asks user to enter two numbers like this:= -
+Enter the first number: 
+Enter the second number:
+Now display which number is greater?
+
+[task2_lab]
+Create a script that asks the user to enter two numbers like this - 
+Enter the first number: 
+Enter the second number:
+Now display - sum, difference, multiplication and division results of provided numbers?
+
+```
+[root@localhost scripts]# a=5
+[root@localhost scripts]# b=6
+[root@localhost scripts]# c=$(expr $a + $b)
+[root@localhost scripts]# echo $c
+11
+```
+
+[task3_lab]
+Create a script that asks for username and display its home directory only if it's user id is greater than 1000 and less than 1003
+```
+[root@localhost scripts]#  cat ./task3_lab.sh
+```
+*#!/bin/bash*
+Create a script that asks for username and display its home directory only if it's user id is greater than 1000 and less than 1003
+
+read -p "Provide username: " usr
+
+*Here we have to find the userid and see if it is greater than 1000 and less than 1003*
+```
+uid=$(cat /etc/passwd | grep "$usr" | awk -F':' '{print $3}')
+homedir=$(cat /etc/passwd | grep "$usr" | awk -F':' '{print $6}')
+
+if [[ $uid > 1000 && $uid < 1003 ]]
+        then
+                echo "$homedir"
+        else
+                echo "UID does not fall in given range"
+fi
+```
+
+To see IP address of the machine
+
+ifconfig
+ip a
+
+ens33: check the IP in ens33 interface
+
+If you dont have the IP address
+Run the following command - This command will fetch an IP address from your local DHCP server
+*dhclient -v*
+
+If you want to see that - is your linux machine connected to internet, then fire the following command:
+
+*nslookup google.com*
+
+
+[task4_lab]
+Create a script that asks for a random number from the user.
+Check if that number matches any UID in the Linux machine.
+If it does, display the username and it's shell
+If it doesn't then increment that number by 10 and display the incremented number?
+
++5 in internals - 
+```
+[root@localhost scripts]# cat task4_lab.sh
+```
+*#!/bin/bash*
+Create a script that asks for a random number from the user.
+Check if that number matches any UID in the Linux machine.
+If it does, display the username and it's shell
+If it doesn't then increment that number by 10 and display the incremented number?
+```
+read -p "Provide random number : " num ##Provided a number and stored it in a variable named num
+
+cat /etc/passwd| awk -F':' '{print $3}' > uid_list ## created a file named uid_list which has all the UIDs
+
+result=$(grep "$num" uid_list) ##Check if that number matches any UID in the Linux machine
+
+If the num is present in uid_list then it will be stored in result, else result will be empty
+
+if [[ -n "$result" ]]
+        then
+                echo "$num is present in uid_list"
+                cat /etc/passwd | grep  "x\:$num" | awk -F':' '{print $1, $7}'
+        else
+                echo "$num is not present in uid_list" ##need to increment
+				incrementvalue=$(expr $num + 10)
+				echo "$incrementvalue"
+fi
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
