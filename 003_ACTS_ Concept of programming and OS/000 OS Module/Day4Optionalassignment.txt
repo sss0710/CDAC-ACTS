@@ -1,0 +1,17 @@
+1.Redirect the output of ls -l to file.txt
+2.Append the output of dmesg command to file.txt
+3.Copy the content of file.txt to new_file.txt
+4.Find number of lines in new_file.txt
+5.Find all lines starting with 'd' in file.txt
+6.Find 'cpu' character in file.txt
+7.Find "CPU0",CPU1,CPU2, word in file.txt
+8.Find "acpi" in file.txt
+9.Find all words starting with '0x' and ending with 0 in file.txt
+
+
+1.Write a script which take input from user and calculate the addition
+2.Write a script which take input from user and calculate the substraction
+3.Write a script which take input from user and calculate the multiplication
+4.Write a script to find the greatest number in three number.
+5.Write a script to find the given number is even or odd
+
