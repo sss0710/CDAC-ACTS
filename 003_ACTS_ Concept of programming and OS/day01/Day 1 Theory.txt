@@ -1,0 +1,143 @@
+Objective
+To introduce Operating System concepts with Linux environment, and to learn Shell 
+Programming
+
+Day 1 Theory
+
+What is OS?
+-----------
+An Operating System (OS) is an interface between a computer user and computer hardware. An operating system is a software which performs all the basic tasks like file management, memory management, process management, handling input and output, and controlling peripheral devices such as disk drives and printers.
+
+Some popular Operating Systems include Linux Operating System, Windows Operating System, VMS, OS/400, AIX, z/OS, etc.
+
+Some of important functions of an operating System
+--------------------------------------------------
+Processor Management: An operating system manages the processor’s working by allocating various jobs to it and ensuring that each process receives enough time from the processor to function properly.
+
+Memory Management: An operating system manages the allocation and deallocation of the memory to various processes and ensures that the other process does not consume the memory allocated to one process.
+
+Device Management: There are various input and output devices. An operating system controls the working of these input-output devices. It receives the requests from these devices, performs a specific task, and communicates back to the requesting process.
+
+File Management: An operating system keeps track of information regarding the creation, deletion, transfer, copy, and storage of files in an organized way. It also maintains the integrity of the data stored in these files, including the file directory structure, by protecting against unauthorized access.
+
+Security: The operating system provides various techniques which assure the integrity and confidentiality of user data. Following security measures are used to protect user data:
+	Protection against unauthorized access through login.
+	Protection against intrusion by keeping Firefall active.
+	Protecting the system memory against malicious access.
+	Displaying messages related to system vulnerabilities.
+
+Error Detection: From time to time, the operating system checks the system for any external threat or malicious software activity. It also checks the hardware for any type of damage. This process displays several alerts to the user so that the appropriate action can be taken against any damage caused to the system. 
+
+Job Scheduling: In a multitasking operating system where multiple programs run simultaneously, the operating system determines which applications should run in which order and how time should be allocated to each application. 
+
+Interaction with OS
+-------------------
+The application programs make use of the operating system by making requests for services through a defined application program interface (API). In addition, users can interact directly with the operating system through a user interface, such as a command-line interface (CLI) or a graphical UI (GUI).
+
+Why is OS hardware dependent?
+-----------------------------
+We should understand that the following things are hardware dependent:
+
+System startup/reset
+Interrupt handling
+Virtual memory management & protection
+Device I/O
+System-level protections for code access and security
+Some mutual exclusion primitives
+
+Now if we see closely, all above are functions of an OS. Hence OS is hardware deendent.
+
+Platform dependent typically refers to applications that run under only one operating system in one series of computers (one operating environment); for example, Windows running on x86 hardware or Solaris running on SPARC hardware. Sometimes, it means the same as "hardware dependent" or "machine dependent" and refers to applications that run in only one hardware series with the operating system not being relevant.
+
+In contrast, "platform independent" means that the application can run in different operating environments. Applications written in Java are a prime example
+
+What did we learn so far about an OS (yeah in simple terms)
+-----------------------------------------------------------
+1. A program which controls the execution of all other programs
+(applications).
+
+2. Acts as an intermediary between the user(s) and the computer.
+
+3. Objectives:
+– convenience,
+– efficiency,
+– extensibility
+
+4. The Operating System (OS): 
+– controls all execution. 
+– multiplexes resources between applications. 
+– abstracts away from complexity.
+
+Components of an OS
+-------------------
+Shell
+Kernel
+
+Shell handles user interactions. It is the outermost layer of the operating system and manages the interaction between user and operating system by:
+
+- Prompting the user to give input
+- Interpreting the input for the operating system
+- Handling the output from the operating system
+
+Kernel is the core component of an operating system which acts as an interface between applications, and the data is processed at the hardware level
+
+The kernel is responsible for performing the following tasks:
+
+- Input-Output management 
+- Memory Management 
+- Process Management for application execution. 
+- Device Management 
+- System calls control
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ques 1 - Difference between kernel and OS (10 min)
+Good reference: https://www.geeksforgeeks.org/difference-between-operating-system-and-kernel/
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Types of Operating Systems
+--------------------------
+Batch OS
+Distributed OS
+Multitasking OS
+Network OS
+Real-OS
+Mobile OS
+
+Ques2 - Write one-liner on each OS with examples (10 min)
+
+Modes of operation in OS
+------------------------
+User mode --> mode bit = 1
+kernel mode --> mode bit = 0
+
+Important: The mode bit is set to 0 in the kernel mode. It is changed from 0 to 1 when switching from kernel mode to user mode.
+
+Kernel Mode
+
+In Kernel mode, the executing code has complete and unrestricted access to the underlying hardware. It can execute any CPU instruction and reference any memory address. Kernel mode is generally reserved for the lowest-level, most trusted functions of the operating system. Crashes in kernel mode are catastrophic; they will halt the entire PC.
+
+User Mode
+
+In User mode, the executing code has no ability to directly access hardware or reference memory. Code running in user mode must delegate to system APIs to access hardware or memory. Due to the protection afforded by this sort of isolation, crashes in user mode are always recoverable. Most of the code running on your computer will execute in user mode.
+
+Example
+--
+Regular user space programs evoke system calls all the time to get work done, for example:
+ls
+ps
+top
+bash
+
+Digging one layer deeper, the following are some example system calls which are invoked by the above listed programs. Typically these functions are called through libraries such as glibc, or through an interpreter such as Ruby, Python, or the Java Virtual Machine.
+open (files)
+getpid (processes)
+socket (network)
+
+A typical program gets access to resources in the kernel through layers of abstraction as follows:
+
+- User Programs
+- Library/Interpreter
+- System Calls
+- Kernel Space
+--
+

@@ -1,0 +1,23 @@
+echo "I'm a file under finaldir" > finaldir/file8 This means --> I'm writing the content in a file and creating that file simultaneously.
+
+[Prashant Chavan] - Too fast
+
+Copying stuff from one machine to another machine
+scp <path of source> root@<IP of other machine>:<destination path>
+
+1. Create a directory named folder1
+2. Create 5 files under folder1 - file1, file2 ... file 5
+3. Rename file5 to file99
+4. Create another folder named folder2 and under folder2 create folder22
+5. Go to '/'  
+6. Move all files from folder1 to folder22
+7. Display contents of folder22
+
+Nano editor
+-----------
+nano <filename>
+Add your contnet
+Ctrl+X 
+Press y
+Enter
+

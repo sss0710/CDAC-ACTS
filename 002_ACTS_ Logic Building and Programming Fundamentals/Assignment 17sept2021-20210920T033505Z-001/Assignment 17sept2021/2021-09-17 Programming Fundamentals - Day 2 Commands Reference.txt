@@ -1,0 +1,17 @@
+- To compile C program (source file name say, first.c) using gcc. Use following command
+gcc first.c
+
+- By default, executable file created by gcc has name a.out.
+Use "-o" flag to specify altername name of the executable file.
+Following command compiles source file first.c and created executable file with the name first
+gcc first.c -o first
+
+- $? is a Linux shell variable that stores the the return value/exit code of the last executed command.
+To print the value stored in $? we can use the echo command, as follows:
+echo $?
+
+- cat command can be used to print the contents of a file.
+Following command prints the contents of a file first.c
+cat first.c
+
+- ls command is used to view the name of files and directories.

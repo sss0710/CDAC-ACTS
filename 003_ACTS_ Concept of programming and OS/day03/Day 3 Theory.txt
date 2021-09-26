@@ -1,0 +1,307 @@
+ What are file permissions and how to set them
+ Permissions (chmod, chown, etc); access control list; network commands (ssh, sftp, scp)
+----------------------------------------------------------
+
+Type of shells
+--------------
+bash
+sh
+csh
+ksh
+nologin
+
+To know which shell you are working in : echo $SHELL
+
+Users in Linux
+-----------
+root user -> 0
+super user - sudoer
+regular user -> is above 1000 (centOS7)
+This min UID is decided in /etc/login.defs
+UID_MIN                  1000
+
+Where can I see the list of all users in Linux?
+- Whenever we create a user in Linux, a folder is created with same name as that of user in /home
+
+There is a file where we can see the info of all users - /etc/passwd
+username:x:UID:GID:comment:<home location>:<shell that user will use>
+
+How to create a user in Linux
+-----------------------------
+CentOS
+useradd <username>
+passwd <username>
+
+adding user with a comment
+useradd -c 'comment' username
+
+adding user with a UID
+useradd -u <UID> username
+
+--
+useradd -c 'someshwar' alice
+useradd -u 1002 user1
+--
+
+Ubuntu
+adduser <username>
+
+How to delete a user
+--------------------
+userdel -r <username>
+
+Switching of users
+------------------
+su - <username>
+
+Root can switch to any user without providing password
+
+Other users require password for switching
+
+Importance of 'x'
+-----------------
+Where are users password stored? - /etc/shadow
+The 2nd field 'x' in /etc/passwd is a link to shadow file that contains encrypted password
+x ------------> encrypted password
+
+Without x in /etc/passwd - password won't be asked
+
+File Permissions
+----------------
+Owner - User who created the file
+Group - The group which user is a part of
+Others - rest of users
+
+Permissions
+-----------
+r Read
+w Write
+x Execute
+
+4 Read
+2 Write
+1 Execute
+
+Full permissions over a file means
+rwx or 7 (4+2+1)
+
+How permission of a file looks like
+
+--- 		--- 		---
+Owner		Group		Other users
+
+Umask
+-----
+By default OS gives this permission
+Folder - 777
+File - 666
+
+[root@localhost edac_os]# touch file
+[root@localhost edac_os]# mkdir folder
+[root@localhost edac_os]# ls
+file  folder
+[root@localhost edac_os]# ls -l
+total 0
+-rw-r--r--. 1 root root 0 Sep 24 09:17 file -> 644
+drwxr-xr-x. 2 root root 6 Sep 24 09:18 folder --> 755
+
+This Umask gets subtracted from the default permissions set
+Now our umask value is 022
+
+Folder 
+777
+022
+---
+755
+
+If umask was not there, then any file created would have got 666 as permission set whoch means
+Owner - rw
+Group - rw
+Others - rw
+
+How to modify the permissions of a file
+---------------------------------------
+chmod <permission set> filepath
+
+How to change the ownership of a file
+-------------------------------------
+chown <new owner:new group owner> filename/path
+
+[root@localhost rahul]# chown shruti:shruti file_r
+[root@localhost rahul]# ls -l
+total 0
+-rw-rw-r--. 1 shruti shruti 0 Sep 24 09:28 file_r
+Note: Here we changed the owner as well as group owner
+
+[root@localhost rahul]# chown tom folder_r
+[root@localhost rahul]# ls -l
+total 0
+drwxrwxr-x. 2 tom    rahul  6 Sep 24 09:29 folder_r
+Note: Here we just changed the owner and not group owner
+
+[root@localhost rahul]# chown :alice  folder_r
+[root@localhost rahul]# ls -l
+total 0
+drwxrwxr-x. 2 tom    alice  6 Sep 24 09:29 folder_r
+Note: Here we just changed the group owner
+
+Important: Only 'owner or root' can change the permissions and ownership of a file
+
+
+ACL - Access Control List
+-------------------------
+[root@localhost edac_os]# ls -l file2 ## here we are listing permissions of file2
+-rw-r--r--. 1 root root 0 Sep 24 09:41 file2 ## here we saw that others can just read
+[root@localhost edac_os]# chmod 647 file2 ## here we provided full access to others
+[root@localhost edac_os]# ls -l file2 ## here we are listing permissions of file2
+-rw-r--rwx. 1 root root 0 Sep 24 09:41 file2 ## here we saw that others can read, write and execute
+
+Issue: root wanted to give full access to Rahul ONLY but via chmod there is no provision for such advanced request
+
+ACl --> setfacl -m u:<username>:<permission set> filename/path
+[root@localhost edac_os]# getfacl file1
+# file: file1
+# owner: root
+# group: root
+user::rw-
+user:rahul:rwx
+group::r--
+mask::rwx
+other::r--
+
+Getting permissions in numeric format
+-------------------------------------
+[root@localhost edac_os]# ls -l file3
+-rw-r--r--. 1 root root 0 Sep 24 09:41 file3
+[root@localhost edac_os]# stat -c %a file3
+644
+
+SSH
+---
+Secure Shell - Used to take shell of different Linux machines
+Synatx: ssh <username of the other machine>@<IP of the other machine>
+Usage:
+[root@localhost edac_os]# ssh ljhamb@192.168.91.147
+It will ask for password
+
+Transfer all files on other machine via copying
+-----------------------------------------------
+scp - secure copy, copy over ssh
+scp <location of files you want to transfer> <username of the other machine>@<IP of the other machine>:<location where you want to transfer>
+
+Usage
+-----
+[root@localhost edac_os]# scp -r /root/edac_os/* ljhamb@192.168.91.147:/home/ljhamb/test/
+ljhamb@192.168.91.147's password:
+file1              100%    0     0.0KB/s   00:00
+file2              100%    0     0.0KB/s   00:00
+file3              100%    0     0.0KB/s   00:00
+file4              100%    0     0.0KB/s   00:00
+file5              100%    0     0.0KB/s   00:0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

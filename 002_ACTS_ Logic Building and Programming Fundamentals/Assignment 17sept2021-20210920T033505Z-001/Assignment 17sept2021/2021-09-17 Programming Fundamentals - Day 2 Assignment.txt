@@ -1,0 +1,48 @@
+Write algorithm and/or flow chart for following problems.
+Test their correctness by doing dry run with given sample inputs.
+
+
+1. Given a positive integer N, check if it is a perfect number or not.
+Perfect number is a positive integer that is equal to the sum of its factors (excluding the number itself).
+For example:
+N = 12
+Factors = 1 2 3 4 6 (we do not consider 12)
+Sum of factors = 1 + 2 + 3 + 4 + 6 = 16
+As Sum of factors is not equal to the Number 12, 12 is not a perfect number.
+N = 6
+Factors = 1 2 3 (we do not consider 6)
+Sum of factors = 1 + 2 + 3 = 6
+As Sum of factors is equal to the Number 6, 6 is a perfect number.
+
+
+2. Given a positive integer N, check if it is an armstrong number or not.
+An armstrong number is a number that is the sum of its own digits each raised to the power of the number of digits.
+For example:
+N = 153
+Number of digits in number = 3
+Sum of its own digits each raised to the power of the number of digits = (1 x 1 x 1) + (5 x 5 x 5) + (3 x 3 x 3) = 1 + 125 + 27 = 153
+153 is armstrong number.
+
+N = 15
+Number of digits in number = 2
+Sum of its own digits each raised to the power of the number of digits = (1 x 1) + (5 x 5) = 1 + 15 = 16
+15 is not an armstrong number.
+
+
+3. Find the count of a digit in a given positive integer.
+For example:
+Number = 12123
+Digit = 1
+Count of digit 1 in 12123 = 2 (as 1 appears twice in the number)
+
+
+4. Given a positive integer N, print the digits in the number as words.
+For example:
+N = 231
+Result = Two Three One
+
+
+5. Given a positive integer N, print the number in words.
+For example:
+N = 5312
+Result = Five Thousand Three Hundred Twelve

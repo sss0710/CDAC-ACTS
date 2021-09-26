@@ -1,0 +1,294 @@
+[Theory Day 2]
+
+Full screen mode -> Click inside the machine and Press Ctrl+Alt+Enter
+To clear data on screen ->  Ctrl+L
+
+[lavishjhamb@localhost ~]$
+[username@machinename <location>]
+
+~ -> <home of the user>
+
+$ --> user in action is a regular user
+# --> user in action is a root user
+
+'root' user is main user is linux with user id '0'. It has all the permissions possible.
+[root@localhost ~]# 
+
+Kind of users in Linux
+----------------------
+1. Root User
+2. Regular User
+3. Super User (Sudoer)
+
+To Change location in Linux - To traverse in Linux
+--------------------------------------------------
+cd <location where you want to go>
+
+File Hierarchy in Linux - Directory Structure in Linux
+------------------------------------------------------
+/
+
+Folders inside '/'
+bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
+boot  etc  lib   media  opt  root  sbin  sys  usr
+
+/bin
+/dev
+/home
+/lib64
+/mnt
+/proc
+/run
+/srv
+/tmp
+/var
+/boot
+/etc
+/lib
+/media
+/opt
+/root
+/sbin
+/sys
+/usr
+
+Ques 1 - Explain what's inside each folder under '/'
+
+To see current location
+-----------------------
+pwd --> present working directory
+
+
+Meaning of '.' and '..'
+-----------------------
+. --> same location
+.. --> previos directory
+
+[root@localhost audit]# cd .
+[root@localhost audit]# pwd
+/var/log/audit
+[root@localhost audit]# cd ..
+[root@localhost log]# cd ..
+[root@localhost var]# cd ..
+[root@localhost /]# cd /var/log/audit/
+[root@localhost audit]# cd ../../..
+[root@localhost /]# 
+
+Folder (Directory) creation
+---------------------------
+mkdir <foldername>
+
+[root@localhost edac_os]# pwd
+/root/edac_os
+[root@localhost edac_os]# mkdir dir1
+[root@localhost edac_os]# mkdir dir2
+[root@localhost edac_os]# mkdir dir3
+[root@localhost edac_os]# ls
+dir1  dir2  dir3
+
+Folder removal
+--------------
+rm -rf <absolute path of the folder>
+
+rm -> remove
+r -> recursively
+f -> forcefully
+
+[root@localhost edac_os]# rm -rf /root/edac_os/dir3
+[root@localhost edac_os]# ls
+dir1  dir2
+
+Remove multiple folders at a time 
+---------------------------------
+[root@localhost edac_os]# rm -rf *
+
+How to create files
+-------------------
+touch <filename>  -> it will create a blank file
+
+Sceanrio we are working on
+--------------------------
+We are under /root/edac_os
+
+and this contains - dir1 and dir2
+and dir1 contains - file1 and file2
+and dir2 contains - file3 and file4
+
+Condition: Current location -> '/'
+
+Task
+Delete file1 under dir1
+[root@localhost /]# rm -rf /root/edac_os/dir1/file1
+[root@localhost ~]# cd /root/edac_os/dir1
+[root@localhost dir1]# ls
+file2
+
+Create file5 under dir2
+[root@localhost /]# touch /root/edac_os/dir2/file5
+[root@localhost /]# cd /root/edac_os/dir2
+[root@localhost dir2]# ls
+file3  file4  file5
+
+Editing of a file using 'vi'
+----------------------------
+vi <filename>
+Press i --> insert
+<Fill in the content>
+Press Esc
+:wq! --> Save my data and exit
+:q! --> Exit
+:w! --> just saves the current data
+
+To see the contents of file
+---------------------------
+cat <filename>
+[root@localhost dir2]# vi file3
+[root@localhost dir2]# cat file3
+I'm editing file3 because Im bound to
+
+Edit file2 and write "I disturb during tasks" in it
+vi /root/edac_os/dir1/file2
+Added the data, :wq!
+
+[root@localhost /]# cat /root/edac_os/dir1/file2
+I disturb during tasks
+
+Renaming a file
+---------------
+mv <old name> <new name>
+
+Copying of file
+---------------
+cp <source location> <destination location>
+
+[root@localhost dir1]# ls
+file1
+[root@localhost dir1]# cd ../dir2
+[root@localhost dir2]# ls
+file3  file4  file5
+
+Task - Copy file5 to dir1
+Condition: You are under '/'
+
+Solution: 
+[root@localhost /]# cp /root/edac_os/dir2/file5 /root/edac_os/dir1
+[root@localhost /]# ls /root/edac_os/dir2
+file3  file4  file5
+[root@localhost /]# ls /root/edac_os/dir1
+file1  file5
+
+Delete file5 under dir1 and move all files from dir2 to dir1
+------------------------------------------------------------
+Expected o/p under dir1
+file3, file4, file1, file5
+
+[root@localhost /]# cp /root/edac_os/dir2/file5 /root/edac_os/dir1
+[root@localhost /]# ls /root/edac_os/dir2
+file3  file4  file5
+[root@localhost /]# ls /root/edac_os/dir1
+file1  file5
+[root@localhost /]# rm -rf /root/edac_os/dir1/file5
+[root@localhost /]# mv /root/edac_os/dir2/* /root/edac_os/dir1
+[root@localhost /]# ls /root/edac_os/dir2            [root@localhost /]# ls /root/edac_os/dir1
+file1  file3  file4  file5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

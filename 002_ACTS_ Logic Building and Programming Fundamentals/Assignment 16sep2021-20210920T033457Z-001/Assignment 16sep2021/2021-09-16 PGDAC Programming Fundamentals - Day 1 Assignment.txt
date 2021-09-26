@@ -1,0 +1,71 @@
+Write algorithm and/or flow chart for following problems.
+Test their correctness by doing dry run with given sample inputs.
+
+
+1. Given a positive integer N, find all factors of N.
+For example:
+N = 12
+Factors = 1 2 3 4 6 12
+N = 5
+Factors = 1 5
+
+
+2. Given a positive integer N, find its reverse.
+For example:
+N = 534
+Reverse = 435
+N = 5
+Reverse = 5
+
+
+3. Find first N terms of a Fibonacci Series. In Fibonacci series the next term is the sum of the previous two terms.
+First two terms of the series are 1 and 1. Hence, the series with 6 terms would be
+1 1 2 3 5 8
+
+
+4. Find sum of all numbers between two positive integers N and M, including N and M.
+For example:
+N = 3
+M = 7
+Sum = 25 (3 + 4 + 5 + 6 + 7)
+
+
+5. Find prime numbers between two positive integers N and M, including N and M.
+For example:
+N = 3
+M = 10
+Prime Numbers = 3 5 7
+
+
+6. Find the first digit in a positive integer.
+For example:
+Number = 32
+First Digit = 3
+
+
+7. Find the sum of all digit of a positive integer.
+For example:
+Number = 3245
+Sum of digits = 14 (3 + 2 + 4 + 5)
+
+
+8. Find the sum of all digit of a integer (both positive and negative).
+For example:
+Number = -3245
+Sum of digits = 14 (3 + 2 + 4 + 5)
+Number = 12
+Sum of digits = 3 (1 + 2)
+
+
+9. Find the product of all digit of a positive integer.
+For example:
+Number = 312
+Sum of digits = 6 (3 x 1 x 2)
+
+
+10. Given a positive integer N, check if its palindrome or not. A palindrome number is a number that is same as its reverse.
+For example:
+Number = 32
+Not a palindrome. (Reverse is 23 and not same as 32)
+Number = 545
+A palindrome. (Reverse is 545 and not same as 545)

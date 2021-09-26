@@ -1,0 +1,2 @@
+Ques1 - Difference between kernel and OS 
+Ques2 - Write one-liner on Type of OS with examples
