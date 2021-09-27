@@ -689,9 +689,9 @@ file4              100%    0     0.0KB/s   00:00
 file5              100%    0     0.0KB/s   00:0
 ```
 
-#	DAY4
+##	DAY4
 
-#	AGENDA
+##	AGENDA
 
 *	What is shell; What are different shells in Linux?
 *	Shell variables; Wildcard symbols
@@ -713,7 +713,7 @@ hello
 world
 [root@localhost edac_os]# rm -rf *
 ```
-#	repeat the same scenario for appending data
+##	repeat the same scenario for appending data
 
 ```
 [root@localhost edac_os]# echo "hello" > file
@@ -799,7 +799,7 @@ Usecase: We want to fetch apple
 [root@localhost edac_os]# cat things | grep "apple"
 apple
 ```
-# Linux is case sensitive
+## Linux is case sensitive
 ```
 [root@localhost edac_os]# cat things | grep -i "apple"
 apple
@@ -807,7 +807,7 @@ APPLE
 Apple
 ApplE
 ```
-# Case sensitivity is ignored
+## Case sensitivity is ignored
 ```
 [root@localhost edac_os]# cat things | grep "mango"
 mangoes
@@ -817,7 +817,7 @@ mangoes
 [root@localhost edac_os]# cat things | grep -o "mango"
 mango
 ```
-#	o is for only
+##	o is for only
 ```
 [root@localhost edac_os]# cat things | grep -i -o "mango"
 Mango
@@ -833,7 +833,7 @@ Orange is nice fruit
 orange
 Orange
 ```
-#	just orange - without sentence
+##	just orange - without sentence
 
 
 *^ - starting*
@@ -845,7 +845,7 @@ APPLE
 Apple
 ApplE
 ```
-# all that started with cap A
+## all that started with cap A
 ```
 [root@localhost edac_os]# cat things | grep "\."
 tomato.
@@ -853,13 +853,13 @@ orange.
 My IP adress is 8.8.8.8
 Your IP adress is 192.168.10.142
 ```
-# all lines which have '.'
+## all lines which have '.'
 ```
 [root@localhost edac_os]# cat things | grep "\.$"
 tomato.
 orange.
 ```
-# ending with a dot
+## ending with a dot
 ```
 [root@localhost edac_os]# cat things | grep -P "\d{10}"
 My phone number is 9643546697
@@ -873,7 +873,7 @@ My phone number is 9643546697
 [root@localhost edac_os]# cat things | grep "^$"
 ```
 
-#	it brings all the blank lines
+##	it brings all the blank lines
 ```
 [root@localhost edac_os]# cat things | grep tomato
 tomato.
@@ -904,7 +904,7 @@ Pipe in commands
 ----------------
 *syntax: command1 | command2 | command3 ......*
 
-#	What it means?
+##	What it means?
 Output of command1 will act as input of command2
 
 Usage
@@ -948,7 +948,7 @@ APPLE
 Apple
 ApplE
 ```
-#	SHELL Scripting
+##	SHELL Scripting
 
 Steps:
 1. Enter the commands in a file
@@ -1141,7 +1141,7 @@ cat /etc/passwd|  awk -F':' '{if ($3 > 1000) {print $1, $3}}'
 *	$3 is the userID
 *	$1 is the username
 
-**Task1**
+##      Task1
 ```
 #!/bin/bash
 
@@ -1161,13 +1161,9 @@ stat -c %a test
 chmod 777 test
 stat -c %a test
 #ls -l test
-
-
-
-
 ```
 
-**Task2**
+##      Task2
 ```
 #!/bin/bash
 
@@ -1181,7 +1177,7 @@ cat /etc/passwd | grep "bash"
 
 ```
 
-**Task3**
+##      Task3
 ```
 #!/bin/bash
 
@@ -1202,7 +1198,7 @@ echo "$info_user"
 
 ```
 
-**Task4**
+##      Task4
 ```
 #!/bin/bash
 
@@ -1216,7 +1212,7 @@ echo ""
 cat /etc/passwd | grep "bash" | grep "$usr" | awk -F':' '{print $3}'
 ```
 
-**Task5**
+##      Task5
 ```
 #!/bin/bash
 
@@ -1227,12 +1223,7 @@ cat /etc/passwd | grep "bash" | grep "$usr" | awk -F':' '{print $3}'
 
 #If the user does not exist, then display the following error: "Entered user is not present on you Linux machine"
 
-###############
-
-
-
 read -p "Enter the username: " usr
-
 
 ##Following variable will give the user ID only when user is presnt, else the variable will be blank.
 
@@ -1248,7 +1239,7 @@ if [[ -n "$var" ]]
 fi
 ```
 
-**Task6**
+##      Task6
 ```
 #!/bin/bash
 ##Create a script that displays all Linux users with ID greater than 1000
@@ -1260,19 +1251,20 @@ cat /etc/passwd|  awk -F':' '{if ($3 > 1000) {print $1, $3}}'
 
 Lab - 25/09/2021
 ---------------
-[task1_lab]
+##      task1_lab
+```
 Create a script that asks user to enter two numbers like this:= -
 Enter the first number: 
 Enter the second number:
 Now display which number is greater?
-
-[task2_lab]
-Create a script that asks the user to enter two numbers like this - 
-Enter the first number: 
-Enter the second number:
-Now display - sum, difference, multiplication and division results of provided numbers?
-
 ```
+##      task2_lab
+```
+#Create a script that asks the user to enter two numbers like this - 
+#Enter the first number: 
+#Enter the second number:
+#Now display - sum, difference, multiplication and division results of provided numbers?
+
 [root@localhost scripts]# a=5
 [root@localhost scripts]# b=6
 [root@localhost scripts]# c=$(expr $a + $b)
@@ -1280,18 +1272,19 @@ Now display - sum, difference, multiplication and division results of provided n
 11
 ```
 
-[task3_lab]
+##      task3_lab
 Create a script that asks for username and display its home directory only if it's user id is greater than 1000 and less than 1003
 ```
 [root@localhost scripts]#  cat ./task3_lab.sh
 ```
-*#!/bin/bash*
+```
+#!/bin/bash
 Create a script that asks for username and display its home directory only if it's user id is greater than 1000 and less than 1003
 
 read -p "Provide username: " usr
 
 *Here we have to find the userid and see if it is greater than 1000 and less than 1003*
-```
+
 uid=$(cat /etc/passwd | grep "$usr" | awk -F':' '{print $3}')
 homedir=$(cat /etc/passwd | grep "$usr" | awk -F':' '{print $6}')
 
@@ -1303,23 +1296,27 @@ if [[ $uid > 1000 && $uid < 1003 ]]
 fi
 ```
 
-To see IP address of the machine
-
+##      To see IP address of the machine
+```
 ifconfig
+```
+```
 ip a
+```
 
 ens33: check the IP in ens33 interface
 
 If you dont have the IP address
 Run the following command - This command will fetch an IP address from your local DHCP server
-*dhclient -v*
-
+```
+dhclient -v
+```
 If you want to see that - is your linux machine connected to internet, then fire the following command:
 
 *nslookup google.com*
 
 
-[task4_lab]
+##      task4_lab
 Create a script that asks for a random number from the user.
 Check if that number matches any UID in the Linux machine.
 If it does, display the username and it's shell
@@ -1329,12 +1326,17 @@ If it doesn't then increment that number by 10 and display the incremented numbe
 ```
 [root@localhost scripts]# cat task4_lab.sh
 ```
-*#!/bin/bash*
-Create a script that asks for a random number from the user.
-Check if that number matches any UID in the Linux machine.
-If it does, display the username and it's shell
-If it doesn't then increment that number by 10 and display the incremented number?
 ```
+#!/bin/bash
+
+Create a script that asks for a random number from the user.
+
+Check if that number matches any UID in the Linux machine.
+
+If it does, display the username and it's shell
+
+If it doesn't then increment that number by 10 and display the incremented number?
+
 read -p "Provide random number : " num ##Provided a number and stored it in a variable named num
 
 cat /etc/passwd| awk -F':' '{print $3}' > uid_list ## created a file named uid_list which has all the UIDs
