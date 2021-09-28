@@ -1355,6 +1355,526 @@ if [[ -n "$result" ]]
 				echo "$incrementvalue"
 fi
 ```
+##      Day 5 Theory
+
+##      [Task1]
+Create a script that takes a number as user input and tells if prvided number is a two digit number or single digit number.
+
+```
+#!/bin/bash
+
+#Create a script that takes a number as user input and tells if prvided number is a two digit number or single digit number.
+
+read -p "Enter number : " num
+
+if [[ $num -gt 0 && $num -lt 10  ]]
+then
+        echo "Single Digit Number"
+
+elif [[ $num -gt 9 && $num -lt 100  ]]
+then
+        echo "Two Digit Number"
+else
+        echo "Invalid Input"
+fi      
+```
+
+##      [Task2]
+Create a command named as 'myos' - running this command should display the OS you are working on 
+
+```
+alias myos="echo $(cat /etc/os-release | grep "\bPRETTY_NAME\b" | awk -F'"' '{print $2}')"
+```
+or
+```
+alias myos="uname -o"
+```
+##      [Task3]
+Create a command named as 'myshell' - running this command should display the shell you are working on ; **bash**
+
+```
+alias myshell="echo $(cat /etc/passwd | grep "$(whoami)" | awk -F':' '{print $7}' | awk -F'/' '{print $3}')"
+```
+
+##      [Task4]
+Create a script that takes a  path and tells you if provoided path is a file or a directory
+
+```
+#!/bin/bash
+
+##Create a script that takes a path and tells you if provided p
+ath is a file or a directory
+
+read -p "Enter the path to file or directory : " path
+
+line=$(ls -l -d $path)
+
+first_char=$(echo "$line" | cut -c1)
+
+if [[ $first_char == - ]]
+then
+        echo "Path leads to a file"
+
+elif [[ $first_char == d ]]
+then
+        echo "Path leads to a directory"
+
+else
+        echo "Invalid Path"
+fi
+```
+or
+```
+#!/bin/bash
+
+read -p "Enter a path" path
+echo "$path"
+
+if [[ -d $path ]]
+then
+        echo "directory"
+elif [[ -f $path ]]
+then
+        echo "file"
+else
+        echo "no such file or directory"
+fi
+```
+
+##      [Task5]
+Create a script that takes a directory path and lists down all the files (only files) under that dir.
+```
+#!/bin/bash
+
+#Create a script that takes a directory name and lists down all the files (only>
+
+read -p "Enter directory path : " path
+
+file=$(ls -l "$path" | grep "^-" | awk '{print $9}')
+
+if [[ -n $file ]]
+then
+        echo "$file"
+else
+        echo "Files not present"
+fi
+```
+
+
+##      [Task6]
+Create a script to get the current date, time, username and current working directory.
+```
+#!/bin/bash
+
+#Create a script to get the current date, time, username and current working di>
+
+echo "Date : `date`"
+echo ""
+echo "Working Directory : `pwd`"
+echo ""
+echo "Username : `whoami`"
+```
+
+
+##      [Task7]
+Create a script that creates a dir named test and then creates 5 files under it named as file1, file2..file5 and then renames all files by adding .txt extension to all file names
+```
+#!/bin/bash
+
+rm -rf test
+
+echo "My current location is `pwd`"
+
+mkdir test;
+
+cd test 
+
+for i in {1..5} 
+
+ do
+
+   touch file$i
+
+ done
+
+ for i in {1..5} 
+
+ do
+
+   mv file$i.txt
+
+ done
+
+ls 
+
+cd ..
+```
+or
+
+```
+#!/bin/bash
+
+rm -rf test
+
+mkdir test
+cd test
+touch file{1..5}
+echo "The files created are : " $'\n'
+ls
+echo $'\n'
+ls -l | grep "^-" | awk '{print $9}' > file_new.txt
+count=1
+while read line
+do
+ if [[ $count -lt 6 ]]
+    then
+        mv file$count file$count.txt
+        ((count++))
+ fi
+done < file_new.txt
+rm -rf file_new.txt
+echo "Files after being renamed:"$'\n'
+ls
+echo $'\n'
+
+```
+
+
+Creating a command
+-------------------
+```
+[root@localhost scripts]# alias kernelinfo="uname -a"
+[root@localhost scripts]#
+[root@localhost scripts]# kernelinfo
+Linux localhost.localdomain 3.10.0-1160.el7.x86_64 #1 SMP Mon Oct 19 16:18:59 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+```
+Q - How to make the alias permanent?
+
+Usage of find command
+---------------------
+How will search for a file name in a directory?
+```
+find <top level location> -name '<name of file>'
+
+[root@localhost ~]# find /root -name 'myfile'
+/root/edac_os/folder_new/folder_new1/folder_new2/folder_new3/folder_new4/myfile
+```
+
+Calling script with arguments
+-----------------------------
+We run the script as follows:
+```
+./<scriptname>
+bash <scriptname>
+
+./scriptName "arg1" "arg2"..."argn"
+
+ex: if folloiwng is the script:
+#!/bin/bash
+echo "First parameter is $1"
+echo "Second parameter is $2"
+echo "Third parameter is $3"
+```
+and you run it like this: ./parameters.sh 50 51 52
+
+The output will be:
+First parameter is 50
+Second parameter is 51
+Third parameter is 52
+
+Prompt Statement variables
+---------------------------
+There are several variables that can be set to control the appearance of the bash command prompt: PS1, PS2, PS3, PS4 and PROMPT_COMMAND the contents are executed just as if they had been typed on the command line.
+
+PS1 – Default interactive prompt (this is the variable most often customized)
+PS2 – Continuation interactive prompt (when a long command is broken up with \ at the end of the line) default=">"
+PS4 – Prompt used when a shell script is executed in debug mode (“set -x” will turn this on) default ="++"
+
+To see the current value of PS1
+```
+[root@localhost edac_os]# echo $PS1
+[\u@\h \W]\$
+```
+
+For ex: We can set the prompt by changing the value of the PS1 environment variable, as follows:
+```
+$ export PS1='My prompt$'
+My prompt$
+```
+
+##      Special prompt variable characters:
+```
+ \d   The date, in "Weekday Month Date" format (e.g., "Tue May 26"). 
+
+ \h   The hostname, up to the first . (e.g. deckard) 
+ \H   The hostname. (e.g. deckard.SS64.com)
+
+ \j   The number of jobs currently managed by the shell. 
+
+ \l   The basename of the shell's terminal device name. 
+
+ \s   The name of the shell, the basename of $0 (the portion following the final slash). 
+
+ \t   The time, in 24-hour HH:MM:SS format. 
+ \T   The time, in 12-hour HH:MM:SS format. 
+ \@   The time, in 12-hour am/pm format. 
+
+ \u   The username of the current user. 
+
+ \v   The version of Bash (e.g., 2.00) 
+
+ \V   The release of Bash, version + patchlevel (e.g., 2.00.0) 
+
+ \w   The current working directory. 
+ \W   The basename of $PWD. 
+
+ \!   The history number of this command. 
+ \#   The command number of this command. 
+
+ \$   If you are not root, inserts a "$"; if you are root, you get a "#"  (root uid = 0) 
+
+ \nnn   The character whose ASCII code is the octal value nnn. 
+
+ \n   A newline. 
+ \r   A carriage return. 
+ \e   An escape character (typically a color code). 
+ \a   A bell character.
+ \\   A backslash. 
+
+ \[   Begin a sequence of non-printing characters. (like color escape sequences). This
+      allows bash to calculate word wrapping correctly.
+
+ \]   End a sequence of non-printing characters.
+ ```
+**Note:** Using single quotes instead of double quotes when exporting your PS variables is recommended, it makes the prompt a tiny bit faster to evaluate.
+
+For example: Question is - Set up a prompt like: [username@hostname:Currentlocation]$
+```
+Solution: export PS1='[\u@\h:\w]\$'
+```
+Here 'export' helps us to  Set an environment variable.
+
+PS2 example
+-----------
+```
+[root@localhost edac_os]# echo "This is a very long comment. How long is it? \
+> It's so long that I continued it on the next line."
+This is a very long comment. How long is it? > It's so long that I continued it on the next line.
+[root@localhost edac_os]# touch \
+> filename
+[root@localhost edac_os]# ls
+filename
+```
+
+For loop
+--------
+Create 5 files in a dir named 'test' with filenames uch as file1, file2, file3, file4 and file5 - Use for loop
+```
+[root@localhost scripts]# cat for.sh
+#!/bin/bash
+
+#Create 5 files in a dir named 'test' with filenames uch as file1, file2, file3, file4 and file5 - Use for loop
+
+##remove test if already present
+rm -rf test
+
+echo "My current location is `pwd`"
+
+mkdir test;cd test ## created test folder and went inside it
+for i in {1..5} ## initiated for loop
+ do
+   touch file$i
+ done
+
+ls ##listed all files created under test folder
+
+cd .. ## went out of test folder 
+```
+
+~~for is mostly used when values in range are space separated
+~~while is mostly used when values in range are line separated
+
+While loop
+----------
+You have a list of users. Traverse through the list and display the shell each user is using?
+File with user names is as userlist.txt and contents of it are as follows:
+```
+root
+lavishjhamb
+tom
+alice
+user1
+rahul
+shruti
+yash
+tommy
+```
+Syntax:
+```
+while <condition>
+do
+<commands>
+done
+```
+```
+[root@localhost while]# cat while.sh
+```
+```
+#!/bin/bash
+
+while read line
+
+do
+
+shell=$(cat /etc/passwd | grep "^$line\b"  | awk -F':' '{print $7}')
+echo "$line ----> $shell"
+
+
+done < userlist.txt
+
+```
+
+Assignment ques - You have a list of files. Traverse through the list and display the permision set of each file?
+
+filename ---> numeric permission
+
+List of files under /etc
+------------------------
+```
+adjtime
+aliases
+aliases.db
+anacrontab
+asound.conf
+at.deny
+autofs.conf
+autofs_ldap_auth.conf
+auto.master
+auto.misc
+auto.net
+auto.smb
+bashrc
+brltty.conf
+centos-release
+centos-release-upstream
+cgconfig.conf
+cgrules.conf
+cgsnapshot_blacklist.conf
+chrony.conf
+chrony.keys
+cron.deny
+crontab
+crypttab
+csh.cshrc
+csh.login
+DIR_COLORS
+DIR_COLORS.256color
+DIR_COLORS.lightbgcolor
+dleyna-server-service.conf
+dnsmasq.conf
+dracut.conf
+e2fsck.conf
+enscript.cfg
+environment
+ethertypes
+exports
+filesystems
+fprintd.conf
+fstab
+fuse.conf
+gdbinit
+GeoIP.conf
+GREP_COLORS
+group
+group-
+gshadow
+gshadow-
+host.conf
+hostname
+hosts
+hosts.allow
+hosts.deny
+idmapd.conf
+inittab
+inputrc
+ipsec.conf
+ipsec.secrets
+issue
+issue.net
+kdump.conf
+krb5.conf
+ksmtuned.conf
+ld.so.cache
+ld.so.conf
+libaudit.conf
+libuser.conf
+locale.conf
+login.defs
+logrotate.conf
+machine-id
+magic
+mail.rc
+makedumpfile.conf.sample
+man_db.conf
+mke2fs.conf
+motd
+mtools.conf
+my.cnf
+nanorc
+netconfig
+networks
+nfs.conf
+nfsmount.conf
+nsswitch.conf
+nsswitch.conf.bak
+ntp.conf
+numad.conf
+oddjobd.conf
+papersize
+passwd
+passwd-
+pbm2ppa.conf
+pinforc
+pnm2ppa.conf
+printcap
+profile
+protocols
+radvd.conf
+request-key.conf
+resolv.conf
+resolv.conf.save
+rpc
+rsyncd.conf
+rsyslog.conf
+rwtab
+securetty
+services
+sestatus.conf
+shadow
+shadow-
+shells
+sos.conf
+statetab
+subgid
+subgid-
+subuid
+subuid-
+sudo.conf
+sudoers
+sudo-ldap.conf
+sysctl.conf
+system-release-cpe
+tcsd.conf
+trusted-key.key
+updatedb.conf
+usb_modeswitch.conf
+vconsole.conf
+vimrc
+virc
+wgetrc
+wvdial.conf
+yum.conf
+```
 
 
 
