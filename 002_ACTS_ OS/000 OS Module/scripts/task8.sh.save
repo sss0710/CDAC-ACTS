@@ -1,0 +1,7 @@
+#!/bin/bash
+#Assignment ques - You have a list of files. Traverse through the list and display the permision set of each file?#!/bin/bash
+
+echo $(ls -l /etc | grep "^-" | awk '{print $9}')  > userlist.txt
+
+
+

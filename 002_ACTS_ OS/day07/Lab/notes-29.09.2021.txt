@@ -1,0 +1,29 @@
+ps -eal 
+ps -aux
+top
+htop
+------------------------------------------------------------------------------------
+
+Display selected fields of processes : 
+ps -eo user,pid,ppid  #username,pid,ppid
+ps -eo user,pid,ppid,cmd               #username,pid,ppid,processname
+
+------------------------------------------------------------------------------------
+#ubuntu
+sudo apt-get install htop
+#Cent OS Users
+sudo yum install epel-release
+sudo yum install htop 
+----------------------------------------
+What is process?
+-------------------------------------------
+program loaded in memory(RAM) for execution 
+-------------------------------------------
+gcc Process_Demo.c - o process.out 
+
+ps -eo user,pid,ppid,cmd,stat | grep process.out
+
+-------------------------------------------------------
+System call : 
+----------------------
+Create a child process : Using fork system call"

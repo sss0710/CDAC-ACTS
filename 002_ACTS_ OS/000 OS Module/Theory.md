@@ -2226,6 +2226,272 @@ ps -p <pid> | grep -v "TTY" | awk '{print $NF}'
 	bat		ball
 Create a script that tells if the items present under file2 are there in file1 or not. Need to parse through each item.
 
+##      DAY 7
+##      DAY 7 Theory
+
+Options with if --> https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+
+How to run the c program in bash
+
+Processes
+---------
+
+fork() - is used to create the process
+
+##      DAY 7 LAB
+```
+ps -eal 
+ps -aux
+top
+htop
+```
+Display selected fields of processes : 
+```
+ps -eo user,pid,ppid  #username,pid,ppid
+ps -eo user,pid,ppid,cmd               #username,pid,ppid,processname
+```
+#ubuntu
+```
+sudo apt-get install htop
+```
+#Cent OS Users
+```
+sudo yum install epel-release
+sudo yum install htop 
+```
+What is process?
+
+program loaded in memory(RAM) for execution 
+```
+gcc Process_Demo.c - o process.out 
+```
+```
+ps -eo user,pid,ppid,cmd,stat | grep process.out
+```
+
+System call : 
+
+Create a child process : Using fork system call"
+
+
+```
+#include <stdio.h>
+#include <unistd.h>  //man 3 sleep
+
+int main(int argc, char *argv[])
+{
+    while(1)
+    {
+    printf("Simple Process  : Written in C\n");
+    sleep(5);
+    }
+    return 0;
+}
+
+/*
+
+to check process list:
+
+
+
+kill - l
+to imporant signals :
+SIGKILL - kill -9 <pid> #brutal behavior to kill a process
+SIGTERM - kill -15 <pid> //may be unhandled   (process is busy in I/O operations, waiting for some input)
+*/
+```
+
+```
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+/*
+pid_t fork(void);
+
+On success, the PID of the child process is returned in the parent, and 0 is 
+returned in the child.  On failure, -1 is returned in  the  parent, no child process is created, and errno is set appropriately.
+# gcc fork_demo.c -o fork_demo.out
+# ./fork_demo.out
+ps -eo cmd,pid,ppid,user | grep fork_demo.out
+./fork_demo.out             2566279 2564540 bhupendra
+./fork_demo.out             2566280 2566279 bhupendra
+
+Note : PID of parent process becomes the PPID of the child process
+*/
+int main()
+{
+    pid_t ret;
+    ret = fork();   //never try it on while loop
+    fork();   
+    fork();   //No child 
+    while(1)
+    {
+        printf("Hello from process\n");
+        sleep(5);
+    }
+}                                                                                  
+/*
+iot$ ps -eo user,pid,ppid,cmd | grep fork_demo.out
+bhupend+ 2567001 2566285 ./fork_demo.out
+bhupend+ 2567002 2567001 ./fork_demo.out
+bhupend+ 2567003 2567001 ./fork_demo.out
+bhupend+ 2567004 2567002 ./fork_demo.out
+
+------------------------------------------------
+With three forks():
+ps -eo user,pid,ppid,cmd | grep fork_demo.out
+bhupend+ 2567858 2566285 ./fork_demo.out
+bhupend+ 2567859 2567858 ./fork_demo.out
+bhupend+ 2567860 2567858 ./fork_demo.out
+bhupend+ 2567861 2567859 ./fork_demo.out
+bhupend+ 2567862 2567858 ./fork_demo.out
+bhupend+ 2567863 2567859 ./fork_demo.out
+bhupend+ 2567864 2567861 ./fork_demo.out
+bhupend+ 2567865 2567860 ./fork_demo.out
+bhupend+ 2567899 2567868 grep --color=auto fork_demo.out
+
+1st - Fork --->
+parent - 858
+child - 859,860,862
+child becomes parent for:
+859 - 861,863
+861 is parent for : 864
+860 will create child - 865
+----------------------------
+*/
+
+```
+
+```
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+int main()
+{
+    pid_t ret;
+    pid_t cpid;
+    pid_t ppid;
+    ret = fork();   //never try it on while loop
+    /*
+        0 - child process created
+        > 0 - parent process
+        < 0 - fork failed to execute
+        order is decided by OS
+    */
+   if (ret  == 0)  //child process
+   {
+        cpid = getpid();
+        ppid = getppid();
+       for (int i = 0;i <10;i++)
+       {
+       printf("I am in child proces : pid = %d , ppid = %d\n",cpid,ppid);
+       }
+   }
+   else if (ret > 0)  //parent process
+   {    
+       wait(NULL);  //parent will wait until child completes its execution
+       cpid = getpid();
+       ppid = getppid();
+       for (int i = 0;i <10;i++)
+       {
+       printf("I am in parent proces : pid = %d , ppid = %d\n",cpid,ppid);
+       }
+   }
+   
+   else
+   {
+       printf("Fork failed to execute \n");
+       exit(0); 
+   }
+        return 0;
+}                   
+```
+```
+#!/bin/bash
+list_of_numbers=(10 20 30 40 50)
+sum=0
+#length of array
+len_list_of_numbers=${#list_of_numbers[@]}
+echo "Length of list : " $len_list_of_numbers
+for ((index=0;index<$len_list_of_numbers;index++))
+do 
+    echo "value of" list_of_numbers[$index] " = " ${list_of_numbers[$index]}
+    let "sum=$sum+${list_of_numbers[$index]}"
+done
+echo "Sum of array : " $sum
+```
+
+##      DAY 7 ASSIGNMENTS
+
+*       1. Write a script that performs following operations on the given set of files?	(15)
+
+a) displays the total count of files
+b) displays the count of *.pdf files and *.docx
+c) rename all *.pdf to *.docx
+d) displays the count of *.pdf files and *.docx
+e) displays only those files which have underscore '_' in their names
+
+```
+msexchange.qlv
+Necessary Compliance Violations.docx
+New Doc 12-23-2020 16.51.pdf
+Open Cases.csv
+OPS-94632_new.tar
+OS-Windows.pdf
+QQL.json
+Ransomware.docx
+Red_Hat Reference Guide.pdf
+Script Analysis.xlsx
+Script page.jpg
+SolarWinds_Supply-Chain_Attack_UDdashboard.json
+Splunk_PC_App.png
+Splunk_VM_App.png
+Studio_Malware_July_2013.xlsx
+Troubleshooting Agent Permission Issues for Windows.pdf
+UDC_Demo_20210106.xml
+Video 2020-11-10 at 7.12.43 PM.mp4
+VMware-workstation-full-15.5.5-16285975.exe
+VMware-workstation-full-16.0.0-16894299.exe
+WhatsApp Image 2020-11-05 at 2.47.06 PM.jpeg
+win.txt
+```
+
+*       Write a script that displays the user information on the linux box in the following format:	(10)
+Username	Shell assigned to that user
+
+*       Write a command that fetches the list of all files under /root directory that are more than 2KB in size
+
+*       Create a script that asks for a user name and add that user with password same as that of user name. The user added should be assigned nologin shell
+
+*       Create a calculator program in bash that takes two numbers (integers) and display menu to the user for various mathematical operations. Hint: Switch Case Break
+
+*       Create 2 VMs - both CentOS 7 (with fresh snapshots) with names - machineA and machineB
+	1. From machineA copy any file to machineB
+	2. From machineA - create a dir named 'testdir' on machineB
+	
+*       $Create a script that depicts sending the process to background so that the next command in sequence can run without wait
+
+*       Create a script that displays the system information like: OS name, kernel version, RAM, etc.
+
+*       Create a shell script to find the largest among the 3 given numbers
+
+*       $Create a shell program to check whether a given string is palindrome
+
+*       Create a shell program to count number of words, characters, white spaces and special symbols in a given text
+
+*       $Create a script to remove all empty lines from a file
+
+*       Create a script that fetches only the IP address of the machine from output of ifconfig command
+```
+[root@ljhamb edac_os]# ifconfig | grep -A2 "ens33" | grep "inet" | grep -Po "\d+\.\d+\.\d+\.\d+" | head -n1
+```
+
+
+
+
+
 
 
 

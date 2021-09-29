@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#create firefox process & then stop the process using SIGKILL sign
+
+firefox &
+
+echo "Firefox On"
+sleep 15s
+var=$(pidof firefox)
+
+for i in $var
+	do	
+		kill -9 $i
+		echo "Process $i Killed"
+	done
+
+echo "Firefox Off"
