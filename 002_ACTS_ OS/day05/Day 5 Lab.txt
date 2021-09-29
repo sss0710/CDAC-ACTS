@@ -1,0 +1,134 @@
+Starting and ending using grep
+------------------------------
+[root@localhost edac_os]# cat filename
+rat
+dog
+cat
+lion
+mango
+--
+[root@localhost edac_os]# cat filename | grep "^m.*o$"
+mango
+[root@localhost edac_os]# cat filename | grep "^l.*n$"
+lion
+--
+[root@localhost edac_os]# dmesg | grep -Po "0x\w+0" | wc -l
+
+Using PS2
+---------
+Displaying PS2 variable
+[root@localhost edac_os]# echo $PS2
+>
+
+Command in single line 
+[root@localhost edac_os]# dmesg | grep -Po "0x\w+0" | wc -l
+698
+
+Multiline using PS2
+[root@localhost edac_os]# dmesg \
+> | grep -Po "0x\w+0" \
+> | wc -l
+698
+
+Using PS4 by adding -x to /bin/bash
+-----------------------------------
+[root@localhost scripts]# cat for.sh
+#!/bin/bash -x
+
+#Create 5 files in a dir named 'test' with filenames uch as file1, file2, file3, file4 and file5 - Use for loop
+
+##remove test if already present
+rm -rf test
+
+echo "My current location is `pwd`"
+
+mkdir test;cd test
+for i in {1..5}
+ do
+   touch file$i
+ done
+
+ls
+
+cd ..
+--
+Ouput is as follows:
+[root@localhost scripts]# ./for.sh
++ rm -rf test
+++ pwd
++ echo 'My current location is /root/edac_os/scripts'
+My current location is /root/edac_os/scripts
++ mkdir test
++ cd test
++ for i in '{1..5}'
++ touch file1
++ for i in '{1..5}'
++ touch file2
++ for i in '{1..5}'
++ touch file3
++ for i in '{1..5}'
++ touch file4
++ for i in '{1..5}'
++ touch file5
++ ls
+file1  file2  file3  file4  file5
++ cd ..
+
+-------
+Create a script that takes a user name and lists down all the files he owns? 
+
+#!/bin/bash
+read -p "Enter the username: " usr
+echo "Files owned by this user in it's home are as follows:"
+
+find /home/$usr -user $usr > file_$usr
+-------
+
+Create a script that takes a user name and lists down all the files he owns? and also tell if each path is a file or a dir?
+
+#!/bin/bash
+read -p "Enter the username: " usr
+echo "Files owned by this user in it's home are as follows:"
+find /home/$usr -user $usr > file_$usr
+
+while read line
+do
+ if [[ -f $line ]]
+  then
+		echo "$line is a file"
+ fi
+done < file_$usr
+
+---------------------------------------------------------
+
+Write a script that creates 1000 directories with 1000 files
+
+dir1 - file1
+dir2 - file2
+.
+.
+dir1000 - file1000
+
+and each file has content as follows:
+file1 - I'm file
+file2 - I'm file2
+.
+.
+file3 - I'm file3
+---------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

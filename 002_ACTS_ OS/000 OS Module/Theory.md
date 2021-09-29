@@ -147,7 +147,42 @@ A typical program gets access to resources in the kernel through layers of abstr
 - System Calls
 - Kernel Space
 
+##  Assignment 1
+
+**Ques1 - Difference between kernel and OS** 
+
+|**Kernel**|**OS**|
+|-------------------|---------------|
+|kernel is a part of OS|OS is a system software.|
+|kernel provides interface between OS and the hardware|OS triggers system call and communicates with kernel|
+|Main purpose is to interact with hardware(Process management, disk Management, task management, Memory Management)|-|
+|All OS need kernel to run|All systems need kernel to run|
+It is the first program which loads when OS boots up|It loads immediately after kernel loads|
+
+**Ques2 - Write one-liner on Type of OS with examples**
+
+*   **Batch OS**: Takes similar jobs having the same requirement and group them into batches to be executed. It is responsibility of operator to sort jobs with similar needs. 
+	*	Example: Payroll System, Bank Statements
+
+*   **Distributed OS**: It uses multiple processors to serve multiple real-time applications and multiple users.Data processing jobs are distributed among the processors accordingly.
+	*	Example:  telecommunication networks, aircraft control systems.
+
+*   **Multitasking OS**: It provides interface for executing the multiple program tasks by single user at a same time on one computer system.
+	*	Example:windows XP, Windows 10, Linux
+
+*   **Network OS**: These systems run on a server and provides the server the capeability to manage data, users, groups , security, applications and other network functions.
+	*	Example: Linux, Microsoft Windows Server 2008
+
+*   **Real-Time OS**: It is a defined as a data processing system in which the time interval required to process and respond to inputs is so small
+that it controls the environment.
+Example:Medical Imaging System, Weapons System, Air traffic Control System.
+
+*   **Mobile OS**: An operating system for smartphones, tablets and other mobile devices is called mobile OS,
+Example: Android, Blackberry OS
+
 ##	Day 2
+
+##      Day 2 Theory
 
 Full screen mode -> Click inside the machine and Press Ctrl+Alt+Enter
 To clear data on screen ->  Ctrl+L
@@ -383,8 +418,8 @@ file1  file5
 file1  file3  file4  file5
 ```
 
-LAB - 23/09/2021
-----------------
+##      Day 2 LAB
+
 commands
 *   history - Gives history of commands fired
 *   echo - creates and writes message in file simultaneously
@@ -420,7 +455,131 @@ long listing format of files in directory
 ```
 scp <path of source> root@<IP of other machine>:<destination path>
 ```
+##	Assignment 2
+
+**Ques1 Explain Linux Directory Structure and File System Hierarchy?**
+
+Read this - https://www.geeksforgeeks.org/linux-file-hierarchy-structure/#:~:text=The%20Linux%20File%20Hierarchy%20Structure,in%20Unix%2Dlike%20operating%20systems.&text=In%20the%20FHS%2C%20all%20files,different%20physical%20or%20virtual%20devices.
+
+**Ques2 Centos Directories & file creation/file editing problem**
+
+*	Create 5 directories under /root/edac_os
+
+dir1, dir2, dir3, dir4, dir5
+
+```
+[root@localhost edac_os]# mkdir -p dir{1..5}
+[root@localhost edac_os]# ls
+dir1  dir2  dir3  dir4  dir5
+```
+*	Create the following files under each directory
+
+dir1 --> file1
+dir2 --> file2
+dir3 --> file3
+dir4 --> file4
+dir5 --> file5
+
+```
+[root@localhost edac_os]# touch dir1/file1
+[root@localhost edac_os]# touch dir2/file2
+[root@localhost edac_os]# touch dir3/file3
+[root@localhost edac_os]# touch dir4/file4
+[root@localhost edac_os]# touch dir5/file5
+[root@localhost edac_os]# ls dir1
+file1
+[root@localhost edac_os]# ls dir2
+file2
+[root@localhost edac_os]# ls dir3
+file3
+[root@localhost edac_os]# ls dir4
+file4
+[root@localhost edac_os]# ls dir5
+file5
+```
+
+*	Create file6 and file7 under dir4
+```
+[root@localhost edac_os]# touch dir4/file{6..7}
+[root@localhost edac_os]# ls dir4
+file4  file6  file7
+```
+*	Delete file1 under dir1
+```
+[root@localhost edac_os]# cd dir1
+[root@localhost dir1]# ls
+file1
+[root@localhost dir1]# rm -rf *
+[root@localhost dir1]# ls
+[root@localhost dir1]# 
+[root@localhost dir1]# 
+```
+
+*	Copy all files from dir4 to dir1
+```
+[root@localhost dir1]# cp -r /root/edac_os/dir4/* .
+[root@localhost dir1]# ls
+file4  file6  file7
+[root@localhost dir1]# ls ../dir4
+file4  file6  file7
+```
+
+*	Move all files from dir1 to dir2
+```
+[root@localhost dir1]# mv * /root/edac_os/dir2
+[root@localhost dir1]# ls
+[root@localhost dir1]# ls ../dir2
+file2  file4  file6  file7
+```
+
+*	Delete file1 from dir2
+```
+[root@localhost dir1]# cd ../dir2
+[root@localhost dir2]# rm -rf file1
+[root@localhost dir2]# rm file1
+rm: cannot remove ‘file1’: No such file or directory
+```
+
+*	Remove all the directories except dir2
+```
+[root@localhost dir2]# cd ..
+[root@localhost edac_os]# rm -rf dir1
+[root@localhost edac_os]# rm -rf dir{3..5}
+[root@localhost edac_os]# ls
+dir2
+```
+
+*	Rename dir2 to finaldir
+```
+[root@localhost edac_os]# mv dir2 finaldir
+```
+
+*	List the files under finaldir
+```
+[root@localhost edac_os]# ls finaldir
+file2  file4  file6  file7
+```
+
+*	Each file under finaldir should have the following content - 'I'm a file under finaldir'
+```
+[root@localhost edac_os]# echo "I'm a file under finaldir" > finaldir/file2
+[root@localhost edac_os]# echo "I'm a file under finaldir" > finaldir/file4
+[root@localhost edac_os]# echo "I'm a file under finaldir" > finaldir/file6
+[root@localhost edac_os]# echo "I'm a file under finaldir" > finaldir/file7
+[root@localhost edac_os]# cat finaldir/file2
+I'm a file under finaldir
+[root@localhost edac_os]# cat finaldir/file4
+I'm a file under finaldir
+[root@localhost edac_os]# cat finaldir/file6
+I'm a file under finaldir
+[root@localhost edac_os]# cat finaldir/file7
+I'm a file under finaldir
+```
+
 ## DAY 3
+
+##      Day 3 Theory
+
 Agenda
 ------
 *	 What are file permissions and how to set them
@@ -688,8 +847,40 @@ file3              100%    0     0.0KB/s   00:00
 file4              100%    0     0.0KB/s   00:00
 file5              100%    0     0.0KB/s   00:0
 ```
+##	Optional Assignment Day3
+
+1. Create test user and add test to sudo/wheel,lp,lpadmin,audio,video
+2. Create test1 user with 2000 uid
+3. create test2 user with 1000 gid
+4. Set password for test,test1,test2
+5. login with test user and create bio.txt 
+6. Change permission to read and write for user and read for group only.
+7. Logout form test user
+8. try to write your name inside bio.txt
+9. Create user user1 using adduser command.
+________________________________________________________________
+
+1.Delete test,test1,test2
+2.Create three users, raj,ravi,neha using adduser command.
+3.Create data1.txt,data2.txt.Write your name in data1.txt
+4.Add neha and ravi to your_main_user group.
+5.Login with raj and try to write content in data2.txt.
+6.Read the data1.txt
+7.Logout from raj and login with ravi.
+8.Try to write content in data2.txt and data1.txt.
+9.Read the data1.txt and data2.txt
+10.Logout from ravi
+11.Change ownership of data1.txt to raj
+12.Change ownership and group of data2.txt to neha and raj.
+13.Try to append your name to data1.txt
+14.Try to append your name to data2.txt
+15.login with raj and try to change the ownership of data2.txt to raj.
+16.Logout and Deactivate the ravi account.(Change login shell to nologin)
+17.Login with neha and change ownership of data1.txt to neha.
 
 ##	DAY4
+
+##      Day 4 Theory
 
 ##	AGENDA
 
@@ -1097,9 +1288,7 @@ cat /etc/passwd | grep "bash" | grep "$usr" | awk -F':' '{print $3}'
 If loop
 -------
 
-
-
-*[Task 5]*
+##      [Task 5]
 
 *	Create a script that asks for a user name displays the user ID of the user provided as input. If the user does not exists, then display the following error: "Entered user is not present on you Linux machine"
 ```
@@ -1355,6 +1544,25 @@ if [[ -n "$result" ]]
 				echo "$incrementvalue"
 fi
 ```
+##	Optional Assignment Day4
+
+1.Redirect the output of ls -l to file.txt
+2.Append the output of dmesg command to file.txt
+3.Copy the content of file.txt to new_file.txt
+4.Find number of lines in new_file.txt
+5.Find all lines starting with 'd' in file.txt
+6.Find 'cpu' character in file.txt
+7.Find "CPU0",CPU1,CPU2, word in file.txt
+8.Find "acpi" in file.txt
+9.Find all words starting with '0x' and ending with 0 in file.txt
+
+
+1.Write a script which take input from user and calculate the addition
+2.Write a script which take input from user and calculate the substraction
+3.Write a script which take input from user and calculate the multiplication
+4.Write a script to find the greatest number in three number.
+5.Write a script to find the given number is even or odd
+
 ##      Day 5 Theory
 
 ##      [Task1]
@@ -1733,151 +1941,290 @@ echo "$line ----> $shell"
 done < userlist.txt
 
 ```
-
 Assignment ques - You have a list of files. Traverse through the list and display the permision set of each file?
+filename ---> numeric permission
+List of files under /etc
+
+##      Assignment 5
+
+*       Create a script that takes a number as user input and tells if prvided number is a two digit number or single digit number.
+*       Create a command named as 'myos' - running this command should display the OS you are working on 
+*       Create a command named as 'myshell' - running this command should display the shell you are working on
+*       Create a script that takes a  path and tells you if provoided path is a file or a directory
+*       Create a script that takes a directory path and lists down all the files (only files) under that dir.
+*       Create a script to get the current date, time, username and current working directory.
+*       Create a script that creates a dir named test and then creates 5 files under it named as file1, file2..file5 and then renames all files by adding .txt extension to all file names
+*       You have a list of files. Traverse through the list and display the permision set of each file?
 
 filename ---> numeric permission
 
-List of files under /etc
+##      Day 5 LAB
+
+Starting and ending using grep
+------------------------------
+[root@localhost edac_os]# cat filename
+rat
+dog
+cat
+lion
+mango
+--
+[root@localhost edac_os]# cat filename | grep "^m.*o$"
+mango
+[root@localhost edac_os]# cat filename | grep "^l.*n$"
+lion
+--
+[root@localhost edac_os]# dmesg | grep -Po "0x\w+0" | wc -l
+
+Using PS2
+---------
+Displaying PS2 variable
+[root@localhost edac_os]# echo $PS2
+>
+
+Command in single line 
+[root@localhost edac_os]# dmesg | grep -Po "0x\w+0" | wc -l
+698
+
+Multiline using PS2
+[root@localhost edac_os]# dmesg \
+> | grep -Po "0x\w+0" \
+> | wc -l
+698
+
+Using PS4 by adding -x to /bin/bash
+-----------------------------------
+[root@localhost scripts]# cat for.sh
+#!/bin/bash -x
+
+#Create 5 files in a dir named 'test' with filenames uch as file1, file2, file3, file4 and file5 - Use for loop
+
+##remove test if already present
+rm -rf test
+
+echo "My current location is `pwd`"
+
+mkdir test;cd test
+for i in {1..5}
+ do
+   touch file$i
+ done
+
+ls
+
+cd ..
+--
+Ouput is as follows:
+[root@localhost scripts]# ./for.sh
++ rm -rf test
+++ pwd
++ echo 'My current location is /root/edac_os/scripts'
+My current location is /root/edac_os/scripts
++ mkdir test
++ cd test
++ for i in '{1..5}'
++ touch file1
++ for i in '{1..5}'
++ touch file2
++ for i in '{1..5}'
++ touch file3
++ for i in '{1..5}'
++ touch file4
++ for i in '{1..5}'
++ touch file5
++ ls
+file1  file2  file3  file4  file5
++ cd ..
+
+-------
+Create a script that takes a user name and lists down all the files he owns? 
+
+#!/bin/bash
+read -p "Enter the username: " usr
+echo "Files owned by this user in it's home are as follows:"
+
+find /home/$usr -user $usr > file_$usr
+-------
+
+Create a script that takes a user name and lists down all the files he owns? and also tell if each path is a file or a dir?
+
+#!/bin/bash
+read -p "Enter the username: " usr
+echo "Files owned by this user in it's home are as follows:"
+find /home/$usr -user $usr > file_$usr
+
+while read line
+do
+ if [[ -f $line ]]
+  then
+		echo "$line is a file"
+ fi
+done < file_$usr
+
+---------------------------------------------------------
+
+Write a script that creates 1000 directories with 1000 files
+
+dir1 - file1
+dir2 - file2
+.
+.
+dir1000 - file1000
+
+and each file has content as follows:
+file1 - I'm file
+file2 - I'm file2
+.
+.
+file3 - I'm file3
+---------------------------------------------------------
+
+##      Day 6
+
+Process and Process Management
+------------------------------
+Whenever we execute a command, it creates a new process.
+Process - program in execution or instance of a running program.
+
+Each process in the system has a unid PID.
+
+How to the pid of a process? pidof <processname>
+
+Starting of a process
+---------------------
+When we start a process (eun a command), terea re 2 ways of running it:
+
+Foreground Process - by default, every process runs in foreground - For ex: sleep 60s
+Background Process - user adds and & at athe end of command - For ex: sleep 60s &
+
+Bring a background process to foreground
+----------------------------------------
+[root@ljhamb ~]# sleep 60s &  ## sent the process to bg
+[1] 63592
+[root@ljhamb ~]# fg %1 ## brought it back to fg using job id
+sleep 60s
+
+[root@ljhamb ~]# sleep 90s ## ran the process in fg
+^Z							## sent it to bg using ctrl+z
+[1]+  Stopped                 sleep 90s ## it went to bg
+[root@ljhamb ~]# fg %1	## brought it back to fg using job id
+sleep 90s
+
+Description of fields of ps -f command
+--------------------------------------
+[root@ljhamb scripts]# ps -f
+UID         PID   PPID  C STIME TTY          TIME CMD
+root      59405  59361  0 07:50 pts/3    00:00:00 -bash
+root      64467  59405  0 09:00 pts/3    00:00:00 sleep 10s
+root      64650  59405  0 09:03 pts/3    00:00:00 /bin/bash ./job.sh
+root      64651  64650  0 09:03 pts/3    00:00:00 sleep 60s
+root      66385  59405  0 09:27 pts/3    00:00:00 ps -f
+
+UID - User who ran the process
+PID - Prpcess ID
+PPID - Parent process ID
+C - CPU utilization of the process
+STIME - Starting time of process
+TTY - termnal  --> tty command can show u the terminal 
+TIME - CPU time taken by process
+CMD - command that started the process
+
+Stop a process
+--------------
+Kill
+Ctrl+C
+
+Usage of kill
+--
+kill -9 <PID> 
+
+Initially we ran a process called forefox - It opened up a browser
+--
+[root@ljhamb ~]# pidof firefox ##we found relevant process IDs for the initiated process 
+67782 67621 67560 67535 67266
+[root@ljhamb ~]# kill -9 67782  ##killed the process using SIGKILL
+[root@ljhamb ~]# kill -9 67621  ##killed the process using SIGKILL
+[root@ljhamb ~]# kill -9 67560  ##killed the process using SIGKILL
+[root@ljhamb ~]# kill -9 67535  ##killed the process using SIGKILL
+[root@ljhamb ~]# kill -9 67266  ##killed the process using SIGKILL
+
+List of all the kill signals
+----------------------------
+[root@ljhamb ~]# kill -l
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
+ 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL**    10) SIGUSR1
+11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP
+21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR
+31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
+
+Killing the process if it has multiple PIDs
+-------------------------------------------
+[root@ljhamb ~]# var=$(pidof firefox)
+[root@ljhamb ~]# echo "$var"
+68889 68819 68773 68675
+[root@ljhamb ~]# echo "$var"; for i in "$var";do kill -9 $i;done
+68889 68819 68773 68675
+
+Parent and Child Process
 ------------------------
-```
-adjtime
-aliases
-aliases.db
-anacrontab
-asound.conf
-at.deny
-autofs.conf
-autofs_ldap_auth.conf
-auto.master
-auto.misc
-auto.net
-auto.smb
-bashrc
-brltty.conf
-centos-release
-centos-release-upstream
-cgconfig.conf
-cgrules.conf
-cgsnapshot_blacklist.conf
-chrony.conf
-chrony.keys
-cron.deny
-crontab
-crypttab
-csh.cshrc
-csh.login
-DIR_COLORS
-DIR_COLORS.256color
-DIR_COLORS.lightbgcolor
-dleyna-server-service.conf
-dnsmasq.conf
-dracut.conf
-e2fsck.conf
-enscript.cfg
-environment
-ethertypes
-exports
-filesystems
-fprintd.conf
-fstab
-fuse.conf
-gdbinit
-GeoIP.conf
-GREP_COLORS
-group
-group-
-gshadow
-gshadow-
-host.conf
-hostname
-hosts
-hosts.allow
-hosts.deny
-idmapd.conf
-inittab
-inputrc
-ipsec.conf
-ipsec.secrets
-issue
-issue.net
-kdump.conf
-krb5.conf
-ksmtuned.conf
-ld.so.cache
-ld.so.conf
-libaudit.conf
-libuser.conf
-locale.conf
-login.defs
-logrotate.conf
-machine-id
-magic
-mail.rc
-makedumpfile.conf.sample
-man_db.conf
-mke2fs.conf
-motd
-mtools.conf
-my.cnf
-nanorc
-netconfig
-networks
-nfs.conf
-nfsmount.conf
-nsswitch.conf
-nsswitch.conf.bak
-ntp.conf
-numad.conf
-oddjobd.conf
-papersize
-passwd
-passwd-
-pbm2ppa.conf
-pinforc
-pnm2ppa.conf
-printcap
-profile
-protocols
-radvd.conf
-request-key.conf
-resolv.conf
-resolv.conf.save
-rpc
-rsyncd.conf
-rsyslog.conf
-rwtab
-securetty
-services
-sestatus.conf
-shadow
-shadow-
-shells
-sos.conf
-statetab
-subgid
-subgid-
-subuid
-subuid-
-sudo.conf
-sudoers
-sudo-ldap.conf
-sysctl.conf
-system-release-cpe
-tcsd.conf
-trusted-key.key
-updatedb.conf
-usb_modeswitch.conf
-vconsole.conf
-vimrc
-virc
-wgetrc
-wvdial.conf
-yum.conf
-```
+Each process has two IDs in linux
+ - pid
+ - ppid
 
+Zombie and Orphan processes
+---------------------------
 
+Orphan processes
+--
+Normally children exit and the parent exits 
+Now ques is - How the parent process comes to know that child process has exited?
+Ans - When a child process is killed, the parent process is updated with SIGCHLD signal.
+However, if the parent process is killed before its child is killed, then the child process are called as orphan processes.
 
+Whenever a process gets executed, the process entry is removed from the process table/process db
+
+Zombie
+--
+But if the process is executed/dead/killed but it's entry is not removed from process table/db - this is called as a zombie process.
+--
+
+Ques - Explain the second field in ps -elf output?
+
+##      Assignments Day 6
+
+1. Create a script that creates the firefox process and then stop the firefox process using SIGKILL sign
+
+firefox &
+
+var=$(pidof firefox)
+
+for i in $var
+	do
+		kill -9 $i
+	done
+
+2. Create a script that takes the process name and displays it's pid? - It should throw the error if process name enetered is incorrect or doesnt exist on the system
+3. Create a script that takes a pid and displays the process name
+ps -p <pid> | grep -v "TTY" | awk '{print $NF}'
+
+4. Create a script that asks for a command name - then displays it's absolute path and the runs it and displays the output?
+5. Perform Q1 - change: script will ask for multiple process names this time. User enters multiple processes(comma separeted) and then system initiates and then kills those processes. eg: firefox,vi,top
+6. File1	File2
+	cat		dog
+	mat		car
+	dog		poor
+	note	man
+	bag		bat
+	bat		ball
+Create a script that tells if the items present under file2 are there in file1 or not. Need to parse through each item.
 
 
 

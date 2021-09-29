@@ -1,0 +1,72 @@
+[Day 7 Theory]
+
+Options with if --> https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+
+Practice ques
+-------------
+1. Write a script that performs following operations on the given set of files?	(15)**8
+
+a) displays the total count of files
+b) displays the count of *.pdf files and *.docx
+c) rename all *.pdf to *.docx
+d) displays the count of *.pdf files and *.docx
+e) displays only those files which have underscore '_' in their names
+
+msexchange.qlv
+Necessary Compliance Violations.docx
+New Doc 12-23-2020 16.51.pdf
+Open Cases.csv
+OPS-94632_new.tar
+OS-Windows.pdf
+QQL.json
+Ransomware.docx
+Red_Hat Reference Guide.pdf
+Script Analysis.xlsx
+Script page.jpg
+SolarWinds_Supply-Chain_Attack_UDdashboard.json
+Splunk_PC_App.png
+Splunk_VM_App.png
+Studio_Malware_July_2013.xlsx
+Troubleshooting Agent Permission Issues for Windows.pdf
+UDC_Demo_20210106.xml
+Video 2020-11-10 at 7.12.43 PM.mp4
+VMware-workstation-full-15.5.5-16285975.exe
+VMware-workstation-full-16.0.0-16894299.exe
+WhatsApp Image 2020-11-05 at 2.47.06 PM.jpeg
+win.txt
+
+2. Write a script that displays the user information on the linux box in the following format:	(10)
+Username	Shell assigned to that user
+
+Write a command that fetches the list of all files under /root directory that are more than 2KB in size
+
+Create a script that asks for a user name and add that user with password same as that of user name. The user added should be assigned nologin shell
+
+Create a calculator program in bash that takes two numbers (integers) and display menu to the user for various mathematical operations. Hint: Switch Case Break
+
+Create 2 VMs - both CentOS 7 (with fresh snapshots) with names - machineA and machineB
+	1. From machineA copy any file to machineB
+	2. From machineA - create a dir named 'testdir' on machineB
+	
+$Create a script that depicts sending the process to background so that the next command in sequence can run without wait
+
+Create a script that displays the system information like: OS name, kernel version, RAM, etc.
+
+Create a shell script to find the largest among the 3 given numbers
+
+$Create a shell program to check whether a given string is palindrome
+
+Create a shell program to count number of words, characters, white spaces and special symbols in a given text
+
+$Create a script to remove all empty lines from a file
+
+Create a script that fetches only the IP address of the machine from output of ifconfig command
+[root@ljhamb edac_os]# ifconfig | grep -A2 "ens33" | grep "inet" | grep -Po "\d+\.\d+\.\d+\.\d+" | head -n1
+
+---
+
+How to run the c program in bash
+
+Processes
+--
+fork() - is used to create the process

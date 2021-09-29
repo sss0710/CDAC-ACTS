@@ -1,0 +1,157 @@
+Process and Process Management
+------------------------------
+Whenever we execute a command, it creates a new process.
+Process - program in execution or instance of a running program.
+
+Each process in the system has a unid PID.
+
+How to the pid of a process? pidof <processname>
+
+Starting of a process
+---------------------
+When we start a process (eun a command), terea re 2 ways of running it:
+
+Foreground Process - by default, every process runs in foreground - For ex: sleep 60s
+Background Process - user adds and & at athe end of command - For ex: sleep 60s &
+
+Bring a background process to foreground
+----------------------------------------
+[root@ljhamb ~]# sleep 60s &  ## sent the process to bg
+[1] 63592
+[root@ljhamb ~]# fg %1 ## brought it back to fg using job id
+sleep 60s
+
+[root@ljhamb ~]# sleep 90s ## ran the process in fg
+^Z							## sent it to bg using ctrl+z
+[1]+  Stopped                 sleep 90s ## it went to bg
+[root@ljhamb ~]# fg %1	## brought it back to fg using job id
+sleep 90s
+
+Description of fields of ps -f command
+--------------------------------------
+[root@ljhamb scripts]# ps -f
+UID         PID   PPID  C STIME TTY          TIME CMD
+root      59405  59361  0 07:50 pts/3    00:00:00 -bash
+root      64467  59405  0 09:00 pts/3    00:00:00 sleep 10s
+root      64650  59405  0 09:03 pts/3    00:00:00 /bin/bash ./job.sh
+root      64651  64650  0 09:03 pts/3    00:00:00 sleep 60s
+root      66385  59405  0 09:27 pts/3    00:00:00 ps -f
+
+UID - User who ran the process
+PID - Prpcess ID
+PPID - Parent process ID
+C - CPU utilization of the process
+STIME - Starting time of process
+TTY - termnal  --> tty command can show u the terminal 
+TIME - CPU time taken by process
+CMD - command that started the process
+
+Stop a process
+--------------
+Kill
+Ctrl+C
+
+Usage of kill
+--
+kill -9 <PID> 
+
+Initially we ran a process called forefox - It opened up a browser
+--
+[root@ljhamb ~]# pidof firefox ##we found relevant process IDs for the initiated process 
+67782 67621 67560 67535 67266
+[root@ljhamb ~]# kill -9 67782  ##killed the process using SIGKILL
+[root@ljhamb ~]# kill -9 67621  ##killed the process using SIGKILL
+[root@ljhamb ~]# kill -9 67560  ##killed the process using SIGKILL
+[root@ljhamb ~]# kill -9 67535  ##killed the process using SIGKILL
+[root@ljhamb ~]# kill -9 67266  ##killed the process using SIGKILL
+
+List of all the kill signals
+----------------------------
+[root@ljhamb ~]# kill -l
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
+ 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL**    10) SIGUSR1
+11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP
+21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR
+31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
+
+Killing the process if it has multiple PIDs
+-------------------------------------------
+[root@ljhamb ~]# var=$(pidof firefox)
+[root@ljhamb ~]# echo "$var"
+68889 68819 68773 68675
+[root@ljhamb ~]# echo "$var"; for i in "$var";do kill -9 $i;done
+68889 68819 68773 68675
+
+Parent and Child Process
+------------------------
+Each process has two IDs in linux
+ - pid
+ - ppid
+
+Zombie and Orphan processes
+---------------------------
+
+Orphan processes
+--
+Normally children exit and the parent exits 
+Now ques is - How the parent process comes to know that child process has exited?
+Ans - When a child process is killed, the parent process is updated with SIGCHLD signal.
+However, if the parent process is killed before its child is killed, then the child process are called as orphan processes.
+
+Whenever a process gets executed, the process entry is removed from the process table/process db
+
+Zombie
+--
+But if the process is executed/dead/killed but it's entry is not removed from process table/db - this is called as a zombie process.
+--
+
+Ques - Explain the second field in ps -elf output?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+1. Create a script that creates the firefox process and then stop the firefox process using SIGKILL sign
+
+firefox &
+
+var=$(pidof firefox)
+
+for i in $var
+	do
+		kill -9 $i
+	done
+
+2. Create a script that takes the process name and displays it's pid? - It should throw the error if process name enetered is incorrect or doesnt exist on the system
+3. Create a script that takes a pid and displays the process name
+ps -p <pid> | grep -v "TTY" | awk '{print $NF}'
+
+4. Create a script that asks for a command name - then displays it's absolute path and the runs it and displays the output?
+5. Perform Q1 - change: script will ask for multiple process names this time. User enters multiple processes(comma separeted) and then system initiates and then kills those processes. eg: firefox,vi,top
+6. File1	File2
+	cat		dog
+	mat		car
+	dog		poor
+	note	man
+	bag		bat
+	bat		ball
+Create a script that tells if the items present under file2 are there in file1 or not. Need to parse through each item.
+
+
+
