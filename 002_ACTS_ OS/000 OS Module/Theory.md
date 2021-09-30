@@ -1941,7 +1941,7 @@ echo "$line ----> $shell"
 done < userlist.txt
 
 ```
-Assignment ques - You have a list of files. Traverse through the list and display the permision set of each file?
+**Assignment ques** - You have a list of files. Traverse through the list and display the permision set of each file?
 filename ---> numeric permission
 List of files under /etc
 
@@ -1962,39 +1962,48 @@ filename ---> numeric permission
 
 Starting and ending using grep
 ------------------------------
+```
 [root@localhost edac_os]# cat filename
 rat
 dog
 cat
 lion
 mango
---
+```
+```
 [root@localhost edac_os]# cat filename | grep "^m.*o$"
 mango
 [root@localhost edac_os]# cat filename | grep "^l.*n$"
 lion
---
+```
+```
 [root@localhost edac_os]# dmesg | grep -Po "0x\w+0" | wc -l
-
+```
 Using PS2
 ---------
 Displaying PS2 variable
+```
 [root@localhost edac_os]# echo $PS2
 >
-
+```
 Command in single line 
+```
 [root@localhost edac_os]# dmesg | grep -Po "0x\w+0" | wc -l
 698
-
+```
 Multiline using PS2
+```
 [root@localhost edac_os]# dmesg \
 > | grep -Po "0x\w+0" \
 > | wc -l
 698
-
+```
 Using PS4 by adding -x to /bin/bash
 -----------------------------------
+```
 [root@localhost scripts]# cat for.sh
+```
+```
 #!/bin/bash -x
 
 #Create 5 files in a dir named 'test' with filenames uch as file1, file2, file3, file4 and file5 - Use for loop
@@ -2035,19 +2044,20 @@ My current location is /root/edac_os/scripts
 + ls
 file1  file2  file3  file4  file5
 + cd ..
-
+```
 -------
 Create a script that takes a user name and lists down all the files he owns? 
-
+```
 #!/bin/bash
 read -p "Enter the username: " usr
 echo "Files owned by this user in it's home are as follows:"
 
 find /home/$usr -user $usr > file_$usr
+```
 -------
 
 Create a script that takes a user name and lists down all the files he owns? and also tell if each path is a file or a dir?
-
+```
 #!/bin/bash
 read -p "Enter the username: " usr
 echo "Files owned by this user in it's home are as follows:"
@@ -2060,11 +2070,11 @@ do
 		echo "$line is a file"
  fi
 done < file_$usr
-
+```
 ---------------------------------------------------------
 
 Write a script that creates 1000 directories with 1000 files
-
+```
 dir1 - file1
 dir2 - file2
 .
@@ -2077,6 +2087,7 @@ file2 - I'm file2
 .
 .
 file3 - I'm file3
+```
 ---------------------------------------------------------
 
 ##      Day 6
@@ -2088,17 +2099,20 @@ Process - program in execution or instance of a running program.
 
 Each process in the system has a unid PID.
 
-How to the pid of a process? pidof <processname>
-
+How to the pid of a process? 
+```
+pidof <processname>
+```
 Starting of a process
 ---------------------
 When we start a process (eun a command), terea re 2 ways of running it:
-
+```
 Foreground Process - by default, every process runs in foreground - For ex: sleep 60s
 Background Process - user adds and & at athe end of command - For ex: sleep 60s &
-
+```
 Bring a background process to foreground
 ----------------------------------------
+```
 [root@ljhamb ~]# sleep 60s &  ## sent the process to bg
 [1] 63592
 [root@ljhamb ~]# fg %1 ## brought it back to fg using job id
@@ -2109,9 +2123,10 @@ sleep 60s
 [1]+  Stopped                 sleep 90s ## it went to bg
 [root@ljhamb ~]# fg %1	## brought it back to fg using job id
 sleep 90s
-
+```
 Description of fields of ps -f command
 --------------------------------------
+```
 [root@ljhamb scripts]# ps -f
 UID         PID   PPID  C STIME TTY          TIME CMD
 root      59405  59361  0 07:50 pts/3    00:00:00 -bash
@@ -2119,7 +2134,8 @@ root      64467  59405  0 09:00 pts/3    00:00:00 sleep 10s
 root      64650  59405  0 09:03 pts/3    00:00:00 /bin/bash ./job.sh
 root      64651  64650  0 09:03 pts/3    00:00:00 sleep 60s
 root      66385  59405  0 09:27 pts/3    00:00:00 ps -f
-
+```
+```
 UID - User who ran the process
 PID - Prpcess ID
 PPID - Parent process ID
@@ -2128,18 +2144,20 @@ STIME - Starting time of process
 TTY - termnal  --> tty command can show u the terminal 
 TIME - CPU time taken by process
 CMD - command that started the process
-
+```
 Stop a process
 --------------
+```
 Kill
 Ctrl+C
-
+```
 Usage of kill
 --
+```
 kill -9 <PID> 
-
+```
 Initially we ran a process called forefox - It opened up a browser
---
+```
 [root@ljhamb ~]# pidof firefox ##we found relevant process IDs for the initiated process 
 67782 67621 67560 67535 67266
 [root@ljhamb ~]# kill -9 67782  ##killed the process using SIGKILL
@@ -2147,9 +2165,10 @@ Initially we ran a process called forefox - It opened up a browser
 [root@ljhamb ~]# kill -9 67560  ##killed the process using SIGKILL
 [root@ljhamb ~]# kill -9 67535  ##killed the process using SIGKILL
 [root@ljhamb ~]# kill -9 67266  ##killed the process using SIGKILL
-
+```
 List of all the kill signals
 ----------------------------
+```
 [root@ljhamb ~]# kill -l
  1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
  6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL**    10) SIGUSR1
@@ -2164,7 +2183,7 @@ List of all the kill signals
 53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
 58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
 63) SIGRTMAX-1  64) SIGRTMAX
-
+```
 Killing the process if it has multiple PIDs
 -------------------------------------------
 [root@ljhamb ~]# var=$(pidof firefox)
@@ -2194,14 +2213,14 @@ Whenever a process gets executed, the process entry is removed from the process 
 Zombie
 --
 But if the process is executed/dead/killed but it's entry is not removed from process table/db - this is called as a zombie process.
---
 
-Ques - Explain the second field in ps -elf output?
+
+**Ques** - Explain the second field in ps -elf output?
 
 ##      Assignments Day 6
 
 1. Create a script that creates the firefox process and then stop the firefox process using SIGKILL sign
-
+```
 firefox &
 
 var=$(pidof firefox)
@@ -2210,20 +2229,24 @@ for i in $var
 	do
 		kill -9 $i
 	done
-
+```
 2. Create a script that takes the process name and displays it's pid? - It should throw the error if process name enetered is incorrect or doesnt exist on the system
 3. Create a script that takes a pid and displays the process name
+```
 ps -p <pid> | grep -v "TTY" | awk '{print $NF}'
-
+```
 4. Create a script that asks for a command name - then displays it's absolute path and the runs it and displays the output?
 5. Perform Q1 - change: script will ask for multiple process names this time. User enters multiple processes(comma separeted) and then system initiates and then kills those processes. eg: firefox,vi,top
-6. File1	File2
+6.
+```
+   File1	File2
 	cat		dog
 	mat		car
 	dog		poor
 	note	man
 	bag		bat
 	bat		ball
+```
 Create a script that tells if the items present under file2 are there in file1 or not. Need to parse through each item.
 
 ##      DAY 7
@@ -2493,13 +2516,14 @@ Username	Shell assigned to that user
 
 Syntax of sed ## replacing contents of a file
 ---------------------------------------------
+```
 sed 's|thing you want to replace|replace with what|g' filename
 sed 's/replace me/replace with/g'
-
+```
 rename command
 --------------
 Rename the *.png to *.pri
-
+```
 [root@ljhamb scripts]# ls
 Splunk_PC_App.png
 Splunk_VM_App.png
@@ -2508,7 +2532,7 @@ Splunk_VM_App.png
 [root@ljhamb scripts]# ls
 Splunk_PC_App.pri
 Splunk_VM_App.pri
-
+```
 Zombie state and importance of wait() system call
 -------------------------------------------------
 When a process is created in UNIX using fork() system call, the address space of the Parent process is replicated. If the parent process calls wait() system call, then the execution of parent is suspended until the child is terminated.
@@ -2525,8 +2549,8 @@ Hence, there remains an entry in the process table even after the termination of
 
 Now Run two Programs
 
-First
------
+##      First
+```
 #include<stdio.h> 
 #include<unistd.h> 
 #include<sys/wait.h> 
@@ -2548,9 +2572,10 @@ int main()
 		while(1); 
 	} 
 } 
-
+```
 Second
 ------
+```
 #include<stdio.h> 
 #include<unistd.h> 
 #include<sys/wait.h> 
@@ -2574,7 +2599,7 @@ int main()
 } 
 
 (Here zombie is stopped due to wait)
-
+```
 
 
 Signals
@@ -2587,9 +2612,11 @@ Signals are a limited form of inter-process communication (IPC), typically used 
 
 To list all the signals
 -----------------------
+```
 kill -l
+```
 issue the kill -l command and it would display all the supported signals
-
+```
 [root@ljhamb scripts]# kill -l
  1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
  6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
@@ -2604,8 +2631,8 @@ issue the kill -l command and it would display all the supported signals
 53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
 58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
 63) SIGRTMAX-1  64) SIGRTMAX
-
-Assignment - Difference between 6,9 and 15
+```
+**Assignment** - Difference between 6,9 and 15
 
 Signal	Description (Some important signals)
 --------------------------------------------
@@ -2629,25 +2656,27 @@ Some of the possible default actions are −
 Sending a signal
 ----------------
 Synatx --> kill -signal pid
-For ex: kill -9 1001
-
+For ex: 
+```
+kill -9 1001
+```
 Sending Signals Using The Keyboard
 ----------------------------------
 The most common way of sending signals to processes is using the keyboard. There are certain key presses that are interpreted by the system as requests to send signals to the process with which we are interacting:
 
 Ctrl-C
 Pressing this key causes the system to send an INT signal (SIGINT) to the running process. By default, this signal causes the process to immediately terminate.
-
+```
 #strace sleep 30s
 
 ^CNULL) = ? ERESTART_RESTARTBLOCK (Interrupted by signal)
 
 strace: Process 42421 detached
 ##Here we initiated the process and interrupted it with ctrl+c
-
+```
 Ctrl-Z
 Pressing this key causes the system to send a TSTP signal (SIGTSTP) to the running process. By default, this signal causes the process to suspend execution.
-
+```
 #strace sleep 30s
 ##Here we interrupted the above process using ctr+z and it sent the process to bg
  ^Z
@@ -2655,11 +2684,11 @@ Pressing this key causes the system to send a TSTP signal (SIGTSTP) to the runni
 
 [root@ljhamb scripts]# jobs
 [1]+  Stopped                 strace sleep 30s
-
+```
 Sending Signals Using System Calls
 -----------------------------------
 Another way of sending signals to processes is by using the kill system call. This is the normal way of sending a signal from one process to another. This system call is also used by the 'kill' command or by the 'fg' command. Here is an example code that causes a process to suspend its own execution by sending itself the STOP signal:
-
+```
 #include <unistd.h>     /* standard unix functions, like getpid()       */
 #include <sys/types.h>  /* various type definitions, like pid_t         */
 #include <signal.h>     /* signal name macros, and the kill() prototype */
@@ -2669,21 +2698,25 @@ pid_t my_pid = getpid();
 
 /* now that i got my PID, send myself the STOP signal. */
 kill(my_pid, SIGSTOP);
+```
 An example of a situation when this code might prove useful, is inside a signal handler that catches the TSTP signal (Ctrl-Z, remember?) in order to do various tasks before actually suspending the process
 
 Start the firefox and interrupt it in 10s
 -----------------------------------------
+```
 lavish@ubuntu:~$ timeout 10s firefox &
-
+```
 
 To know where the binary is located
 -----------------------------------
 Use which command
+```
 [root@ljhamb ~]# which ls
 /usr/bin/ls
-
+```
 To see the exit status
 ----------------------
+```
 [root@ljhamb scripts]# mkdir test1
 [root@ljhamb scripts]# echo $?
 0 ##previous command ran successfully
@@ -2691,11 +2724,10 @@ To see the exit status
 mkdir: cannot create directory ‘test’: File exists
 [root@ljhamb scripts]# echo $?
 1 ##previous command had some error
+```
 
 
-############
-System Calls
-############
+#       System Calls
 
 How to trace system calls made by a process with strace on Linux
 ---------------------------------------------------------------
@@ -2710,11 +2742,11 @@ The arguments passed to the system call in parentheses
 The system call return value
 
 Usage: 
-
+```
 [root@centos7 edac]# echo "Hello World" > file_a
 [root@centos7 edac]# touch file_b
 [root@centos7 edac]# strace cp file_a file_b
-
+```
 Filtering only specific system calls
 ------------------------------------
 Use -e option followed by an expression which indicates what system calls should be traced
@@ -2722,14 +2754,14 @@ Use -e option followed by an expression which indicates what system calls should
 Usage:
 
 To just check for execve calls
-
+```
 [root@ljhamb edac_os]# strace -e execve cp file_a file_b
 execve("/usr/bin/cp", ["cp", "file_a", "file_b"], 0x7ffdf62fcea0 /* 27 vars */) = 0
 +++ exited with 0 +++
 [root@ljhamb edac_os]# strace -e write cp file_a file_b
 write(4, "Hello World\n", 12)           = 12
 +++ exited with 0 +++
-
+```
 
 Trace an existing and already running process
 ------------------------------------
@@ -2742,11 +2774,12 @@ We can trace the signals passed to the process if we attach strace to a process
 Summary of the system calls
 ---------------------------
 Use 'strace -c'
-
+```
 [root@ljhamb ~]# strace -c -p <pid of process>
-
-##Arrays in Linux
+```
+##      Arrays in Linux
 -----------------
+```
 [root@localhost ~]# linux_arr=(vipin imran )  -> declaring
 [root@localhost ~]# linux_arr[0]=vipin --> initialising
 [root@localhost ~]# echo ${linux_arr[*]}
@@ -2755,9 +2788,10 @@ vipin imran
 imran
 [root@localhost ~]# echo ${linux_arr[0]}
 vipin
-
+```
 Usage of arrays in loops
 ------------------------
+```
 [root@ljhamb scripts]# linux_arr=(rahul yash)
 [root@ljhamb scripts]# echo ${linux_arr[0]}
 rahul
@@ -2768,7 +2802,7 @@ rahul
 yash
 [root@ljhamb scripts]# for i in "${linux_arr[*]}"; do echo "$i";done
 rahul yash
-
+```
 ##Thread
 --------
 A thread of execution is often regarded as the smallest unit of processing that a scheduler works on.
@@ -2776,16 +2810,16 @@ A thread is also called a lightweight process
 Threads enable true parallelism on multiple processor machines
 
 Threads are created like normal tasks, with the exception that the clone() system call is passed flags corresponding to specific resources to be shared:
-
+```
 clone(CLONE_VM | CLONE_FS | CLONE_FILES | CLONE_SIGHAND, 0);
-
+```
 Meaning of above Flags with clone()
-
+```
 CLONE_VM	Parent and child share address space.
 CLONE_FS	Parent and child share filesystem information.
 CLONE_FILES	Parent and child share open files.
 CLONE_SIGHAND	Parent and child share signal handlers and blocked signals.
-
+```
 Note: Linux has support for hundreds to thousands of threads.
 
 Process vs Thread
@@ -2879,8 +2913,10 @@ Once started a kernel thread continues to exist until either it calls do_exit() 
 Show threads per process
 =========================
 We can count threads with the list of available sub directories inside /proc/<PID>/task/
-For example to check some thread count --> ls /proc/$(pidof process)/task/
-
+For example to check some thread count --> 
+```
+ls /proc/$(pidof process)/task/
+```
 What did we learn?
 
 Threads/ Processes are the mechanism by which you can run multiple code segments at a time, threads appear to run concurrently; the kernel schedules them asynchronously, interrupting each thread from time to time to give others chance to execute.
@@ -2904,27 +2940,27 @@ Thread ID is represented by the type ‘pthread_t’.
 
 Function that can compare two thread IDs
 -------------------------------------------
-
+```
 #include <pthread.h>
 int pthread_equal(pthread_t tid1, pthread_t tid2);
-
+```
 the above function takes two thread IDs and returns nonzero value if both the thread IDs are equal or else it returns zero.
 
 Function to know thread's own thread Id
 ---------------------------------------
 function ‘pthread_self()’ is used by a thread for printing its own thread ID.
-
+```
 #include <pthread.h>
 pthread_t pthread_self(void);
-
+```
 Thread Creation
 ---------------
 Normally when a program starts up and becomes a process, it starts with a default thread. So we can say that every process has at least one thread of control.  A process can create extra threads using the following function :
-
+```
 #include <pthread.h>
 int pthread_create(pthread_t *restrict tidp, const pthread_attr_t *restrict attr, void *(*start_rtn)(void), void *restrict arg)
 
-
+```
 The above function requires four arguments:
 
 - The first argument is a pthread_t type address. Once the function is called successfully, the variable whose address is passed as first argument will hold the thread ID of the newly created thread.
@@ -2935,6 +2971,7 @@ The above function requires four arguments:
 
 Example of thread creation
 --------------------------
+```
 #include<stdio.h>
 #include<string.h>
 #include<pthread.h>
@@ -2961,7 +2998,8 @@ void* doSomeThing(void *arg)
 
     return NULL;
 }
-
+```
+```
 int main(void)
 {
     int i = 0;
@@ -2981,7 +3019,7 @@ int main(void)
     sleep(5);
     return 0;
 }
-
+```
 What it does
 ------------
 It uses the pthread_create() function to create two threads
@@ -2991,8 +3029,9 @@ Also, Inside the same function ‘doSomeThing()’ a for loop is run so as to si
 
 How to compile
 --------------
+```
 gcc file.c -o file.sh -lpthread
-
+```
 Run the shell file and See the output - threads get created and then start processing. The order of execution of threads is not always fixed. It depends on the OS scheduling algorithm.
 
 Exiting a thread
