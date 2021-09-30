@@ -1,0 +1,34 @@
+Language : Means of communication
+
+-> Alphabets
+   A-Z, a-z,0-9, . : ; = + - () {}
+
+-> Words
+   Identifier 
+     -> variable
+   Keywords : reserve words which have predefined meaning
+     -> data types
+	   byte, short, int,long
+	   float, double
+	   char
+	   boolean
+	   
+   literals(constants)
+   
+-> Sentences/Paragraphs/Statement
+   System.out.println("Hello");
+   int x = 2; int y = 200;
+   -> Simple statements
+   -> conditional statements
+-> Operators
+   Arithmetic  + - * / %
+   
+
+-> Lang Semantics/Grammers
+
+// this is single line comment
+/*
+  this is multi line comments
+  you can add multiple lines where
+  comments are ignored by compiler
+*/

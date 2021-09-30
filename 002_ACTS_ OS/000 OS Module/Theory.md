@@ -2487,6 +2487,522 @@ Username	Shell assigned to that user
 ```
 [root@ljhamb edac_os]# ifconfig | grep -A2 "ens33" | grep "inet" | grep -Po "\d+\.\d+\.\d+\.\d+" | head -n1
 ```
+##      DAY 8
+
+##      DAY 8 Theory
+
+Syntax of sed ## replacing contents of a file
+---------------------------------------------
+sed 's|thing you want to replace|replace with what|g' filename
+sed 's/replace me/replace with/g'
+
+rename command
+--------------
+Rename the *.png to *.pri
+
+[root@ljhamb scripts]# ls
+Splunk_PC_App.png
+Splunk_VM_App.png
+
+[root@ljhamb scripts]# rename .png .pri *.png
+[root@ljhamb scripts]# ls
+Splunk_PC_App.pri
+Splunk_VM_App.pri
+
+Zombie state and importance of wait() system call
+-------------------------------------------------
+When a process is created in UNIX using fork() system call, the address space of the Parent process is replicated. If the parent process calls wait() system call, then the execution of parent is suspended until the child is terminated.
+
+At the termination of the child, a ‘SIGCHLD’ signal is generated which is delivered to the parent by the kernel. 
+Parent, on receipt of ‘SIGCHLD’ stops the child process
+
+Even though, the child is terminated, there is an entry in the process table corresponding to the child where the status is stored
+
+When parent collects the status, this entry is deleted
+But, if the parent decides not to wait for the child’s termination and it executes its subsequent task, then at the termination of the child, the exit status is not read.
+
+Hence, there remains an entry in the process table even after the termination of the child. This state of the child process is known as the Zombie state.
+
+Now Run two Programs
+
+First
+-----
+#include<stdio.h> 
+#include<unistd.h> 
+#include<sys/wait.h> 
+#include<sys/types.h> 
+
+int main() 
+{ 
+	int i; 
+	int pid = fork(); 
+
+	if (pid == 0) 
+	{ 
+		for (i=0; i<20; i++) 
+			printf("I am Child\n"); 
+	} 
+	else
+	{ 
+		printf("I am Parent\n"); 
+		while(1); 
+	} 
+} 
+
+Second
+------
+#include<stdio.h> 
+#include<unistd.h> 
+#include<sys/wait.h> 
+#include<sys/types.h> 
+
+int main() 
+{ 
+	int i; 
+	int pid = fork(); 
+	if (pid==0) 
+	{ 
+		for (i=0; i<20; i++) 
+			printf("I am Child\n"); 
+	} 
+	else
+	{ 
+		wait(NULL); 
+		printf("I am Parent\n"); 
+		while(1); 
+	} 
+} 
+
+(Here zombie is stopped due to wait)
+
+
+
+Signals
+-------
+Signals are software interrupts sent to a program to indicate that an important event has occurred. The events can vary from user requests to illegal memory access errors. Some signals, such as the interrupt signal, indicate that a user has asked the program to do something that is not in the usual flow of control.
+
+OR
+
+Signals are a limited form of inter-process communication (IPC), typically used in Unix, Unix-like, and other POSIX-compliant operating systems. A signal is used to notify a process of an synchronous or asynchronous event.
+
+To list all the signals
+-----------------------
+kill -l
+issue the kill -l command and it would display all the supported signals
+
+[root@ljhamb scripts]# kill -l
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
+ 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
+11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP
+21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR
+31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
+
+Assignment - Difference between 6,9 and 15
+
+Signal	Description (Some important signals)
+--------------------------------------------
+SIGHUP	Hang-up detected on controlling terminal or death of controlling process.
+SIGINT	Issued if the user sends an interrupt signal (Ctrl + C).
+SIGQUIT	Issued if the user sends a quit signal (Ctrl + D).
+SIGKILL	If a process gets this signal, it must quit immediately and will not perform any clean-up operations.
+SIGTERM	Software termination signal (sent kill by default).
+SIGALRM	Alarm clock signal (used for timers)
+
+Every signal has a default action associated with it. The default action for a signal is the action that a script or program performs when it receives a signal.
+
+Some of the possible default actions are −
+
+- Terminate the process.
+- Ignore the signal.
+- Dump core. This creates a file called core containing the memory image of the process when it received the signal.
+- Stop the process.
+- Continue a stopped process.
+
+Sending a signal
+----------------
+Synatx --> kill -signal pid
+For ex: kill -9 1001
+
+Sending Signals Using The Keyboard
+----------------------------------
+The most common way of sending signals to processes is using the keyboard. There are certain key presses that are interpreted by the system as requests to send signals to the process with which we are interacting:
+
+Ctrl-C
+Pressing this key causes the system to send an INT signal (SIGINT) to the running process. By default, this signal causes the process to immediately terminate.
+
+#strace sleep 30s
+
+^CNULL) = ? ERESTART_RESTARTBLOCK (Interrupted by signal)
+
+strace: Process 42421 detached
+##Here we initiated the process and interrupted it with ctrl+c
+
+Ctrl-Z
+Pressing this key causes the system to send a TSTP signal (SIGTSTP) to the running process. By default, this signal causes the process to suspend execution.
+
+#strace sleep 30s
+##Here we interrupted the above process using ctr+z and it sent the process to bg
+ ^Z
+[1]+  Stopped                 strace sleep 30s
+
+[root@ljhamb scripts]# jobs
+[1]+  Stopped                 strace sleep 30s
+
+Sending Signals Using System Calls
+-----------------------------------
+Another way of sending signals to processes is by using the kill system call. This is the normal way of sending a signal from one process to another. This system call is also used by the 'kill' command or by the 'fg' command. Here is an example code that causes a process to suspend its own execution by sending itself the STOP signal:
+
+#include <unistd.h>     /* standard unix functions, like getpid()       */
+#include <sys/types.h>  /* various type definitions, like pid_t         */
+#include <signal.h>     /* signal name macros, and the kill() prototype */
+
+/* first, find my own process ID */
+pid_t my_pid = getpid();
+
+/* now that i got my PID, send myself the STOP signal. */
+kill(my_pid, SIGSTOP);
+An example of a situation when this code might prove useful, is inside a signal handler that catches the TSTP signal (Ctrl-Z, remember?) in order to do various tasks before actually suspending the process
+
+Start the firefox and interrupt it in 10s
+-----------------------------------------
+lavish@ubuntu:~$ timeout 10s firefox &
+
+
+To know where the binary is located
+-----------------------------------
+Use which command
+[root@ljhamb ~]# which ls
+/usr/bin/ls
+
+To see the exit status
+----------------------
+[root@ljhamb scripts]# mkdir test1
+[root@ljhamb scripts]# echo $?
+0 ##previous command ran successfully
+[root@ljhamb scripts]# mkdir test
+mkdir: cannot create directory ‘test’: File exists
+[root@ljhamb scripts]# echo $?
+1 ##previous command had some error
+
+
+############
+System Calls
+############
+
+How to trace system calls made by a process with strace on Linux
+---------------------------------------------------------------
+In order to inspect what a running application is doing under the hood, and what system calls it is performing during its execution, we can use the 'strace' utility
+
+strace is a tool used to keep track of the system calls made by a running process and the signals received by it. System calls are the fundamental interface between an application and the Linux kernel; when we use strace, the name of the calls made by a process, along with their arguments and return values are displayed on stderr
+
+Each line in the strace output contains:
+
+The system call name
+The arguments passed to the system call in parentheses
+The system call return value
+
+Usage: 
+
+[root@centos7 edac]# echo "Hello World" > file_a
+[root@centos7 edac]# touch file_b
+[root@centos7 edac]# strace cp file_a file_b
+
+Filtering only specific system calls
+------------------------------------
+Use -e option followed by an expression which indicates what system calls should be traced
+
+Usage:
+
+To just check for execve calls
+
+[root@ljhamb edac_os]# strace -e execve cp file_a file_b
+execve("/usr/bin/cp", ["cp", "file_a", "file_b"], 0x7ffdf62fcea0 /* 27 vars */) = 0
++++ exited with 0 +++
+[root@ljhamb edac_os]# strace -e write cp file_a file_b
+write(4, "Hello World\n", 12)           = 12
++++ exited with 0 +++
+
+
+Trace an existing and already running process
+------------------------------------
+strace -p <pid of the process>  --> this is called attaching of strace to a process
+
+We can trace the signals passed to the process if we attach strace to a process
+<Demo of initiating top, attaching strace to top and killing top - each in a new shell>
+
+
+Summary of the system calls
+---------------------------
+Use 'strace -c'
+
+[root@ljhamb ~]# strace -c -p <pid of process>
+
+##Arrays in Linux
+-----------------
+[root@localhost ~]# linux_arr=(vipin imran )  -> declaring
+[root@localhost ~]# linux_arr[0]=vipin --> initialising
+[root@localhost ~]# echo ${linux_arr[*]}
+vipin imran
+[root@localhost ~]# echo ${linux_arr[1]}
+imran
+[root@localhost ~]# echo ${linux_arr[0]}
+vipin
+
+Usage of arrays in loops
+------------------------
+[root@ljhamb scripts]# linux_arr=(rahul yash)
+[root@ljhamb scripts]# echo ${linux_arr[0]}
+rahul
+[root@ljhamb scripts]# echo ${linux_arr[1]}
+yash
+[root@ljhamb scripts]# for i in "${linux_arr[@]}"; do echo "$i";done
+rahul
+yash
+[root@ljhamb scripts]# for i in "${linux_arr[*]}"; do echo "$i";done
+rahul yash
+
+##Thread
+--------
+A thread of execution is often regarded as the smallest unit of processing that a scheduler works on.
+A thread is also called a lightweight process
+Threads enable true parallelism on multiple processor machines
+
+Threads are created like normal tasks, with the exception that the clone() system call is passed flags corresponding to specific resources to be shared:
+
+clone(CLONE_VM | CLONE_FS | CLONE_FILES | CLONE_SIGHAND, 0);
+
+Meaning of above Flags with clone()
+
+CLONE_VM	Parent and child share address space.
+CLONE_FS	Parent and child share filesystem information.
+CLONE_FILES	Parent and child share open files.
+CLONE_SIGHAND	Parent and child share signal handlers and blocked signals.
+
+Note: Linux has support for hundreds to thousands of threads.
+
+Process vs Thread
+---------------
+Process is heavy weight or resource intensive.	
+Thread is light weight, taking lesser resources than a process.
+
+Process switching needs interaction with operating system.	
+Thread switching does not need to interact with operating system.
+
+In multiple processing environments, each process executes the same code but has its own memory and file resources.	
+All threads can share same set of open files, child processes.
+
+If one process is blocked, then no other process can execute until the first process is unblocked.	
+While one thread is blocked and waiting, a second thread in the same task can run.
+
+Multiple processes without using threads use more resources.	
+Multiple threaded processes use fewer resources.
+
+In multiple processes each process operates independently of the others.
+One thread can read, write or change another thread's data.
+
+Advantages of Thread
+====================
+Threads minimize the context switching time.
+Efficient communication.
+It is more economical to create and context switch threads.
+Threads allow utilization of multiprocessor architectures
+
+
+Types of Thread
+---------------
+Threads are implemented in following two ways
+User Level Threads -- User managed threads
+Kernel Level Threads -- Operating System managed threads acting on kernel, an operating system core
+
+User Level Threads
+-----
+In this case, application manages thread management kernel is not aware of the existence of threads. The application begins with a single thread and begins running in that thread.
+
+Advantages
+Thread switching does not require Kernel mode privileges.
+User level thread can run on any operating system.
+Scheduling can be application specific in the user level thread.
+User level threads are fast to create and manage.
+
+Kernel Level Threads
+----
+In this case, thread management done by the Kernel. There is no thread management code in the application area. Kernel
+threads are supported directly by the operating system. Any application can be programmed to be multithreaded. All of the threads within an application are supported within a single process.
+
+Advantages
+Kernel can simultaneously schedule multiple threads from the same process on multiple processes.
+If one thread in a process is blocked, the Kernel can schedule another thread of the same process.
+Kernel routines themselves can multithreaded.
+
+Key Differences
+---------------
+#User level threads are faster to create and manage. 
+##Kernel level threads are slower to create and manage.
+
+#Implementation is by a thread library at the user
+level. 
+##Operating system supports creation of Kernel threads.
+
+#User level thread is generic and can run on any
+operating system.
+##Kernel level thread is specific to the operating system.
+
+#Multi-threaded application cannot take advantage of
+multiprocessing.
+##Kernel routines themselves can be multithreaded.
+
+How Linux OS treats threads
+===========================
+Linux has a unique implementation of threads.  To the Linux kernel, there is no concept of a thread. 
+Linux implements all threads as standard processes. 
+The Linux kernel does not provide any special scheduling semantics or data structures to represent threads. Instead, a thread is merely a process that shares certain resources with other processes.
+Each thread has a unique task_struct and appears to the kernel as a normal process 
+
+Kernel Level Threads
+====================
+Kernel threads are processes that exist only in kernel space. Kernel threads can only be created by other kernel threads.
+
+LifeCycle
+---------
+You can create a kernel thread with the kthread_create() function. The thread will be created in an no-running state.
+You can create and start a kernel thread with kthread_run(). 
+Once started a kernel thread continues to exist until either it calls do_exit() or another thread calls kthread_stop()
+
+Show threads per process
+=========================
+We can count threads with the list of available sub directories inside /proc/<PID>/task/
+For example to check some thread count --> ls /proc/$(pidof process)/task/
+
+What did we learn?
+
+Threads/ Processes are the mechanism by which you can run multiple code segments at a time, threads appear to run concurrently; the kernel schedules them asynchronously, interrupting each thread from time to time to give others chance to execute.
+
+Identifying a thread
+--------------------
+Each thread identified by an ID, which is known as Thread ID. Thread ID is quite different from Process ID. A Thread ID is unique in the current process, while a Process ID is unique across the system.
+
+Thread ID is represented by type pthread_t
+
+Thread Identification
+---------------------
+Just as a process is identified through a process ID, a thread is identified by a thread ID. But interestingly, the similarity between the two ends here.
+
+A process ID is unique across the system where as a thread ID is unique only in context of a single process.
+A process ID is an integer value but the thread ID is not necessarily an integer value. It could well be a structure
+A process ID can be printed very easily while a thread ID is not easy to print.
+The above points give an idea about the difference between a process ID and thread ID.
+
+Thread ID is represented by the type ‘pthread_t’. 
+
+Function that can compare two thread IDs
+-------------------------------------------
+
+#include <pthread.h>
+int pthread_equal(pthread_t tid1, pthread_t tid2);
+
+the above function takes two thread IDs and returns nonzero value if both the thread IDs are equal or else it returns zero.
+
+Function to know thread's own thread Id
+---------------------------------------
+function ‘pthread_self()’ is used by a thread for printing its own thread ID.
+
+#include <pthread.h>
+pthread_t pthread_self(void);
+
+Thread Creation
+---------------
+Normally when a program starts up and becomes a process, it starts with a default thread. So we can say that every process has at least one thread of control.  A process can create extra threads using the following function :
+
+#include <pthread.h>
+int pthread_create(pthread_t *restrict tidp, const pthread_attr_t *restrict attr, void *(*start_rtn)(void), void *restrict arg)
+
+
+The above function requires four arguments:
+
+- The first argument is a pthread_t type address. Once the function is called successfully, the variable whose address is passed as first argument will hold the thread ID of the newly created thread.
+- The second argument may contain certain attributes which we want the new thread to contain.  It could be priority etc.
+- The third argument is a function pointer. This is something to keep in mind that each thread starts with a function and that functions address is passed here as the third argument so that the kernel knows which function to start the thread from.
+- As the function (whose address is passed in the third argument above) may accept some arguments also so we can pass these arguments in form of a pointer to a void type. Now, why a void type was chosen? This was because if a function accepts more than one argument then this pointer could be a pointer to a structure that may contain these arguments.
+
+
+Example of thread creation
+--------------------------
+#include<stdio.h>
+#include<string.h>
+#include<pthread.h>
+#include<stdlib.h>
+#include<unistd.h>
+
+pthread_t tid[2];
+
+void* doSomeThing(void *arg)
+{
+    unsigned long i = 0;
+    pthread_t id = pthread_self();
+
+    if(pthread_equal(id,tid[0]))
+    {
+        printf("\n First thread processing\n");
+    }
+    else
+    {
+        printf("\n Second thread processing\n");
+    }
+
+    for(i=0; i<(0xFFFFFFFF);i++);
+
+    return NULL;
+}
+
+int main(void)
+{
+    int i = 0;
+    int err;
+
+    while(i < 2)
+    {
+        err = pthread_create(&(tid[i]), NULL, &doSomeThing, NULL);
+        if (err != 0)
+            printf("\ncan't create thread :[%s]", strerror(err));
+        else
+            printf("\n Thread created successfully\n");
+
+        i++;
+    }
+
+    sleep(5);
+    return 0;
+}
+
+What it does
+------------
+It uses the pthread_create() function to create two threads
+The starting function for both the threads is kept same.
+Inside the function ‘doSomeThing()’, the thread uses pthread_self() and pthread_equal() functions to identify whether the executing thread is the first one or the second one as created.
+Also, Inside the same function ‘doSomeThing()’ a for loop is run so as to simulate some time consuming work.
+
+How to compile
+--------------
+gcc file.c -o file.sh -lpthread
+
+Run the shell file and See the output - threads get created and then start processing. The order of execution of threads is not always fixed. It depends on the OS scheduling algorithm.
+
+Exiting a thread
+----------------
+pthread_exit() is used to exit a thread. This function is usually written at the end of the starting routine. 
+
+Waiting for a thread
+--------------------
+A parent thread is made to wait for a child thread using s
+
 
 
 
