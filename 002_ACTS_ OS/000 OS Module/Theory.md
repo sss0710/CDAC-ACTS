@@ -860,24 +860,24 @@ file5              100%    0     0.0KB/s   00:0
 9. Create user user1 using adduser command.
 ________________________________________________________________
 
-1.Delete test,test1,test2
-2.Create three users, raj,ravi,neha using adduser command.
-3.Create data1.txt,data2.txt.Write your name in data1.txt
-4.Add neha and ravi to your_main_user group.
-5.Login with raj and try to write content in data2.txt.
-6.Read the data1.txt
-7.Logout from raj and login with ravi.
-8.Try to write content in data2.txt and data1.txt.
-9.Read the data1.txt and data2.txt
-10.Logout from ravi
-11.Change ownership of data1.txt to raj
-12.Change ownership and group of data2.txt to neha and raj.
-13.Try to append your name to data1.txt
-14.Try to append your name to data2.txt
-15.login with raj and try to change the ownership of data2.txt to raj.
-16.Logout and Deactivate the ravi account.(Change login shell to nologin)
-17.Login with neha and change ownership of data1.txt to neha.
-
+1. Delete test,test1,test2
+2. Create three users, raj,ravi,neha using adduser command.
+3. Create data1.txt,data2.txt.Write your name in data1.txt
+4. Add neha and ravi to your_main_user group.
+5. Login with raj and try to write content in data2.txt.
+6. Read the data1.txt
+7. Logout from raj and login with ravi.
+8. Try to write content in data2.txt and data1.txt.
+9. Read the data1.txt and data2.txt
+10. Logout from ravi
+11. Change ownership of data1.txt to raj
+12. Change ownership and group of data2.txt to neha and raj.
+13. Try to append your name to data1.txt
+14. Try to append your name to data2.txt
+15. login with raj and try to change the ownership of data2.txt to raj.
+16. Logout and Deactivate the ravi account.(Change login shell to nologin)
+17. Login with neha and change ownership of data1.txt to neha.
+ 
 ##	DAY4
 
 ##      Day 4 Theory
@@ -904,7 +904,7 @@ hello
 world
 [root@localhost edac_os]# rm -rf *
 ```
-##	repeat the same scenario for appending data
+##	Repeat the same scenario for appending data
 
 ```
 [root@localhost edac_os]# echo "hello" > file
@@ -935,14 +935,16 @@ stat -c %a file
 echo "hello edac" > file
 cat file
 ```
-
-*Syntax: command1;command2;command3*
-
+```
+Syntax: command1;command2;command3
+```
 ```
 touch file;stat -c %a file;chmod 755 file;stat -c %a file;echo "hello edac" > file;cat file
 ```
-Another way to do this is: *command1 && command2 && command3*
-
+Another way to do this is: *
+```
+command1 && command2 && command3
+```
 Difference - if you use && - then it means the next command would run only if previous command ran successfully
 
 ```
@@ -956,8 +958,9 @@ Usage of grep
 -------------
 
 grep is used to display a line on the basis of a word/pattern
-*Syntax: grep "word/pattern"*
-
+```
+Syntax: grep "word/pattern"
+```
 Options in grep
 ---------------
 ```
@@ -1112,7 +1115,7 @@ Domain names from a random site
 [root@localhost edac_os]# curl -s "https://www.paltalk.com/" | grep -Po "\w+\.com" | sort | uniq
 ```
 
-*To show []*
+##      To show []
 ```
 [root@localhost edac_os]# cat things | grep "^[ap].*"
 apple
@@ -1131,7 +1134,9 @@ APPLE
 Apple
 ApplE
 ```
-*Syntax: variablename=`command`*
+```
+Syntax: variablename=`command`
+```
 ```
 myfruit=`cat things | grep -i "^[ap].*"`
 
@@ -1149,10 +1154,14 @@ Steps:
 *	This tells your kernel to execute this code in bash shell
 2. Save the file 
 3. Give executable permissions to the file 
+```
 chmod +x <filename>
-4. To run this executable(script) - ./<filename>
-
-##  [Task 1]
+```
+4. To run this executable(script) - 
+```
+./<filename>
+```
+##  Task 1
 1. Create a directory named test
 2. Create 100 files and 100 directories under test
 3. Display permissions of test
@@ -1187,10 +1196,8 @@ stat -c %a test
 [root@localhost scripts]# ./task2.sh
 ```
 
-##  [Task 2]
+##  Task 2
 Create a script that brings out all the users who are using bash shell
-
-
 ```
 [root@localhost scripts]# cat task2.sh
 ```
@@ -1198,7 +1205,7 @@ Create a script that brings out all the users who are using bash shell
 *#!/bin/bash*
 
 #Create a script that brings out all the users who are using bash shell
-```
+
 echo "Following users are using bash shell on this Linux box"
 
 sleep 2s
@@ -1244,23 +1251,25 @@ shruti
 yash
 ```
 
-##  [Task3]
+##  Task3
 
 1. Create a script that stores the following information about all users using bash shell in a varibale named "info_user":  'username' and it's 'shell'. 
 
 2. Display the contents of the variable after initiating a wait period of 5s
-```
-[root@localhost scripts]# cat task3.sh
-#!/bin/bash
-```
 
 3. Create a script that stores the following information about all users using bash shell in a varibale named "info_user":  'username' and it's 'shell'.
 
 4. Display the contents of the variable after initiating a wait period of 5s
 
+```
+[root@localhost scripts]# cat task3.sh
+```
+```
+
+#!/bin/bash
 
 *syntax to put in variable is - var=$(command)*
-```
+
 info_user=$(cat /etc/passwd | grep "bash" | awk -F':' '{print $1, $7}')
 
 sleep 5s
@@ -1278,7 +1287,7 @@ read -p "Enter your favourite monument name: " momument
 ```
 So, here -p is used to prompt the content present in "" and read is used take input where the input is stored in the variable(like monument in this case)
 
-##   [Task4]
+##   Task4
 ```
 1.	Create a script that asks for a user name displays the user ID of the user provided as input.
 
@@ -1294,25 +1303,26 @@ cat /etc/passwd | grep "bash" | grep "$usr" | awk -F':' '{print $3}'
 If loop
 -------
 
-##      [Task 5]
+##      Task 5
 
 *	Create a script that asks for a user name displays the user ID of the user provided as input. If the user does not exists, then display the following error: "Entered user is not present on you Linux machine"
 ```
 [root@localhost scripts]# cat task5.sh
 #!/bin/bash
 ```
+```
 *	Create a script that asks for a user name displays the user ID of the user provided as input.
 
 *	If the user does not exist, then display the following error: "Entered user is not present on you Linux machine"
-```
+
 read -p "Enter the username: " usr
-```
+
 *	Following variable will give the user ID only when user is presnt, else the variable will be blank.
-```
+
 var=$(cat /etc/passwd | grep "bash" | grep -w "$usr" | awk -F':' '{print $3}')
-```
+
 *	using if condition to check if var is blank or not
-```
+
 if [[ -n "$var" ]]
 	then
         echo "User ID is: $var"
@@ -1386,9 +1396,7 @@ cat /etc/passwd | grep "bash"
 
 info_user=$(cat /etc/passwd | grep "bash" | awk -F':' '{print $1, $7}')
 
-
 sleep 5s
-
 
 echo "$info_user"
 
@@ -1412,10 +1420,7 @@ cat /etc/passwd | grep "bash" | grep "$usr" | awk -F':' '{print $3}'
 ```
 #!/bin/bash
 
-
-
 #Create a script that asks for a user name displays the user ID of the user provided as input.
-
 
 #If the user does not exist, then display the following error: "Entered user is not present on you Linux machine"
 
@@ -1508,9 +1513,9 @@ Run the following command - This command will fetch an IP address from your loca
 dhclient -v
 ```
 If you want to see that - is your linux machine connected to internet, then fire the following command:
-
-*nslookup google.com*
-
+```
+nslookup google.com
+```
 
 ##      Task4_lab
 Create a script that asks for a random number from the user.
@@ -1552,27 +1557,27 @@ if [[ -n "$result" ]]
 fi
 ```
 ##	Optional Assignment Day4
-```
-1.Redirect the output of ls -l to file.txt
-2.Append the output of dmesg command to file.txt
-3.Copy the content of file.txt to new_file.txt
-4.Find number of lines in new_file.txt
-5.Find all lines starting with 'd' in file.txt
-6.Find 'cpu' character in file.txt
-7.Find "CPU0",CPU1,CPU2, word in file.txt
-8.Find "acpi" in file.txt
-9.Find all words starting with '0x' and ending with 0 in file.txt
+
+1. Redirect the output of ls -l to file.txt
+2. Append the output of dmesg command to file.txt
+3. Copy the content of file.txt to new_file.txt
+4. Find number of lines in new_file.txt
+5. Find all lines starting with 'd' in file.txt
+6. Find 'cpu' character in file.txt
+7. Find "CPU0",CPU1,CPU2, word in file.txt
+8. Find "acpi" in file.txt
+9. Find all words starting with '0x' and ending with 0 in file.txt
 
 
-1.Write a script which take input from user and calculate the addition
-2.Write a script which take input from user and calculate the substraction
-3.Write a script which take input from user and calculate the multiplication
-4.Write a script to find the greatest number in three number.
-5.Write a script to find the given number is even or odd
-```
+1. Write a script which take input from user and calculate the addition
+2. Write a script which take input from user and calculate the substraction
+3. Write a script which take input from user and calculate the multiplication
+4. Write a script to find the greatest number in three number.
+5. Write a script to find the given number is even or odd
+
 ##      Day 5 Theory
 
-##      [Task1]
+##      Task1
 Create a script that takes a number as user input and tells if prvided number is a two digit number or single digit number.
 
 ```
@@ -1594,7 +1599,7 @@ else
 fi      
 ```
 
-##      [Task2]
+##      Task2
 Create a command named as 'myos' - running this command should display the OS you are working on 
 
 ```
@@ -1604,14 +1609,14 @@ or
 ```
 alias myos="uname -o"
 ```
-##      [Task3]
+##      Task3
 Create a command named as 'myshell' - running this command should display the shell you are working on ; **bash**
 
 ```
 alias myshell="echo $(cat /etc/passwd | grep "$(whoami)" | awk -F':' '{print $7}' | awk -F'/' '{print $3}')"
 ```
 
-##      [Task4]
+##      Task4
 Create a script that takes a  path and tells you if provoided path is a file or a directory
 
 ```
@@ -1656,8 +1661,8 @@ else
 fi
 ```
 
-##      [Task5]
-Create a script that takes a directory path and lists down all the files (only files) under that dir.
+##      Task5
+-   Create a script that takes a directory path and lists down all the files (only files) under that dir.
 ```
 #!/bin/bash
 
@@ -1676,8 +1681,8 @@ fi
 ```
 
 
-##      [Task6]
-Create a script to get the current date, time, username and current working directory.
+##      Task6
+-   Create a script to get the current date, time, username and current working directory.
 ```
 #!/bin/bash
 
@@ -1691,7 +1696,7 @@ echo "Username : `whoami`"
 ```
 
 
-##      [Task7]
+##      Task7
 Create a script that creates a dir named test and then creates 5 files under it named as file1, file2..file5 and then renames all files by adding .txt extension to all file names
 ```
 #!/bin/bash
@@ -1778,8 +1783,10 @@ Usage of find command
 How will search for a file name in a directory?
 ```
 find <top level location> -name '<name of file>'
-
+```
+```
 [root@localhost ~]# find /root -name 'myfile'
+
 /root/edac_os/folder_new/folder_new1/folder_new2/folder_new3/folder_new4/myfile
 ```
 
@@ -1974,17 +1981,17 @@ List of files under /etc
 
 ##      Assignment 5
 
-*       Create a script that takes a number as user input and tells if prvided number is a two digit number or single digit number.
-*       Create a command named as 'myos' - running this command should display the OS you are working on 
-*       Create a command named as 'myshell' - running this command should display the shell you are working on
-*       Create a script that takes a  path and tells you if provoided path is a file or a directory
-*       Create a script that takes a directory path and lists down all the files (only files) under that dir.
-*       Create a script to get the current date, time, username and current working directory.
-*       Create a script that creates a dir named test and then creates 5 files under it named as file1, file2..file5 and then renames all files by adding .txt extension to all file names
-*       You have a list of files. Traverse through the list and display the permision set of each file?
-
+1. Create a script that takes a number as user input and tells if prvided number is a two digit number or single digit number.
+2. Create a command named as 'myos' - running this command should display the OS you are working on 
+3. Create a command named as 'myshell' - running this command should display the shell you are working on
+4. Create a script that takes a  path and tells you if provoided path is a file or a directory
+5. Create a script that takes a directory path and lists down all the files (only files) under that dir.
+6. Create a script to get the current date, time, username and current working directory.
+7. Create a script that creates a dir named test and then creates 5 files under it named as file1, file2..file5 and then renames all files by adding .txt extension to all file names
+8. You have a list of files. Traverse through the list and display the permision set of each file?
+```
 filename ---> numeric permission
-
+```
 ##      Day 5 LAB
 
 Starting and ending using grep
@@ -2050,6 +2057,8 @@ ls
 
 cd ..
 --
+```
+```
 Ouput is as follows:
 [root@localhost scripts]# ./for.sh
 + rm -rf test
@@ -2072,7 +2081,7 @@ My current location is /root/edac_os/scripts
 file1  file2  file3  file4  file5
 + cd ..
 ```
--------
+
 Create a script that takes a user name and lists down all the files he owns? 
 ```
 #!/bin/bash
@@ -2081,7 +2090,6 @@ echo "Files owned by this user in it's home are as follows:"
 
 find /home/$usr -user $usr > file_$usr
 ```
--------
 
 Create a script that takes a user name and lists down all the files he owns? and also tell if each path is a file or a dir?
 ```
@@ -2117,7 +2125,9 @@ file3 - I'm file3
 ```
 ---------------------------------------------------------
 
-##      Day 6
+#      Day 6
+
+##  Day 6 Theory
 
 Process and Process Management
 ------------------------------
@@ -2197,6 +2207,8 @@ List of all the kill signals
 ----------------------------
 ```
 [root@ljhamb ~]# kill -l
+```
+```
  1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
  6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL**    10) SIGUSR1
 11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
@@ -2213,12 +2225,13 @@ List of all the kill signals
 ```
 Killing the process if it has multiple PIDs
 -------------------------------------------
+```
 [root@ljhamb ~]# var=$(pidof firefox)
 [root@ljhamb ~]# echo "$var"
 68889 68819 68773 68675
 [root@ljhamb ~]# echo "$var"; for i in "$var";do kill -9 $i;done
 68889 68819 68773 68675
-
+```
 Parent and Child Process
 ------------------------
 Each process has two IDs in linux
@@ -2242,8 +2255,11 @@ Zombie
 But if the process is executed/dead/killed but it's entry is not removed from process table/db - this is called as a zombie process.
 
 
-**Ques** - Explain the second field in ps -elf output?
+##   **Ques** - Explain the second field in ps -elf output?
 
+```
+
+```
 ##      Assignments Day 6
 
 1. Create a script that creates the firefox process and then stop the firefox process using SIGKILL sign
@@ -2264,7 +2280,7 @@ ps -p <pid> | grep -v "TTY" | awk '{print $NF}'
 ```
 4. Create a script that asks for a command name - then displays it's absolute path and the runs it and displays the output?
 5. Perform Q1 - change: script will ask for multiple process names this time. User enters multiple processes(comma separeted) and then system initiates and then kills those processes. eg: firefox,vi,top
-6.
+6. Create a script that tells if the items present under file2 are there in file1 or not. Need to parse through each item.
 ```
    File1	File2
 	cat		dog
@@ -2274,7 +2290,7 @@ ps -p <pid> | grep -v "TTY" | awk '{print $NF}'
 	bag		bat
 	bat		ball
 ```
-Create a script that tells if the items present under file2 are there in file1 or not. Need to parse through each item.
+
 
 ##      DAY 7
 ##      DAY 7 Theory
@@ -2297,21 +2313,21 @@ htop
 ```
 Display selected fields of processes : 
 ```
-ps -eo user,pid,ppid  #username,pid,ppid
-ps -eo user,pid,ppid,cmd               #username,pid,ppid,processname
+ps -eo user,pid,ppid #username,pid,ppid
+ps -eo user,pid,ppid,cmd #username,pid,ppid,processname
 ```
-#ubuntu
+##      ubuntu
 ```
 sudo apt-get install htop
 ```
-#Cent OS Users
+##  Cent OS Users
 ```
 sudo yum install epel-release
 sudo yum install htop 
 ```
-What is process?
+##  What is process?
 
-program loaded in memory(RAM) for execution 
+Program loaded in memory(RAM) for execution 
 ```
 gcc Process_Demo.c - o process.out 
 ```
@@ -2339,11 +2355,9 @@ int main(int argc, char *argv[])
 }
 
 /*
-
+```
+```
 to check process list:
-
-
-
 kill - l
 to imporant signals :
 SIGKILL - kill -9 <pid> #brutal behavior to kill a process
@@ -2475,7 +2489,7 @@ echo "Sum of array : " $sum
 
 ##      DAY 7 ASSIGNMENTS
 
-*       1. Write a script that performs following operations on the given set of files?	(15)
+1. Write a script that performs following operations on the given set of files?	(15)
 ```
 a) displays the total count of files
 b) displays the count of *.pdf files and *.docx
@@ -2508,33 +2522,46 @@ WhatsApp Image 2020-11-05 at 2.47.06 PM.jpeg
 win.txt
 ```
 
-*       Write a script that displays the user information on the linux box in the following format:	(10) Username	Shell assigned to that user
-
-*       Write a command that fetches the list of all files under /root directory that are more than 2KB in size
-
-*       Create a script that asks for a user name and add that user with password same as that of user name. The user added should be assigned nologin shell
-
-*       Create a calculator program in bash that takes two numbers (integers) and display menu to the user for various mathematical operations. Hint: Switch Case Break
-
-*       Create 2 VMs - both CentOS 7 (with fresh snapshots) with names - machineA and machineB
+2. Write a script that displays the user information on the linux box in the following format:	(10) Username	Shell assigned to that user
+```
+```
+3. Write a command that fetches the list of all files under /root directory that are more than 2KB in size
+```
+```
+4.  Create a script that asks for a user name and add that user with password same as that of user name. The user added should be assigned nologin shell
+```
+```
+5. Create a calculator program in bash that takes two numbers (integers) and display menu to the user for various mathematical operations. Hint: Switch Case Break
+```
+```
+6. Create 2 VMs - both CentOS 7 (with fresh snapshots) with names - machineA and machineB
 	1. From machineA copy any file to machineB
 	2. From machineA - create a dir named 'testdir' on machineB
-	
-*       $Create a script that depicts sending the process to background so that the next command in sequence can run without wait
-
-*       Create a script that displays the system information like: OS name, kernel version, RAM, etc.
-
-*       Create a shell script to find the largest among the 3 given numbers
-
-*       $Create a shell program to check whether a given string is palindrome
-
-*       Create a shell program to count number of words, characters, white spaces and special symbols in a given text
-
-*       $Create a script to remove all empty lines from a file
-
-*       Create a script that fetches only the IP address of the machine from output of ifconfig command
+```
+```
+7. $Create a script that depicts sending the process to background so that the next command in sequence can run without wait
+```
+```
+8. Create a script that displays the system information like: OS name, kernel version, RAM, etc.
+```
+```
+9. Create a shell script to find the largest among the 3 given numbers
+```
+```
+10. $Create a shell program to check whether a given string is palindrome
+```
+```
+11. Create a shell program to count number of words, characters, white spaces and special symbols in a given text
+```
+```
+12. $Create a script to remove all empty lines from a file
+```
+```
+13. Create a script that fetches only the IP address of the machine from output of ifconfig command
 ```
 [root@ljhamb edac_os]# ifconfig | grep -A2 "ens33" | grep "inet" | grep -Po "\d+\.\d+\.\d+\.\d+" | head -n1
+```
+```
 ```
 #      DAY 8
 
