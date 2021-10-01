@@ -606,7 +606,7 @@ Users in Linux
 -----------
 *	root user -> 0
 *	super user - sudoer
-*	regular user -> is above 1000 (centOS7)
+*   regular user -> is above 1000 (centOS7)
 This min UID is decided in /etc/login.defs
 UID_MIN                  1000 to view this file use 
 ```
@@ -1093,8 +1093,9 @@ Your IP adress is 192.168.10.142
 
 Pipe in commands
 ----------------
-*syntax: command1 | command2 | command3 ......*
-
+```
+syntax: command1 | command2 | command3 ......*
+```
 ##	What it means?
 Output of command1 will act as input of command2
 
@@ -1119,8 +1120,9 @@ apple
 ```
 Putting command output in a variable
 ------------------------------------
-
+```
 *Syntax: variablename=$(command)*
+```
 ```
 [root@localhost edac_os]# fruits=$(cat things | grep -i "^[ap].*")
 [root@localhost edac_os]# echo "$fruits"
@@ -1150,7 +1152,7 @@ Steps:
 chmod +x <filename>
 4. To run this executable(script) - ./<filename>
 
-*[Task 1]*
+##  [Task 1]
 1. Create a directory named test
 2. Create 100 files and 100 directories under test
 3. Display permissions of test
@@ -1160,13 +1162,15 @@ chmod +x <filename>
 ```
 [root@localhost scripts]# cat task1.sh
 ```
-*#!/bin/bash*
+```
+#!/bin/bash
 
 1.	Create a directory named test
 2.	Create 100 files and 100 directories under test
 3.	Display permissions of test
 4.	Modify permissions of test to 777
 5.	Display new permissions of test
+```
 ```
 mkdir test
 touch test/file{1..100}
@@ -1183,12 +1187,13 @@ stat -c %a test
 [root@localhost scripts]# ./task2.sh
 ```
 
-*[Task 2]*
+##  [Task 2]
 Create a script that brings out all the users who are using bash shell
 
 
 ```
 [root@localhost scripts]# cat task2.sh
+```
 ```
 *#!/bin/bash*
 
@@ -1206,9 +1211,10 @@ cut and awk
 
 cut
 ---
-*Syntax: cut -d'<delimiter>' -f<fieldname>*
-
-Usage
+```
+Syntax: cut -d'<delimiter>' -f<fieldname>*
+```
+##  Usage
 ```
 [root@localhost scripts]# cat /etc/passwd | grep bash| cut -d':' -f1
 root
@@ -1238,7 +1244,7 @@ shruti
 yash
 ```
 
-*[Task3]*
+##  [Task3]
 
 1. Create a script that stores the following information about all users using bash shell in a varibale named "info_user":  'username' and it's 'shell'. 
 
@@ -1272,12 +1278,12 @@ read -p "Enter your favourite monument name: " momument
 ```
 So, here -p is used to prompt the content present in "" and read is used take input where the input is stored in the variable(like monument in this case)
 
-*[Task4]*
-
+##   [Task4]
+```
 1.	Create a script that asks for a user name displays the user ID of the user provided as input.
 
 *#!/bin/bash*
-```
+
 read -p "Enter the username: " usr
 echo "The user ID of $usr is as follows:"
 sleep 3s
@@ -1319,16 +1325,17 @@ fi
 ```
 [root@localhost scripts]# cat task6.sh
 ```
-*#!/bin/bash*
+```
+#!/bin/bash
 
 *	Create a script that displays all Linux users with ID greater than 1000
 
-*https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php*
-```
 cat /etc/passwd|  awk -F':' '{if ($3 > 1000) {print $1, $3}}'
 ```
 *	$3 is the userID
 *	$1 is the username
+- https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php*
+
 
 ##      Task1
 ```
@@ -1440,14 +1447,14 @@ cat /etc/passwd|  awk -F':' '{if ($3 > 1000) {print $1, $3}}'
 
 Lab - 25/09/2021
 ---------------
-##      task1_lab
+##      Task1_lab
 ```
 Create a script that asks user to enter two numbers like this:= -
 Enter the first number: 
 Enter the second number:
 Now display which number is greater?
 ```
-##      task2_lab
+##      Task2_lab
 ```
 #Create a script that asks the user to enter two numbers like this - 
 #Enter the first number: 
@@ -1461,7 +1468,7 @@ Now display which number is greater?
 11
 ```
 
-##      task3_lab
+##      Task3_lab
 Create a script that asks for username and display its home directory only if it's user id is greater than 1000 and less than 1003
 ```
 [root@localhost scripts]#  cat ./task3_lab.sh
@@ -1505,7 +1512,7 @@ If you want to see that - is your linux machine connected to internet, then fire
 *nslookup google.com*
 
 
-##      task4_lab
+##      Task4_lab
 Create a script that asks for a random number from the user.
 Check if that number matches any UID in the Linux machine.
 If it does, display the username and it's shell
@@ -1545,7 +1552,7 @@ if [[ -n "$result" ]]
 fi
 ```
 ##	Optional Assignment Day4
-
+```
 1.Redirect the output of ls -l to file.txt
 2.Append the output of dmesg command to file.txt
 3.Copy the content of file.txt to new_file.txt
@@ -1562,7 +1569,7 @@ fi
 3.Write a script which take input from user and calculate the multiplication
 4.Write a script to find the greatest number in three number.
 5.Write a script to find the given number is even or odd
-
+```
 ##      Day 5 Theory
 
 ##      [Task1]
@@ -1756,7 +1763,15 @@ Creating a command
 [root@localhost scripts]# kernelinfo
 Linux localhost.localdomain 3.10.0-1160.el7.x86_64 #1 SMP Mon Oct 19 16:18:59 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
 ```
-Q - How to make the alias permanent?
+##  Q - How to make the alias permanent?
+```
+.
+.
+.
+.
+.
+
+```
 
 Usage of find command
 ---------------------
@@ -1941,9 +1956,21 @@ echo "$line ----> $shell"
 done < userlist.txt
 
 ```
-**Assignment ques** - You have a list of files. Traverse through the list and display the permision set of each file?
+##   **Assignment question** 
+- You have a list of files. Traverse through the list and display the permision set of each file?
+```
 filename ---> numeric permission
+```
 List of files under /etc
+
+```
+.
+.
+.
+.
+.
+
+```
 
 ##      Assignment 5
 
@@ -2449,13 +2476,13 @@ echo "Sum of array : " $sum
 ##      DAY 7 ASSIGNMENTS
 
 *       1. Write a script that performs following operations on the given set of files?	(15)
-
+```
 a) displays the total count of files
 b) displays the count of *.pdf files and *.docx
 c) rename all *.pdf to *.docx
 d) displays the count of *.pdf files and *.docx
 e) displays only those files which have underscore '_' in their names
-
+```
 ```
 msexchange.qlv
 Necessary Compliance Violations.docx
@@ -2481,8 +2508,7 @@ WhatsApp Image 2020-11-05 at 2.47.06 PM.jpeg
 win.txt
 ```
 
-*       Write a script that displays the user information on the linux box in the following format:	(10)
-Username	Shell assigned to that user
+*       Write a script that displays the user information on the linux box in the following format:	(10) Username	Shell assigned to that user
 
 *       Write a command that fetches the list of all files under /root directory that are more than 2KB in size
 
@@ -2510,11 +2536,11 @@ Username	Shell assigned to that user
 ```
 [root@ljhamb edac_os]# ifconfig | grep -A2 "ens33" | grep "inet" | grep -Po "\d+\.\d+\.\d+\.\d+" | head -n1
 ```
-##      DAY 8
+#      DAY 8
 
 ##      DAY 8 Theory
 
-Syntax of sed ## replacing contents of a file
+Syntax of sed : replacing contents of a file
 ---------------------------------------------
 ```
 sed 's|thing you want to replace|replace with what|g' filename
@@ -2632,7 +2658,14 @@ issue the kill -l command and it would display all the supported signals
 58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
 63) SIGRTMAX-1  64) SIGRTMAX
 ```
-**Assignment** - Difference between 6,9 and 15
+##  **Assignment** - Difference between 6, 9 and 15
+
+**SIGABRT(6)** - This kill signal is the abort signal. Typically, a process will initiate this kill signal on itself.
+
+**SIGKILL(9)** - The SIGKILL signal forces the process to stop executing immediately. The program cannot ignore this signal. This process does not get to clean-up either.
+
+**SIGTERM(15)** - This signal requests a process to stop running. This signal can be ignored. The process is given time to gracefully shutdown. When a program gracefully shuts down, that means it is given time to save its progress and release resources. In other words, it is not forced to stop. SIGINT is very similar to SIGTERM.
+
 
 Signal	Description (Some important signals)
 --------------------------------------------
@@ -2815,9 +2848,9 @@ clone(CLONE_VM | CLONE_FS | CLONE_FILES | CLONE_SIGHAND, 0);
 ```
 Meaning of above Flags with clone()
 ```
-CLONE_VM	Parent and child share address space.
-CLONE_FS	Parent and child share filesystem information.
-CLONE_FILES	Parent and child share open files.
+CLONE_VM	    Parent and child share address space.
+CLONE_FS	    Parent and child share filesystem information.
+CLONE_FILES     Parent and child share open files.
 CLONE_SIGHAND	Parent and child share signal handlers and blocked signals.
 ```
 Note: Linux has support for hundreds to thousands of threads.
