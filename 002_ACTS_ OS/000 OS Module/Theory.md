@@ -2,15 +2,15 @@
 
 #	DAY 1
 
-###	Objective
-
+Objective
+---
 To introduce Operating System concepts with Linux environment, and to learn Shell Programming
 
-###	Day 1 Theory
+Day 1 Theory
+---
 
-
-###     What is OS?
-
+What is OS?
+---
 
 **An Operating System (OS) is an interface between a computer user and computer hardware.** 
 
@@ -18,8 +18,8 @@ An operating system is a software which performs all the basic tasks like file m
 
 Some popular Operating Systems include **Linux Operating System, Windows Operating System, VMS, OS/400, AIX, z/OS, etc.**
 
-###     Some of important functions of an operating System
-
+Some of important functions of an operating System
+---
 **Processor Management:** An operating system manages the processor’s working by allocating various jobs to it and ensuring that each process receives enough time from the processor to function properly.
 
 **Memory Management:** An operating system manages the allocation and deallocation of the memory to various processes and ensures that the other process does not consume the memory allocated to one process.
@@ -38,12 +38,11 @@ Some popular Operating Systems include **Linux Operating System, Windows Operati
 
 **Job Scheduling:** In a multitasking operating system where multiple programs run simultaneously, the operating system determines which applications should run in which order and how time should be allocated to each application. 
 
-###     Interaction with OS
+Interaction wit
+The application--- programs make use of the operating system by making requests for services through a defined application program interface (API). In addition, users can interact directly with the operating system through a user interface, such as a command-line interface (CLI) or a graphical UI (GUI).
 
-The application programs make use of the operating system by making requests for services through a defined application program interface (API). In addition, users can interact directly with the operating system through a user interface, such as a command-line interface (CLI) or a graphical UI (GUI).
-
-###     Why is OS hardware dependent?
----
+Why is OS hardware dependent?
+------
 We should understand that the following things are hardware dependent:
 
 System startup/reset
@@ -59,8 +58,8 @@ Platform dependent typically refers to applications that run under only one oper
 
 In contrast, "platform independent" means that the application can run in different operating environments. Applications written in Java are a prime example
 
-###     What did we learn so far about an OS (yeah in simple terms)
-
+What did we learn so far about an OS (yeah in simple terms)
+---
 1. A program which controls the execution of all other programs
 (applications).
 
@@ -76,8 +75,8 @@ In contrast, "platform independent" means that the application can run in differ
 – multiplexes resources between applications. 
 – abstracts away from complexity.
 
-###     Components of an OS
-
+Components of an OS
+---
 Shell
 Kernel
 
@@ -98,12 +97,12 @@ The kernel is responsible for performing the following tasks:
 - System calls control
 
 
-###     Question 1 - Difference between kernel and OS (10 min)
-
+Question 1 - Difference between kernel and OS (10 min)
+---
 *   Good reference: https://www.geeksforgeeks.org/difference-between-operating-system-and-kernel/
 
-###     Types of Operating Systems
-
+Types of Operating Systems
+---
 - Batch OS
 - Distributed OS
 - Multitasking OS
@@ -111,13 +110,13 @@ The kernel is responsible for performing the following tasks:
 - Real-OS
 - Mobile OS
 
-###     Question 2 - Write one-liner on each OS with examples (10 min)
-
+Question 2 - Write one-liner on each OS with examples (10 min)
+---
 
 *   Read this - https://www.geeksforgeeks.org/types-of-operating-systems/
 
-###     Modes of operation in OS
-
+Modes of operation in OS
+---
 User mode --> mode bit = 1
 kernel mode --> mode bit = 0
 
@@ -131,8 +130,8 @@ In Kernel mode, the executing code has complete and unrestricted access to the u
 
 In User mode, the executing code has no ability to directly access hardware or reference memory. Code running in user mode must delegate to system APIs to access hardware or memory. Due to the protection afforded by this sort of isolation, crashes in user mode are always recoverable. Most of the code running on your computer will execute in user mode.
 
-###     Example
-
+Example
+---
 Regular user space programs evoke system calls all the time to get work done, for example:
 ls
 ps
@@ -151,8 +150,8 @@ A typical program gets access to resources in the kernel through layers of abstr
 - System Calls
 - Kernel Space
 
-###     Assignment 1
-
+Assignment 1
+---
 **Question 1 - Difference between kernel and OS** 
 
 |**Kernel**|**OS**|
@@ -208,20 +207,20 @@ $ --> user in action is a regular user
 [root@localhost ~]#
 ``` 
 
-###     Kind of users in Linux
-
+Kind of users in Linux
+---
 1. Root User
 2. Regular User
 3. Super User (Sudoer)
 
-###     To Change location in Linux - To traverse in Linux
-
+To Change location in Linux - To traverse in Linux
+---
 ```
 cd <location where you want to go>
 ```
 
-###     File Hierarchy in Linux - Directory Structure in Linux
-
+File Hierarchy in Linux - Directory Structure in Linux
+---
 
 Folders inside '/'
 ```
@@ -252,15 +251,15 @@ boot  etc  lib   media  opt  root  sbin  sys  usr
 **Ques 1 - Explain what's inside each folder under '/'**
 *   Read this - https://www.geeksforgeeks.org/linux-file-hierarchy-structure/#:~:text=The%20Linux%20File%20Hierarchy%20Structure,in%20Unix%2Dlike%20operating%20systems.&text=In%20the%20FHS%2C%20all%20files,different%20physical%20or%20virtual%20devices
 
-###     To see current location
-
+To see current location
+---
 ```
 pwd --> present working directory
 ```
 
 
-###     Meaning of '.' and '..'
-
+Meaning of '.' and '..'
+---
 ```
 . --> same location
 .. --> previos directory
@@ -277,8 +276,8 @@ pwd --> present working directory
 [root@localhost /]# 
 ```
 
-###     Folder (Directory) creation
-
+Folder (Directory) creation
+---
 ```mkdir <foldername>
 [root@localhost edac_os]# pwd
 /root/edac_os
@@ -289,8 +288,8 @@ pwd --> present working directory
 dir1  dir2  dir3
 ```
 
-###     Folder removal
-
+Folder removal
+---
 ```
 rm -rf <absolute path of the folder>
 ```
@@ -305,20 +304,20 @@ rm -rf <absolute path of the folder>
 dir1  dir2
 ```
 
-###     Remove multiple folders at a time 
-
+Remove multiple folders at a time 
+---
 ```
 [root@localhost edac_os]# rm -rf *
 ```
 
-###     How to create files
-
+How to create files
+---
 ```
 touch <filename>  -> it will create a blank file
 ```
 
-###     Sceanrio we are working on
-
+Sceanrio we are working on
+---
 We are under /root/edac_os
 
 and this contains - dir1 and dir2
@@ -344,8 +343,8 @@ Create file5 under dir2
 file3  file4  file5
 ```
 
-###     Editing of a file using 'vi'
-
+Editing of a file using 'vi'
+---
 ```
 vi <filename>
 Press i --> insert
@@ -356,8 +355,8 @@ Press Esc
 :w! --> just saves the current data
 ```
 
-###     To see the contents of file
-
+To see the contents of file
+---
 ```
 cat <filename>
 [root@localhost dir2]# vi file3
@@ -376,14 +375,14 @@ Added the data, :wq!
 I disturb during tasks
 ```
 
-###     Renaming a file
-
+Renaming a file
+---
 ```
 mv <old name> <new name>
 ```
 
-###     Copying of file
-
+Copying of file
+---
 ```
 cp <source location> <destination location>
 ```
@@ -407,8 +406,8 @@ file3  file4  file5
 file1  file5
 ```
 
-###     Delete file5 under dir1 and move all files from dir2 to dir1
-
+Delete file5 under dir1 and move all files from dir2 to dir1
+---
 Expected o/p under dir1
 file3, file4, file1, file5
 ```
@@ -587,16 +586,16 @@ I'm a file under finaldir
 
 ##      Day 3 Theory
 
-###      Agenda
+##      Agenda
 
 *	 What are file permissions and how to set them
 *	 Permissions (chmod, chown, etc); access control list; network commands (ssh, sftp, scp)
 
-###     SHELL
+##      SHELL
 
 * Shell is a way you interact with kernel.
 
-###     Type of shells
+##      Type of shells
 
 *	bash
 *	sh
@@ -609,7 +608,7 @@ To know which shell you are working in :
 echo $SHELL
 ```
 
-###     Users in Linux
+##      Users in Linux
 
 *	root user -> 0
 *	super user - sudoer
@@ -623,7 +622,7 @@ cat /etc/login.defs
 *   Whenever the shell is nologin the user will not be able to login
 *   Users that are by default in nologin are services/system services/services users
 
-###     Where can I see the list of all users in Linux?
+##      Where can I see the list of all users in Linux?
 
 *    Whenever we create a user in Linux, a folder is created with same name as that of user in /home
 
@@ -635,7 +634,7 @@ cat /etc/passwd
 username:x:UID:GID:comment:< home location >:< shell that user will use >
 ```
 
-###     How to create a user in Linux
+##      How to create a user in Linux
 
 
 *	CentOS
@@ -662,13 +661,13 @@ useradd -u 1002 user1
 adduser <username>
 ```
 
-###     How to delete a user
+##      How to delete a user
 
 ```
 userdel -r <username>
 ```
 
-###     Switching of users
+##      Switching of users
 
 ```
 su - <username>
@@ -678,7 +677,7 @@ Root can switch to any user without providing password
 
 Other users require password for switching
 
-###     Importance of 'x'
+##      Importance of 'x'
 
 Where are users password stored? - 
 ```
@@ -690,13 +689,13 @@ x ------------> encrypted password
 
 Without x linking of users in **/etc/passwd** - password won't be asked
 
-###     File Permissions
+##      File Permissions
 
 *	Owner - User who created the file
 *	Group - The group which user is a part of
 *	Others - rest of users
 
-###     Permissions
+##      Permissions
 
 *	r Read
 *	w Write
@@ -714,7 +713,7 @@ How permission of a file looks like
 --- 		--- 		---
 Owner		Group		Other users
 ```
-###     Umask
+##      Umask
 
 By default OS gives this permission
 Folder - 777
@@ -732,7 +731,7 @@ drwxr-xr-x. 2 root root 6 Sep 24 09:18 folder --> 755
 This Umask gets subtracted from the default permissions set
 Now our umask value is 022
 
-###     Folder 
+##      Folder 
 ```
 777
 022
@@ -744,13 +743,13 @@ Owner - rw
 Group - rw
 Others - rw
 
-###     How to modify the permissions of a file
+##      How to modify the permissions of a file
 
 ```
 chmod <permission set> filepath
 ```
 
-###     How to change the ownership of a file
+##      How to change the ownership of a file
 
 ```
 chown <new owner:new group owner> filename/path
@@ -780,7 +779,7 @@ Note: Here we just changed the group owner
 Important: Only 'owner or root' can change the permissions and ownership of a file
 
 
-###     ACL - Access Control List
+##      ACL - Access Control List
 
 ```
 [root@localhost edac_os]# ls -l file2 
@@ -805,7 +804,7 @@ here we saw that others can read, write and execute
 
 Issue: root wanted to give full access to Rahul ONLY but via chmod there is no provision for such advanced request
 
-###     ACl -->
+##      ACl -->
 
 ```
 setfacl -m u:<username>:<permission set> filename/path
@@ -822,7 +821,7 @@ group::r--
 mask::rwx
 other::r--
 
-###     Getting permissions in numeric format
+##      Getting permissions in numeric format
 
 ```
 [root@localhost edac_os]# ls -l file3
@@ -831,27 +830,27 @@ other::r--
 644
 ```
 
-###     SSH
+##      SSH
 
 Secure Shell - Used to take shell of different Linux machines
 Synatx: 
 ```
 ssh <username of the other machine>@<IP of the other machine>
 ```
-###     Usage:
+##      Usage:
 ```
 [root@localhost edac_os]# ssh ljhamb@192.168.91.147
 ```
 It will ask for password
 
-###     Transfer all files on other machine via copying
+##      Transfer all files on other machine via copying
 
 scp - secure copy, copy over ssh
 ```
 scp <location of files you want to transfer> <username of the other machine>@<IP of the other machine>:<location where you want to transfer>
 ```
 
-###     Usage
+##      Usage
 
 ```
 [root@localhost edac_os]# scp -r /root/edac_os/* ljhamb@192.168.91.147:/home/ljhamb/test/
@@ -862,14 +861,21 @@ file3              100%    0     0.0KB/s   00:00
 file4              100%    0     0.0KB/s   00:00
 file5              100%    0     0.0KB/s   00:0
 ```
-
-##	Optional Assignment Day3
-
+Optional Assignment Day3
+---
 1. Create test user and add test to sudo/wheel,lp,lpadmin,audio,video
 ```
+#non root user commands
+sudo adduser test
+sudo usermod -aG sudo test
+groups test
 ```
 2. Create test1 user with 2000 uid
 ```
+#non root user commands
+sudo useradd -s /bin/bash -u 2000 test1
+su - test1
+echo $UID
 ```
 3. create test2 user with 1000 gid
 ```
@@ -945,8 +951,8 @@ file5              100%    0     0.0KB/s   00:0
 ```
 ```
 
-#	DAY 4
-
+#       DAY 4
+---
 ##      Day 4 Theory
 
 ##	AGENDA
