@@ -1160,9 +1160,10 @@ Orange
 ```
 ##	just orange - without sentence
 
-
-*^ - starting*
-*$ - ending*
+```
+^ - starting
+$ - ending
+```
 
 ```
 [root@localhost edac_os]# cat things | grep "^A"
