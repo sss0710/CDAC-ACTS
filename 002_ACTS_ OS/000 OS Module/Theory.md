@@ -865,94 +865,150 @@ Optional Assignment Day3
 ---
 1. Create test user and add test to sudo/wheel,lp,lpadmin,audio,video
 ```
-#non root user commands
-sudo adduser test
-sudo usermod -aG sudo test
+useradd test
+usermod -aG sudo,lp,lpadmin,audio,video test
 groups test
 ```
 2. Create test1 user with 2000 uid
 ```
-#non root user commands
-sudo useradd -s /bin/bash -u 2000 test1
-su - test1
-echo $UID
+useradd -u 2000 test1
+id -u test1
 ```
 3. create test2 user with 1000 gid
 ```
+useradd -g 1000 test2
+id -g test2 
 ```
 4. Set password for test,test1,test2
 ```
+passwd test
+passwd test1
+passwd test2
 ```
 5. login with test user and create bio.txt 
 ```
+su - test
+touch bio.txt
 ```
 6. Change permission to read and write for user and read for group only.
 ```
+ls -l
+chmod 640 bio.txt
+ls -l
 ```
 7. Logout form test user
 ```
+exit
 ```
 8. try to write your name inside bio.txt
 ```
+cd /home/test/
+ls
+echo "Name : Anant" > bio.txt
+cat bio.txt
 ```
 9. Create user user1 using adduser command.
 ```
+useradd user1
 ```
-
+---
+---
 1. Delete test,test1,test2
 ```
+$userdel test
+$userdel test1
+$userdel test2
 ```
 2. Create three users, raj,ravi,neha using adduser command.
 ```
+$adduser raj
+$adduser ravi
+$adduser neha
 ```
 3. Create data1.txt,data2.txt.Write your name in data1.txt
 ```
+$touch data1.txt
+$touch data2.txt
+$echo "Name : Anant" > data1.txt
+$cat data1.txt
 ```
 4. Add neha and ravi to your_main_user group.
 ```
+$sudo usermod -aG dell-pc neha
+$groups neha
+$sudo usermod -aG dell-pc ravi
+$groups ravi
 ```
 5. Login with raj and try to write content in data2.txt.
 ```
+$su - raj
+$echo "Name : Raj" > /home/dell-pc/data2.txt
+-bash: /home/dell-pc/data2.txt: Permission denied
 ```
 6. Read the data1.txt
 ```
+$cat /home/dell-pc/data1.txt
+Name : Anant
 ```
 7. Logout from raj and login with ravi.
 ```
+$logout
+$su - ravi
 ```
 8. Try to write content in data2.txt and data1.txt.
 ```
+$echo "Name : Ravi" >> /home/dell-pc/data1.txt 
+$echo "Name : Ravi" >> /home/dell-pc/data2.txt 
 ```
 9. Read the data1.txt and data2.txt
 ```
+$cat /home/dell-pc/data2.txt 
+Name : Ravi
+$cat /home/dell-pc/data1.txt 
+Name : Anant
+Name : Ravi
 ```
 10. Logout from ravi
 ```
+$logout
 ```
 11. Change ownership of data1.txt to raj
 ```
+$ sudo chown raj data1.txt
 ```
 12. Change ownership and group of data2.txt to neha and raj.
 ```
+$ sudo chown neha:raj data2.txt
 ```
 13. Try to append your name to data1.txt
 ```
+$ echo "Name : AnantG" >> data1.txt
 ```
 14. Try to append your name to data2.txt
 ```
+$ echo "Name : AnantG" >> data2.txt
+-bash: data1.txt: Permission denied
 ```
 15. login with raj and try to change the ownership of data2.txt to raj.
 ```
+$ chown raj /home/dell-pc/data2.txt
+chown: changing ownership of '/home/dell-pc/data2.txt': Operation not permitted
 ```
 16. Logout and Deactivate the ravi account.(Change login shell to nologin)
 ```
+$ logout
+$ sudo -i
+# usermod -s /bin/nologin ravi
 ```
 17. Login with neha and change ownership of data1.txt to neha.
 ```
+# su - neha
+$ chown neha /home/dell-pc/data1.txt
+chown: changing ownership of '/home/dell-pc/data1.txt': Operation not permitted
 ```
 
 #       DAY 4
----
+
 ##      Day 4 Theory
 
 ##	AGENDA
