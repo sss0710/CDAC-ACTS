@@ -1164,14 +1164,14 @@ Orange
 ^ - starting
 $ - ending
 ```
-
+## all that started with cap A
 ```
 [root@localhost edac_os]# cat things | grep "^A"
 APPLE
 Apple
 ApplE
 ```
-## all that started with cap A
+## all lines which have '.'
 ```
 [root@localhost edac_os]# cat things | grep "\."
 tomato.
@@ -1179,13 +1179,13 @@ orange.
 My IP adress is 8.8.8.8
 Your IP adress is 192.168.10.142
 ```
-## all lines which have '.'
+## ending with a dot
 ```
 [root@localhost edac_os]# cat things | grep "\.$"
 tomato.
 orange.
 ```
-## ending with a dot
+##  Pattern
 ```
 [root@localhost edac_os]# cat things | grep -P "\d{10}"
 My phone number is 9643546697
@@ -1196,13 +1196,19 @@ My phone number is 9643546697
 [root@localhost edac_os]# cat things | grep -Po "\d+\.\d+\.\d+\.\d+"
 8.8.8.8
 192.168.10.142
+```
+##	it brings all the blank lines
+```
 [root@localhost edac_os]# cat things | grep "^$"
 ```
+## Matching with tomato
 
-##	it brings all the blank lines
 ```
 [root@localhost edac_os]# cat things | grep tomato
 tomato.
+```
+## All except tomato
+```
 [root@localhost edac_os]# cat things | grep -v tomato #inverse
 apple
 APPLE
@@ -1252,11 +1258,15 @@ Domain names from a random site
 [root@localhost edac_os]# cat things | grep "^[ap].*"
 apple
 [root@localhost edac_os]# cat things | grep -i "^[ap].*"
+apple
+APPLE
+Apple
+ApplE
 ```
 Putting command output in a variable
 ------------------------------------
 ```
-*Syntax: variablename=$(command)*
+Syntax: variablename=$(command)
 ```
 ```
 [root@localhost edac_os]# fruits=$(cat things | grep -i "^[ap].*")
@@ -1433,7 +1443,7 @@ echo ""
 cat /etc/passwd | grep "bash" | grep "$usr" | awk -F':' '{print $3}'
 ```
 
-If loop
+If Statement
 -------
 
 ##      Task 5
@@ -1444,17 +1454,17 @@ If loop
 #!/bin/bash
 ```
 ```
-*	Create a script that asks for a user name displays the user ID of the user provided as input.
+#Create a script that asks for a user name displays the user ID of the user provided as input.
 
-*	If the user does not exist, then display the following error: "Entered user is not present on you Linux machine"
+#If the user does not exist, then display the following error: "Entered user is not present on you Linux machine"
 
 read -p "Enter the username: " usr
 
-*	Following variable will give the user ID only when user is presnt, else the variable will be blank.
+#Following variable will give the user ID only when user is presnt, else the variable will be blank.
 
 var=$(cat /etc/passwd | grep "bash" | grep -w "$usr" | awk -F':' '{print $3}')
 
-*	using if condition to check if var is blank or not
+#using if condition to check if var is blank or not
 
 if [[ -n "$var" ]]
 	then
@@ -1464,19 +1474,20 @@ if [[ -n "$var" ]]
 fi
 ```
 
-*	Create a script that displays all Linux users with ID greater than 1000
+#Create a script that displays all Linux users with ID greater than 1000
 ```
 [root@localhost scripts]# cat task6.sh
 ```
 ```
 #!/bin/bash
 
-*	Create a script that displays all Linux users with ID greater than 1000
+#Create a script that displays all Linux users with ID greater than 1000
 
 cat /etc/passwd|  awk -F':' '{if ($3 > 1000) {print $1, $3}}'
 ```
-*	$3 is the userID
-*	$1 is the username
+#$3 is the userID
+
+#$1 is the username
 - https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php*
 
 
@@ -1586,24 +1597,53 @@ cat /etc/passwd|  awk -F':' '{if ($3 > 1000) {print $1, $3}}'
 Lab - 25/09/2021
 ---------------
 ##      Task1_lab
-```
+
 Create a script that asks user to enter two numbers like this:= -
+
 Enter the first number: 
+
 Enter the second number:
+
 Now display which number is greater?
+
+```
+#!/bin/bash
+
+read -p "Enter the first number : " first_num
+read -p "Enter the second number : " second_num
+
+if [[ first_num -gt second_num ]]
+then 
+    echo "$first_num is greater than $second_num"
+else
+    echo "$second_num is greater than $first_num"
+fi
+
 ```
 ##      Task2_lab
-```
-#Create a script that asks the user to enter two numbers like this - 
-#Enter the first number: 
-#Enter the second number:
-#Now display - sum, difference, multiplication and division results of provided numbers?
 
+#Create a script that asks the user to enter two numbers like this - 
+
+#Enter the first number: 
+
+#Enter the second number:
+
+#Now display - sum, difference, multiplication and division results of provided numbers?
+```
 [root@localhost scripts]# a=5
 [root@localhost scripts]# b=6
 [root@localhost scripts]# c=$(expr $a + $b)
 [root@localhost scripts]# echo $c
 11
+```
+```
+#!/bin/bash
+read -p "Enter the first number : " a
+read -p "Enter the second number : " b
+echo "Sum = $(expr $a + $b)"
+echo "Difference = $(expr $a - $b)"
+echo "Multiplication = $(expr $a \* $b)"
+echo "Division = $(expr $a / $b)"
 ```
 
 ##      Task3_lab
