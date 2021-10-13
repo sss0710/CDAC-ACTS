@@ -77,6 +77,8 @@ public class StackDriver {
 				System.out.println("---------");
 				System.exit(0);
 			}
-		} while (true);
+		} while (choice!=3);
+		
+		sc.close();
 	}
 }

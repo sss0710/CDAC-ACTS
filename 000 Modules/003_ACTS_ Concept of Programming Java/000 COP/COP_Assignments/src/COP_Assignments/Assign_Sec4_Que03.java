@@ -1,4 +1,7 @@
+package COP_Assignments;
+
 /*
+
 Write a program in java to display the multiplication table of a given integer?
 
 Enter the number : 5

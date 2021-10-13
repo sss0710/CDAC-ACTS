@@ -40,4 +40,11 @@ class Testcases {
 		boolean result = myObj.IsBalanced("{{]");
 		assertFalse(result);
 	}
+	
+	@Test
+	void test5() {
+		BalanceParenthesis myObj = new BalanceParenthesis();
+		boolean result = myObj.IsBalanced("))))))((((((");
+		assertFalse(result);
+	}
 }

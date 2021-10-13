@@ -1,3 +1,5 @@
+package QueueUsingStack;
+
 
 public interface StackIntf {
 	public void Push(int element);

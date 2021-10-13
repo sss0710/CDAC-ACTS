@@ -1,3 +1,5 @@
+package QueueUsingStack;
+
 
 public class StackUsingArray implements StackIntf {
 	int top;
