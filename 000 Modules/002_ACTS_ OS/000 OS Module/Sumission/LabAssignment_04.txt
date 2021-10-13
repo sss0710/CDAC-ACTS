@@ -1,0 +1,14 @@
+LAB ASSIGNMENT 04 - 27/09/2021
+==============================
+
+[task1_lab]																																			
+Create a script that asks user to enter two numbers like this:= -
+Enter the first number: 
+Enter the second number:
+Now display which number is greater?
+
+[task2_lab]
+Create a script that asks the user to enter two numbers like this - 																				
+Enter the first number: 
+Enter the second number:
+Now display - sum, difference, multiplication and division results of provided numbers?

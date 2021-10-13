@@ -1,0 +1,45 @@
+Neiron India(DemandHelm) - Nihir Praful Shah - 16th Feburary 2021
+
+Technical Test (Total time alloted 4hrs)
+6 MCQs majorly on Data Structures
+7 Coding Question
+   3 - Logic Based (Any language)
+   2 - Front End(Angular)
+   1 - SQL Query
+   1 - Backend Question (Java)
+6 Open ended questions/ Subjective Questions - All on DBMS
+
+1st round :- Took by CEO and General Manager
+Q1. Print Fibonacci series upto a limit with only prime numbers
+   Can choose any language we want and started writing the code and explaining the logic
+   Wrote rough code and explained. Asked me to do some changes as I had little misunderstanding in question
+   Made the changes as they asked 
+A. https://www.geeksforgeeks.org/prime-numbers-fibonacci/
+
+Q2. If you are working at facebook and suddenly the number of daily users drop by 10%, how will you investigate what is root problem for it?
+A. They don't need any solution to the problem but just how can you find out the problem, like root cause analyis of it.
+   After few answers, CEO also told that there is no right/wrong answer to it. Just want to check depth and breadth of your    thinking.
+   
+2nd round :- 
+Q1. Introduce yourself
+Q2. Asked to explain me a project I had mentioned in my resume apart from CDAC
+Q3. Questions about my work experience
+Q4. Asked me to code - Rearrange an array in maximum minimum form 
+    eg. Input: arr[] = {1, 2, 3, 4, 5, 6, 7}  Output: arr[] = {7, 1, 6, 2, 5, 3, 4}
+	Input: arr[] = {1, 2, 3, 4, 5, 6}  Output: arr[] = {6, 1, 5, 2, 4, 3} - Alternate minimum and maximum elements 
+A. https://www.geeksforgeeks.org/rearrange-array-maximum-minimum-form/
+Q5. Only approach and not coding - How to get number of duplicate lines/sentences in a file
+
+3rd round :- 
+Q1. Tell me something about yourself and also explain your project. Explain OOPS and it's 4 pillars with respect to your     project.
+Q2. Expln your technology stack. My backend was .NET so questions on it.
+    Expln CLR, managed code v/s unmanaged code, generics in .net and so on many questions related to it.
+Q3. Monolithic vs Microservice vs Distributed systems , SOLID principle and many more theorotical questions
+Q4. Questions on Javascript like Hoisting, objects, string literals, callback hell, promise, rest API, middleware 
+    ES5, ES6, new features of ES6. Rest and spread operators, arrow functions etc etc..
+Q5. Asked to code - Merge 2 arrays removing duplicates and in a sorted manner
+    For example, if {7, -5, 3, 8, -4, 11, -19, 21} and {6, 13, -7, 0, 11, -4, 3, -5} are two unsorted integer arrays then     sorted merged array without duplicates will be {-19, -7, -5, -4, 0, 3, 6, 7, 8, 11, 13, 21}.
+A. https://javaconceptoftheday.com/merge-two-arrays-into-single-sorted-array-without-duplicates-in-java/   
+
+Final Result - Selected
+Advice - Their main focus is on logic and approach. If not able to code expln them your logic.

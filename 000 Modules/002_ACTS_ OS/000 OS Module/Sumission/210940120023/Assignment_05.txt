@@ -1,0 +1,250 @@
+ASSIGNMENT 05 - 29/09/2021
+==========================
+
+1. Write a script that performs following operations on the given set of files?	(15)															
+
+a) displays the total count of files
+b) displays the count of *.pdf files and *.docx
+c) rename all *.pdf to *.docx
+d) displays the count of *.pdf files and *.docx
+e) displays only those files which have underscore '_' in their names
+
+msexchange.qlv
+NecessaryComplianceViolations.docx
+NewDoc12-23-202016.51.pdf
+OpenCases.csv
+OPS-94632_new.tar
+OS-Windows.pdf
+QQL.json
+Ransomware.docx
+Red_HatReferenceGuide.pdf
+ScriptAnalysis.xlsx
+Scriptpage.jpg
+SolarWinds_Supply-Chain_Attack_UDdashboard.json
+Splunk_PC_App.png
+Splunk_VM_App.png
+Studio_Malware_July_2013.xlsx
+TroubleshootingAgentPermissionIssuesforWindows.pdf
+UDC_Demo_20210106.xml
+Video2020-11-10at7.12.43PM.mp4
+VMware-workstation-full-15.5.5-16285975.exe
+VMware-workstation-full-16.0.0-16894299.exe
+WhatsAppImage2020-11-05at2.47.06PM.jpeg
+win.txt
+
+Solution
+========
+
+#!/bin/bash
+
+num=$(ls /home/dell-pc/edac_os/ | wc -l) #displays the total count of files
+echo "Your file count is : $num"
+
+d=$(ls /home/dell-pc/edac_os/ | grep ".pdf" | wc -l) #displays the count of *.pdf files 
+echo "the no. of pdf files are : $d"
+
+c=$(ls /home/dell-pc/edac_os/ | grep ".docx" | wc -l) #displays the count of *.docx files
+echo "the no. of docx files are : $c"
+
+for file in /home/dell-pc/edac_os/*.pdf #renames all *.pdf to *.docx
+do
+  mv "$file" "${file%.pdf}.docx"
+done
+
+echo "------------------------------------"
+
+sleep 5s
+
+d=$(ls /home/dell-pc/edac_os/ | grep ".pdf" | wc -l) #displays the count of *.pdf files
+echo "the no. of pdf files are : $d"
+
+c=$(ls /home/dell-pc/edac_os/ | grep ".docx" | wc -l) #displays the count of *.docx files
+echo "the no. of docx files are : $c"
+
+echo "$( ls /home/dell-pc/edac_os/ | grep "_")" #displays only those files which have underscore '_' in their names
+
+2. Write a script that displays the user information on the linux box in the following format:	(10)
+Username	Shell assigned to that user
+
+Solution
+========
+
+#!/bin/bash
+echo " `whoami` -------> $SHELL"
+
+3. Write a command that fetches the list of all files under /root directory that are more than 2KB in size
+
+Solution
+========
+
+echo "`find /root -type f -size +2000c`"
+
+4. Create a script that asks for a user name and add that user with password same as that of user name. The user added should be assigned nologin shell
+
+Solution
+========
+
+#!/bin/bash
+
+read -p "enter the username for the user :" usr
+
+useradd -m -p "$usr" "$usr"
+
+echo "User $usr added"
+
+usermod -s /bin/nologin/ $usr
+
+echo "Nologin Shell assigned to User $usr"
+
+5. Create a calculator program in bash that takes two numbers (integers) and display menu to the user for various mathematical operations. Hint: Switch Case Break
+
+Solution
+========
+
+#!/bin/bash
+echo "Enter Two Number : "
+read a
+read b
+echo "Enter Your Choice"
+echo "1. Addition"
+echo "2. Subtraction"
+echo "3. Multiplication"
+echo "4. Division"
+read ch
+
+case $ch in
+  1)res=`echo $a + $b | bc` #Bench Calculator - bc
+  ;;
+  2)res=`echo $a - $b | bc`
+  ;;
+  3)res=`echo $a \* $b | bc`
+  ;;
+  4)res=`echo "scale=2; $a / $b" | bc` #scale - decimal places
+  ;;
+esac #evaluate and execute
+echo "Result : $res"
+
+6. Create 2 VMs - both CentOS 7 (with fresh snapshots) with names - machineA and machineB
+	1. From machineA copy any file to machineB
+	2. From machineA - create a dir named 'testdir' on machineB
+
+Solution
+========
+
+PART - 1 
+---------
+
+$	ip a | grep -A2 "ens33" | grep "inet" | grep -Po "\d+\.\d+\.\d+\.\d+" | head -n1
+$	service sshd status
+$	scp /home/machineA/file.txt machineB@192.168.42.111:/home/machineB/
+
+PART - 2
+---------
+$	ssh machineB@192.168.42.111
+$	mkdir /home/machineB/testdir
+	
+7. Create a script that depicts sending the process to background so that the next command in sequence can run without wait
+
+Solution
+========
+
+#!/bin/bash
+
+echo "Initialisizing sleep 30s command and sending it to background"
+
+sleep 30s &
+jobs
+
+echo "Now running gedit command while sleep 30s runs in background"
+
+sleep 5s
+gedit
+jobs
+
+8. Create a script that displays the system information like: OS name, kernel version, RAM, etc.
+
+Solution
+========
+
+#!/bin/bash
+echo "System Information : "
+
+echo "version name 		: `uname -v`"
+echo "OS details   		: `uname -o`"
+echo "machine details   : `uname -m`"
+
+9. Create a shell script to find the largest among the 3 given numbers
+
+Solution
+========
+
+#!/bin/bash
+read -p "Enter number 1: " num1
+read -p "Enter number 2: " num2
+read -p "Enter number 3: " num3
+
+if [ $num1 -gt $num2 ] && [ $num1 -gt $num3 ]
+then
+echo "Greatest num:" $num1
+elif [ $num2 -gt $num1 ] && [ $num2 -gt $num3 ]
+then
+echo "Greatest num:" $num2
+else
+echo "Greatest num:" $num3
+fi
+
+10. Create a shell program to check whether a given string is palindrome
+
+Solution
+========
+
+#!/bin/bash
+
+#!/bin/bash
+read -p "Enter a string: " string
+if [[ $(rev <<< "$string") == "$string" ]]; then
+    echo Palindrome
+else
+	echo Not a Palindrome
+fi
+
+11. Create a shell program to count number of words, characters, white spaces and special symbols in a given text
+
+Solution
+========
+
+#!/bin/bash
+
+read -p "Enter text : " text
+word=$(echo -n "$text" | wc -w)
+char=$(echo -n "$text" | wc -c)
+
+spchar=$(expr length "${text//[^\~!@#$&%*()]/}")
+
+echo "The Number of words is : $word"
+echo "The Number of characters are : $char"
+echo "The Number of whitespace is : $(expr length "$text" - length `echo "$text" | sed "s/ //g"`) "
+echo "The Number of Special symbols are : $spchar"
+
+12. Create a script to remove all empty lines from a file
+
+Solution
+========
+
+13. Create a script that fetches only the IP address of the machine from output of ifconfig command
+
+Solution
+========
+
+#!/bin/bash
+echo "IP address is : $(ifconfig | grep -A2 "ens33" | grep "inet" | grep -Po "\d+\.\d+\.\d+\.\d+" | head -n1)"
+
+14. How to run the c program in bash
+
+Solution
+========
+
+touch file.c
+gcc file.c -o newfile.sh
+./newfile.sh
+

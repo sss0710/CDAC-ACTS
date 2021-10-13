@@ -1,0 +1,36 @@
+Credit Suisse Questions for Devendra:
+
+1. Introduce yourself
+How much you rate yourself in Core JAVA
+2. What all technologies have u learned?
+3. Why Spring Boot?
+4. Can we have Multiple Inheritance in java? -->No. Then By using Interfaces? Yes
+5. What is final keyword? Can we have final Constructor?
+6. Are constructors Inherited?
+7. Diff between overloading and overriding?
+Can Overloading be done in different cllasses?
+8. Can we have different return types in overriding?
+9. Checked Exception rules? Based on scenario.
+10. How u handle exception? Based on scenario
+11. What is use of finally block?
+12. About Return statements in try,catch and finally block. Based on Scenario
+What are Functional Interface? Can u write default method in functional interface?
+What is an Interface?
+13. What have u done in Project?
+14. Tell me about Spring Boot?
+What is CORS? How u used it in your project?
+What are profiles in Spring ? Have u heard about it?
+15. What is maven?
+16. What technologies have u learnt in MEAN?
+17. Full form of MEAN(MongoDb ExpressJS Angular NodeJS)?
+18. What did u learn in MongoBD?
+19. What is Angular?
+20. What is Single Page Application?
+21. How u achieved Internationalization in your project?
+22. How many Data Structures have you learnt?
+23. What did u use to generate pdf of Orders in your Project?
+24. What key features you used in Spring Boot?
+25. Why your BE percentage are 59 rather u have above 80% in 10th,Diploma?
+26. If u are offered to work on Servlet and Jsp, will you do?
+27. If you are offered to work on Angular 2, will u work?
+28. Any Questions u wanna ask?  

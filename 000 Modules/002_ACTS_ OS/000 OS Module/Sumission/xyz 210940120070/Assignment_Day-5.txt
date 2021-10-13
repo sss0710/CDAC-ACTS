@@ -1,0 +1,502 @@
+Day 5  Assignment
+
+[Task1]
+Create a script that takes a number as user input and tells if prvided number is a two digit number or single digit number.
+Sol.
+-------------------------------------------------------
+-------------------------------------------------------
+
+[bisenboy@localhost ~]$ ls
+!  myos.sh  myshell.sh  TWODGT.sh
+[bisenboy@localhost ~]$ cat TWODGT.sh 
+#!/bin/bash
+
+read -p"enter a number" NUM
+
+if [[ $NUM -lt 10 ]]
+
+then 
+	echo "One digit number"
+elif [[ $NUM -lt 100 ]]
+then
+	echo "Two digit number"
+else
+	echo "Invalid"
+
+fi
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+[Task2]
+Create a command named as 'myos' - running this command should display the OS you are working on 
+Sol.
+-------------------------------------------------------
+-------------------------------------------------------
+
+[bisenboy@localhost ~]$ alias myos='cat /etc/system-release'
+[bisenboy@localhost ~]$ myos
+CentOS Linux release 7.9.2009 (Core)
+
+or
+
+[bisenboy@localhost ~]$ alias myos1="echo $(cat /etc/os-release)"
+[bisenboy@localhost ~]$ myos1
+NAME=CentOS Linux
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+[Task3]
+Create a command named as 'myshell' - running this command should display the shell you are working on
+Sol.
+-------------------------------------------------------
+-------------------------------------------------------
+
+[bisenboy@localhost ~]$ alias myshell="echo $SHELL"
+[bisenboy@localhost ~]$ myshell
+/bin/bash
+
+or
+
+[bisenboy@localhost ~]$ alias myshell="echo `basename $SHELL`"
+[bisenboy@localhost ~]$ myshell
+bash
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+[Task4]
+Create a script that takes a  path and tells you if provoided path is a file or a directory
+Sol.
+-------------------------------------------------------
+-------------------------------------------------------
+
+[bisenboy@localhost ~]$ cat ford
+#!/bin/bash
+
+read -p "Enter a path : " path
+echo "$path"
+
+if [[ -d $path ]]
+then
+        echo "directory"
+elif [[ -e $path ]]
+then
+        echo "file"
+else
+        echo "no such file or directory"
+fi
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+[Task5]
+Create a script that takes a directory name and lists down all the files (only files) under that dir.
+Sol.
+-------------------------------------------------------
+-------------------------------------------------------
+
+	#! /bin/bash
+
+	read -p "enter directory name : " dirname
+
+	var=$(find / -name "$dirname" 2>&1 |grep -v "Permission denied")
+
+	if [ -n "$var" ]
+	then
+        	echo "$(ls -a "$var")"
+	else
+        	echo "Directory Not Found"
+	fi
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+[Task6]
+Create a script to get the current date, time, username and current working directory.
+Sol.
+-------------------------------------------------------
+-------------------------------------------------------
+
+[bisenboy@localhost ~]$ vi ques6.sh
+
+[bisenboy@localhost ~]$ cat ques6.sh
+#!/bin/bash
+echo "Current Date and Time "`date`
+echo "Username is"`whoami`
+echo "your current working directory" `pwd`
+
+[bisenboy@localhost ~]$ ./ques6.sh
+Current Date and Time Mon Sep 27 15:58:54 IST 2021
+Username isbisenboy
+your current working directory /home/bisenboy
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+[Task7]
+Create a script that creates a dir named test and then creates 5 files under it named as file1, file2..file5 and then renames all files by adding .txt extension to all file names
+Sol.
+-------------------------------------------------------
+-------------------------------------------------------
+
+ 	#! /bin/bash
+
+	rm -rf test
+
+	mkdir test
+	cd test
+	touch file{1..5}
+	for i in {1..5}
+	do
+        	mv file$i file$i.txt
+	done
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+Write a script that creates 1000 directories with 1000 files
+
+dir1 - file1
+dir2 - file2
+.
+.
+dir1000 - file1000
+
+and each file has content as follows:
+file1 - I'm file
+file2 - I'm file2
+.
+.
+file3 - I'm file3
+
+Sol.
+---------------------------------------------------------
+---------------------------------------------------------
+
+[gauravbisen@localhost ~]$ cat lab2.sh
+#!/bin/bash
+
+for i in {1..1000}
+do
+mkdir dir$i
+touch dir$i/file$i
+echo "i am file$i">dir$i/file$i
+done
+[gauravbisen@localhost ~]$ 
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+Create a script that takes a user name and lists down all the files he owns? and also tell if each path is a file or a dir?
+Sol.
+---------------------------------------------------------
+---------------------------------------------------------
+
+#!/bin/bash
+read -p "Enter the username: " usr
+echo "Files owned by this user in it's home are as follows:"
+find /home/$usr -user $usr > file_$usr
+
+while read line
+do
+ if [[ -f $line ]]
+  then
+		echo "$line is a file"
+ fi
+done < file_$usr
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+Assignment ques - You have a list of files. Traverse through the list and display the permision set of each file?
+
+filename ---> numeric permission
+
+List of files under /etc
+------------------------
+adjtime
+aliases
+aliases.db
+anacrontab
+asound.conf
+at.deny
+autofs.conf
+autofs_ldap_auth.conf
+auto.master
+auto.misc
+auto.net
+auto.smb
+bashrc
+brltty.conf
+centos-release
+centos-release-upstream
+cgconfig.conf
+cgrules.conf
+cgsnapshot_blacklist.conf
+chrony.conf
+chrony.keys
+cron.deny
+crontab
+crypttab
+csh.cshrc
+csh.login
+DIR_COLORS
+DIR_COLORS.256color
+DIR_COLORS.lightbgcolor
+dleyna-server-service.conf
+dnsmasq.conf
+dracut.conf
+e2fsck.conf
+enscript.cfg
+environment
+ethertypes
+exports
+filesystems
+fprintd.conf
+fstab
+fuse.conf
+gdbinit
+GeoIP.conf
+GREP_COLORS
+group
+group-
+gshadow
+gshadow-
+host.conf
+hostname
+hosts
+hosts.allow
+hosts.deny
+idmapd.conf
+inittab
+inputrc
+ipsec.conf
+ipsec.secrets
+issue
+issue.net
+kdump.conf
+krb5.conf
+ksmtuned.conf
+ld.so.cache
+ld.so.conf
+libaudit.conf
+libuser.conf
+locale.conf
+login.defs
+logrotate.conf
+machine-id
+magic
+mail.rc
+makedumpfile.conf.sample
+man_db.conf
+mke2fs.conf
+motd
+mtools.conf
+my.cnf
+nanorc
+netconfig
+networks
+nfs.conf
+nfsmount.conf
+nsswitch.conf
+nsswitch.conf.bak
+ntp.conf
+numad.conf
+oddjobd.conf
+papersize
+passwd
+passwd-
+pbm2ppa.conf
+pinforc
+pnm2ppa.conf
+printcap
+profile
+protocols
+radvd.conf
+request-key.conf
+resolv.conf
+resolv.conf.save
+rpc
+rsyncd.conf
+rsyslog.conf
+rwtab
+securetty
+services
+sestatus.conf
+shadow
+shadow-
+shells
+sos.conf
+statetab
+subgid
+subgid-
+subuid
+subuid-
+sudo.conf
+sudoers
+sudo-ldap.conf
+sysctl.conf
+system-release-cpe
+tcsd.conf
+trusted-key.key
+updatedb.conf
+usb_modeswitch.conf
+vconsole.conf
+vimrc
+virc
+wgetrc
+wvdial.conf
+yum.conf
+
+
+
+Sol.
+-------------------------------------------------------
+-------------------------------------------------------
+
+[bisenboy@localhost ~]$ cat quest.sh
+#!/bin/bash
+
+ls -l /etc | grep "^-" | awk '{print $9}' > file.txt
+while read line
+do 
+
+echo "$(stat -c %a /etc/$line) -- $line"
+
+done < file.txt
+rm -rf file.txt
+[bisenboy@localhost ~]$ 
+-------------------------------------------------------
+
+[bisenboy@localhost ~]$ ./quest.sh
+644 -- adjtime
+644 -- aliases
+644 -- aliases.db
+600 -- anacrontab
+644 -- asound.conf
+644 -- at.deny
+644 -- autofs.conf
+600 -- autofs_ldap_auth.conf
+644 -- auto.master
+644 -- auto.misc
+755 -- auto.net
+755 -- auto.smb
+644 -- bashrc
+644 -- brltty.conf
+644 -- centos-release
+644 -- centos-release-upstream
+644 -- cgconfig.conf
+644 -- cgrules.conf
+644 -- cgsnapshot_blacklist.conf
+644 -- chrony.conf
+640 -- chrony.keys
+600 -- cron.deny
+644 -- crontab
+600 -- crypttab
+644 -- csh.cshrc
+644 -- csh.login
+644 -- DIR_COLORS
+644 -- DIR_COLORS.256color
+644 -- DIR_COLORS.lightbgcolor
+644 -- dleyna-server-service.conf
+644 -- dnsmasq.conf
+644 -- dracut.conf
+644 -- e2fsck.conf
+644 -- enscript.cfg
+644 -- environment
+644 -- ethertypes
+644 -- exports
+644 -- filesystems
+644 -- fprintd.conf
+644 -- fstab
+644 -- fuse.conf
+644 -- gdbinit
+644 -- GeoIP.conf
+644 -- GREP_COLORS
+644 -- group
+644 -- group-
+0 -- gshadow
+0 -- gshadow-
+644 -- host.conf
+644 -- hostname
+644 -- hosts
+644 -- hosts.allow
+644 -- hosts.deny
+644 -- idmapd.conf
+644 -- inittab
+644 -- inputrc
+644 -- ipsec.conf
+600 -- ipsec.secrets
+644 -- issue
+644 -- issue.net
+644 -- kdump.conf
+644 -- krb5.conf
+644 -- ksmtuned.conf
+644 -- ld.so.cache
+644 -- ld.so.conf
+640 -- libaudit.conf
+644 -- libuser.conf
+644 -- locale.conf
+644 -- login.defs
+644 -- logrotate.conf
+444 -- machine-id
+644 -- magic
+644 -- mail.rc
+644 -- makedumpfile.conf.sample
+644 -- man_db.conf
+644 -- mke2fs.conf
+644 -- motd
+644 -- mtools.conf
+644 -- my.cnf
+644 -- nanorc
+644 -- netconfig
+644 -- networks
+644 -- nfs.conf
+644 -- nfsmount.conf
+644 -- nsswitch.conf
+644 -- nsswitch.conf.bak
+644 -- ntp.conf
+644 -- numad.conf
+644 -- oddjobd.conf
+644 -- papersize
+644 -- passwd
+644 -- passwd-
+644 -- pbm2ppa.conf
+644 -- pinforc
+644 -- pnm2ppa.conf
+644 -- printcap
+644 -- profile
+644 -- protocols
+644 -- radvd.conf
+644 -- request-key.conf
+644 -- resolv.conf
+644 -- rpc
+644 -- rsyncd.conf
+644 -- rsyslog.conf
+644 -- rwtab
+600 -- securetty
+644 -- services
+644 -- sestatus.conf
+0 -- shadow
+0 -- shadow-
+644 -- shells
+644 -- sos.conf
+644 -- statetab
+644 -- subgid
+644 -- subgid-
+644 -- subuid
+644 -- subuid-
+640 -- sudo.conf
+440 -- sudoers
+640 -- sudo-ldap.conf
+644 -- sysctl.conf
+644 -- system-release-cpe
+600 -- tcsd.conf
+644 -- trusted-key.key
+644 -- updatedb.conf
+644 -- usb_modeswitch.conf
+644 -- vconsole.conf
+644 -- vimrc
+644 -- virc
+644 -- wgetrc
+644 -- wvdial.conf
+644 -- yum.conf

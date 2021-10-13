@@ -1,0 +1,170 @@
+ASSIGNMENT 03 - 24/09/2021
+==========================
+
+[Task1]																																			
+-------
+Create a script that takes a number as user input and tells if prvided number is a two digit number or single digit number.
+
+Solution
+========
+
+#!/bin/bash
+
+read -p "Enter number : " num
+
+if [[ $num -gt 0 && $num -lt 10  ]]
+then
+        echo "Single Digit Number"
+
+elif [[ $num -gt 9 && $num -lt 100  ]]
+then
+        echo "Two Digit Number"
+else
+        echo "Invalid Input"
+fi      
+
+[Task2]
+-------
+Create a command named as 'myos' - running this command should display the OS you are working on
+
+Solution
+========
+
+alias myos="uname -o"
+
+[Task3]
+-------
+Create a command named as 'myshell' - running this command should display the shell you are working on
+
+Solution
+========
+
+alias myshell="echo $(cat /etc/passwd | grep "$(whoami)" | awk -F':' '{print $7}' | awk -F'/' '{print $3}')"
+
+[Task4]
+-------
+Create a script that takes a  path and tells you if provoided path is a file or a directory.
+
+Solution
+========
+
+#!/bin/bash
+
+read -p "Enter a path" path
+echo "$path"
+
+if [[ -d $path ]]
+then
+        echo "directory"
+elif [[ -f $path ]]
+then
+        echo "file"
+else
+        echo "no such file or directory"
+fi
+
+[Task5]
+-------
+Create a script that takes a directory name and lists down all the files (only files) under that dir.
+
+Solution
+========
+
+#!/bin/bash
+
+#Create a script that takes a directory name and lists down all the files (only>
+
+read -p "Enter directory path : " path
+
+file=$(ls -l "$path" | grep "^-" | awk '{print $9}')
+
+if [[ -n $file ]]
+then
+        echo "$file"
+else
+        echo "Files not present"
+fi
+
+[Task6]
+-------
+Create a script to get the current date, time, username and current working directory.
+
+Solution
+========
+
+#!/bin/bash
+
+#Create a script to get the current date, time, username and current working di>
+
+echo "Date : `date`"
+echo ""
+echo "Working Directory : `pwd`"
+echo ""
+echo "Username : `whoami`"
+
+[Task7]
+-------
+Create a script that creates a dir named test and then creates 5 files under it named as file1, file2..file5 and then renames all files by adding .txt extension to all file names
+
+Solution
+========
+
+#!/bin/bash
+
+rm -rf test
+
+echo "My current location is `pwd`"
+
+mkdir test;
+
+cd test 
+
+for i in {1..5} 
+
+ do
+
+   touch file$i
+
+ done
+
+ for i in {1..5} 
+
+ do
+
+   mv file$i.txt
+
+ done
+
+ls 
+
+cd ..
+
+-> Ques 1- How to make the alias permanent?
+
+Solution
+========
+
+1)open bashrc file using this command -->  nano ~/.bashrc
+2)now append the file by pasting the alias command at the end of file  
+
+#alias myos="echo $(cat /etc/os-release | grep "^NAME\b" | awk -F'"' '{print $2}')"
+
+3)Save the file and now type the alias name in terminal.
+
+-> Ques 2- You have a list of files. Traverse through the list and display the permision set of each file?
+
+Solution
+========
+
+$ echo "$(ls -1 -f /etc)" > /home/dell-pc/edac_os/file.txt
+
+#!/bin/bash
+
+while read line 
+do 
+    display=$(stat -c %a /etc/$line)
+    echo "$line ---> $display"
+done < /home/dell-pc/edac_os/file.txt
+
+
+

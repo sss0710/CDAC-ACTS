@@ -1,0 +1,28 @@
+12.Create a script to remove all empty lines from a file
+Solution:
+-----------
+
+[bisenboy@localhost Q12]$ cat input.txt 
+hello guys
+we are in Cdac
+Its in Pune 
+but currently
+it is vertually batch
+so enjoy
+
+----------------------------------------------------------------------
+
+[bisenboy@localhost Q12]$ ./Q12.sh 
++ sed -i '/^$/d' input.txt
++ cat input.txt
+hello guys
+we are in Cdac
+Its in Pune 
+but currently
+it is vertually batch
+so enjoy
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

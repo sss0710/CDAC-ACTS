@@ -1,0 +1,125 @@
+1.Create a directory sample
+2.Go inside  sample directory
+3.Crrmreate directory with your name
+4.Check the list of directories here
+5.Go outside of current directory
+
+6.Create data1->data2->data3->data4 directory
+7.Go to data4
+8.Create data5 dir inside data3
+9.Create a.txt,b.txt file inside data1
+10.Create c.txt d.txt file inside data5
+11.Go to data5
+12.Copy d.txt to data4
+13.Move c.txt to data4
+14.Copy a.txt to data3
+15.Move b.txt to data4
+
+16.Go to data4
+17.Move a.txt to data2
+18.Go to data1
+19.Copy data5 to data2
+20.Move data4 to data5
+Sol.
+-------------------------------
+-------------------------------
+    1  pwd
+    2  exit
+    3  pwd
+    4  su gauravbisen
+    5  exit
+    6  pwd
+    7  uname -r
+    8  su gauravbisen
+    9  pwd
+   10  su - gauravbisen
+   11  su - root
+   12  su - 
+   13  su
+   14  pwd
+   15  ls
+   16  mkdir sample
+   17  ls
+   18  mkdir /root/sample/gaurav
+   19  ls
+   20  cd /root/sample
+   21  ls
+   22  cd ../../
+   23  pwd
+   24  ls /root/sample/gaurav
+   25  touch /root/sample/gaurav/data1
+   26* 
+   27  rm -rf /root/sample/gaurav/data1
+   28  ls /root/sample/gaurav
+   29  ls /root/sample/gaurav/data1
+   30  mkdir /root/sample/gaurav/data1
+   31  mkdir /root/sample/gaurav/data1/data2
+   32  mkdir /root/sample/gaurav/data1/data2/data3
+   33  mkdir /root/sample/gaurav/data1/data2/data3/data4
+   34  ls /root/sample/gaurav/data1
+   35  ls /root/sample/gaurav/data1/data2
+   36  ls /root/sample/gaurav/data1/data2/data3
+   37  ls /root/sample/gaurav/data1/data2/data3/data4
+   38  cd .
+   39* touch /root/sample/gaurav/data1/
+   40  ls -l /root/sample/gaurav/data1/data2/data3
+   41  cd /root/sample/gaurav/data1/data2/data4
+   42  cd /root/sample/gaurav/data1/data2/data3/data4
+   43  mkdir /root/sample/gaurav/data1/data2/data3/data5
+   44  ls -l /root/sample/gaurav/data1/data2/data3
+   45  ls -l /root/sample/gaurav/data1/data2/data3/data4
+   46  cd /root/sample/gaurav/data1/data2/data3/data4
+   47  touch ../../../{a.txt,b.txt}
+   48* ls -l /root/sample/gaurav/data1/da
+   49  pwd
+   50  touch ../data5/{c.txt,d.txt}
+   51  ls /root/sample/gaurav/data1/data2/data3/data5
+   52  touch d.txt
+   53  ls /root/sample/gaurav/data1/data2/data3/data4
+   54  rm d.txt
+   55  cd ../data5
+   56  pwd
+   57  ls
+   58  cp /d.txt ../data4
+   59  cp ./d.txt ../data4
+   60  ls /root/sample/gaurav/data1/data2/data3/data4
+   61  mv ./c.txt ../data4
+   62  ls /root/sample/gaurav/data1/data2/data3/data4
+   63  pwd
+   64  cp ../../../a.txt ../data3
+   65  ls /root/sample/gaurav/data1/data2/data3
+   66  ls /root/sample/gaurav/data1
+   67  ls /root/sample/gaurav/data1/data2
+   68  ls /root/sample/gaurav/data1/data2/data3
+   69  ls /root/sample/gaurav/data1/data2/data3/data4
+   70  ls /root/sample/gaurav/data1/data2/data3/data3
+   71  cd /root/sample/gaurav/data1/data2/data3
+   72  ls
+   73  cd data3
+   74  ls
+   75  ls -l
+   76  rm data3
+   77  ls
+   78  cp ../../a.txt ./
+   79  ls
+   80  mv ../../b.txt ./data4
+   81  ls ./data4
+   82  cd data4
+   83  ls
+   84  mv ../../../a.txt ../../
+   85  ls ../../
+   86  ../../../../
+   87  pwd
+   88  cd ../../../
+   89  pwd
+   90  cp ./data2/data3/data5 ./data2
+   91  cp -r ./data2/data3/data5 ./data2
+   92  ls ./data2
+   93  ls ./data2/data5
+   94  mv ./data2/data3/data4 ./data2/data3/data5
+   95  ls ./data2/data3/data5
+   96  ls ./data2/data3/data5/data4
+   97  history
+
+
+

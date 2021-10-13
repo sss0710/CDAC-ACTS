@@ -1,0 +1,137 @@
+
+ROUND1: Technical
+
+1. Introduce yourself.
+2. Tell me about the projects you have done.
+3. What was your role in the project?
+4. Which lanaguages are you comfortable in?
+5. Database used in the project
+
+*******
+
+6. What is OOPS? 
+7. How is OOPs different from from functional based programming.
+8. What is object?
+9. What is class?
+10. What do you mean by encapsulation?
+
+11. Method overloading and overriding
+12. How would you provide copy constructor?
+13. What is exception? How will you handle it?
+14. Explain finally block.
+15. What is automatic garbage collection?
+
+*******
+
+16. What is data structure?
+17. Explain linked list.
+18. Give some applications of data structures.
+19. Doubly linked list.
+
+Pseudo codes for below questions
+
+20.
+Array A- some numbers ....the given example conveyed it was sorted.
+Array B-  some random numbers.
+
+Algorithm to check which element of A is not present in B
+
+21.
+Array with unsorted numbers
+
+Find the 2nd highest number.
+
+22.
+string = something..
+How to find the occurence of a given character..suppose 'a'
+
+
+******
+
+23. What is MySQL?
+24. State some features of MySQL
+25. Database vs Table
+26. Alter commands
+ change table name
+ change column name
+ remove a column from the table
+
+27. Truncate vs Delete. For what reason is truncate preferred?
+
+
+******
+
+28. Explain MVC architecture.
+29. What is Servlet?
+30. What is ORM and state some advantages of it.
+
+******
+
+31. What is service in Angular?
+32. What is component? 
+33. What does a component contain?
+34. Explain routing.
+35. What is package.json file? Where is it located?
+36. ngIf directive
+37. What is Dependency Injection?
+
+
+******
+
+
+ROUND2: Tech-Managerial
+
+1. Tell me what technology are you aware of so that I can set the tone for the interview?
+2. As you mentioned you're from non-IT background, why are you interested in IT?
+3. What was your project in CDAC? What was your role in it?
+4. What is immutable class?
+5. Give other examples of immutable class. Also tell me how to make a class immutable in java?
+6. What is static in java?
+7. Difference between final and finally. Can we use finally without try-catch?
+8. What is Class.forName?
+9. JDBC - Connection string
+10. What is Prepared statement?
+11. What is Statement in jdbc?
+
+
+******
+12. How much do you know about MySQL?
+13. How does Mysql maintain consistency? -------- (aCid property!)
+
+******
+
+13. What version of Angular did you use?
+14. Web service consumed in the project?
+15. Angular components
+
+******
+
+16. What did you use to version control your project? Explain how did you manage it.
+17. Git clone, add, commit, push, checkout
+
+
+ROUND3: HR
+
+1. Guide me through your profile.
+2. Did you know about Morningstar before?
+3. What expectations do you have from our company?
+4. What were you thinking when you applied for this job? Why did you apply?
+5. Tell me about your cdac project. How many team members did you have?
+6. What did you learn while working on your project?
+7. Do you have any inclination towards any technology?
+8. Questions about relocation, willing to join asap or not, family etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

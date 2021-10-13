@@ -1,0 +1,6 @@
+LAB ASSIGNMENT 03 - 24/09/2021
+==============================
+
+Create a script that takes a user name and lists down all the files he owns?
+Create a script that takes a user name and lists down all the files he owns? and also tell if each path is a file or a dir?
+Write a script that creates 1000 directories with 1000 files

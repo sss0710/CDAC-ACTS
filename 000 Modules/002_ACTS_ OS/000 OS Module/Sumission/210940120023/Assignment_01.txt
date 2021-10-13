@@ -1,0 +1,46 @@
+ASSIGNMENT 01 - 22/09/2021
+==========================
+
+Ques1 - Difference between kernel and OS 			
+Solution
+========
+																							
+->Operating system is a part of system software while kernel is component of OS which is called upon by OS.
+
+->Like an computer needs operating system to run OS need kernel to run.
+
+->Operating system is the interface between user and hardware while kernel is interface between application and hardware. OS triggers system call and communicates with kernel
+
+->OS's main purpose is to interact with hardware(Process management, disk Management, task management, Memory Management)
+
+->All OS need kernel to run. 
+
+->Operating System is the first program to load when computer boots While kernel is first program to load after OS loads.
+
+Ques2 - Write one-liner on Type of OS with examples
+
+Solution
+========
+
+->Batch OS: Takes similar jobs having the same requirement and group them into batches to be executed. It is responsibility of operator to sort jobs with similar needs.
+
+Example: Payroll System, Bank Statements
+
+->Distributed OS: It uses multiple processors to serve multiple real-time applications and multiple users.Data processing jobs are distributed among the processors accordingly.
+
+Example: telecommunication networks, aircraft control systems.
+
+->Multitasking OS: It provides interface for executing the multiple program tasks by single user at a same time on one computer system.
+
+Example:windows XP, Windows 10, Linux
+
+->Network OS: These systems run on a server and provides the server the capeability to manage data, users, groups , security, applications and other network functions.
+
+Example: Linux, Microsoft Windows Server 2008
+
+->Real-Time OS: It is a defined as a data processing system in which the time interval required to process and respond to inputs is so small that it controls the environment. 
+
+Example:Medical Imaging System, Weapons System, Air traffic Control System.
+
+->Mobile OS: An operating system for smartphones, tablets and other mobile devices is called mobile OS, Example: Android, Blackberry OS
+

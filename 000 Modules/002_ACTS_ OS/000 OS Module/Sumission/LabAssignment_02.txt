@@ -1,0 +1,17 @@
+LAB ASSIGNMENT 02 - 23/09/2021
+==============================
+
+DO this one:#create a directory 'testdir'																										
+#5 files in this directory
+#set 755 as permissions of the file in this directory
+#then list all the files with permissions
+#chnage the permissions to 644
+#list all the files with modified permissions
+#delete all the files
+#Create a directory testdir
+#Create 5 files under it with name as file1,file2...file5
+#In every file enter the content as 
+#file1 -> This is file1
+#.
+#.
+#file5 -> This is file5

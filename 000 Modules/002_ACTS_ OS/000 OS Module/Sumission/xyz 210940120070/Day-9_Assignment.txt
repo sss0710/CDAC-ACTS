@@ -1,0 +1,57 @@
+Q- Difference between 6,9 and 15 kill Signals.
+Solution:
+----------
+SIGKILL(9) - Kill signal. Use SIGKILL as a last resort to kill process. This  will not save data or cleaning kill the process.
+
+SIGTERM(15)- Termination signal. This is the default and safest way to kill process.
+
+The diffrerence between 9 and 15 is, the default action for bothof them is to terminate the process, but 9 can't be 
+caught or ignored. So if signal 9 gets sent, the process is guaranteed to die, immediately. If a sig 15 is sent, the 
+process can catch it and perform cleanups. 
+
+SIGABRT(6) - The  abort()  first  unblocks the SIGABRT signal, and then raises that
+signal for the calling process (as though raise(3) was called).  This
+results in the abnormal termination of the process.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Q-What is the need of memory management?
+
+Solution:
+-----------
+In CPU scheduling we see that how the CPU can be shared by a set of processes.
+As a result of this CPU Utilization, as well as speed of the computer's response
+to its users could be improved.
+To realize this increase in performance , however, we must keep several processes in memory
+that is, we must share memory.
+
+For this Memory management is necessary.
+
+• This technique decides which process will get memory at what time.
+• It also keeps the count of how much memory can be allocated to a process.
+• It tracks when memory is freed or unallocated and updates the status.
+• The memory management function keeps track of the status of each memory location, either allocated or free
+• Subdividing memory to accommodate multiple processes
+• Memory needs to be allocated to ensure a reasonable supply of ready processes to consume available processor time
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Assignment: Given free memory partitions of 100K, 500K, 200K, 300K, and 600K (in order), how would each of the First-fit, Best-fit, and Worst-fit algorithms 
+place processes of 212K, 417K, 112K, and 426K (in order)?
+Which algorithm makes the most efficient use of memory?
+
+Solution:
+-----------
+
+First fit-->                           Best fir-->                                       Worst fit --->
+-------------                          -----------------                              -------------------
+100k-                              	              100k-                                          100k-
+500k-212k                                    500k-417k                                      500k-417k
+200k-112k                                    200k-112k                                      200k-
+300k-                               	               300k-212k                                      300k-112k
+600k-417k                                     600k-426k                                      600k-212k
+-------------                          -----------------                              -------------------
+426k has to wait									426k has to wait
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

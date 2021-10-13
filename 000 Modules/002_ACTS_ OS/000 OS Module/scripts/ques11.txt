@@ -1,0 +1,3 @@
+#!/bin/bash
+sed -i '/^$/d' /home/dell-pc/edac_os/file.txt
+cat /home/dell-pc/edac_os/file.txt

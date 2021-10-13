@@ -1,0 +1,22 @@
+Lowes Technical Round 
+Total :- 60 minutes
+50 minutes :- Data Structures and algorithms
+10 minutes :- Basic Java Questions
+1. Given an array of n consecutive elements , and one number is missing , how will you find it? What will be the corresponding time complexity?
+2. What is data structure, give real life example.
+3. What are linear and non linear data structures?
+4. Suppose you have been deployed to a project where you have to create your own data structure, how will you implement it, what operations it must possess , how will you normalise it, which algorithms will you use ?
+5. How have you used normalisation in your database? Give example in detail and if yes How?
+6. What is Divide and Conquer Strategy?
+7. Was told to write bubble sort code and asked several questions about time complexities.For eg:- What is the min TC? What is the max TC?How many number of swaps for each pass.
+8. 0/1 Knapsack Problem from Dynamic Programming.(Was asked using a real time scenario) Not directly.
+9. Quick Sort Algorithm. 
+10. Linked lists in detail.
+11. Difference between Linked list and Array list.
+12. BFS VS DFS
+13. Which DS will you use to store the moves in a Chess Board game?
+14. One java snippet code ( medium level) Included Static Blocks and Instance blocks.
+15. Compile time polymorphism VS Run Time polymorphism.
+16. String VS String Buffer(Associate with real world) 
+17. OOPS basics
+18. Can you write an INNER JOIN?

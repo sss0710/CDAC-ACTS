@@ -1,0 +1,27 @@
+ASSIGNMENT 06 - 30/09/2021
+==========================
+
+-> Ques - Difference between 6,9 and 15 kill Signals.
+
+Solution
+========
+
+SIGABRT(6) - 
+
+*	This kill signal is the abort signal. 
+*	Typically, a process will initiate this kill signal on itself.
+
+SIGKILL(9) - 
+
+*	The SIGKILL signal forces the process to stop executing immediately. 
+*	The program cannot ignore this signal. 
+*	This process does not get to clean-up either.
+
+SIGTERM(15) - 
+
+*	This signal requests a process to stop running. 
+*	This signal can be ignored. 
+*	The process is given time to gracefully shutdown. 
+*	When a program gracefully shuts down, that means it is given time to save its progress and release resources. 
+*	In other words, it is not forced to stop. 
+*	SIGINT is very similar to SIGTERM.																								

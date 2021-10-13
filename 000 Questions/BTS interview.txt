@@ -1,0 +1,76 @@
+First Round: level was Easy
+1)Verbal
+2)Quant
+3)Reasoning
+4)Coding 
+-----------------------------------------------------------------------------------------------------------------------------
+Technical round:(They were not insterested in java they only wanted FrontEnd)
+what is JS and Node js and why we use it? 
+Load balancing in Node js and which inbuilt modules are there??
+Exception handling in java
+what is map in java Script
+difference between let,var and const 
+what is multithreading in java and why it is not in js?
+what is compiler and intepretor?
+what is angular??
+what is single page application?
+decorators,components,directive in angular with example
+how can we pass data from one component to other in angular
+what is advantage of Angular over js
+If we want to filter data then what can we use in angular?
+which angular version you have used and what is new in that version?
+what is MVC?
+Basic question of core java like try ,catch,finally,string pool .
+Which annotation is required to create Service in angular.
+collection vs collections in java and what is difference between collection methods and collections method.
+
+--------------------------------------------------------------------------------------------------------------------------
+Hr round:
+Introduce yourself
+Hobbies and discussion on that
+strengths and weekness(she asked me for weekness)
+Some tough situation how will i manage
+
+
+
+Again One Technical Round:
+diff between == and ===operator
+diff between null and undefined
+how can we create object in JS
+what is node js
+what is closure
+what is promise in java script
+what is observable
+what is DOM
+how can we create class in js in ECMA Script 6 
+what is function constructor
+lifecycle in angular(hook up method)
+type of boolean operators
+Suppose there is one button and and there are many function assigned to it when user click on that button so which function will call and which problem we will face how can you solve??
+modules in java script 
+what is observable and how can we use ?can we cancel observable
+what is lazy loading and by default modules are lazy or eager and how can we create??
+can we create private constructor in JAVA as well as in JS and what is the need ,real time example
+what is callback function where we use it??scenario
+How can we access the parent element (not include space,tab,br,hr)
+How can we check type of variable
+difference betn Var and const
+Name of compiler which is used for transpiling and what is need of transpiling
+can we create child route and how??
+what is rest parameter
+what is garbage collection in java and object gets garbage collected what about reference??
+can you create object in js?? if yes then , is it there any GC in js??
+Tell me parent object in javascript
+what is ECMA Script
+suppose if we want to prevent user to access the path or route then what can be used??
+how angular works and what is bootstrap module and then again he asked component and directives
+property decorators??
+how hook up method works and how component gets instantiated
+Angular uses typescript so what is main advantage of it??
+Have you heard about any declarative UI
+if you are comfortable in java and knows java well so why u want to join us as only front end is there and then i said that i am also interesting in web devlopement as i have done lots of mini project in JS ,then he asked me  about that project ..
+
+
+
+
+ 

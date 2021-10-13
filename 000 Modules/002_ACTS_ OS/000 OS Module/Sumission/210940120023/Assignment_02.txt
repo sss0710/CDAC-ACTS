@@ -1,0 +1,169 @@
+ASSIGNMENT 02 - 23/09/2021
+==========================
+
+Ques 1. Explain Linux Directory Structure and File System Hierarchy?
+
+Solution
+========
+
+/bin : 	binary files/executables by regular user e.g. - cat,ls,cp etc
+/dev :	device files e.g. - usb,attached devices
+/home :	contains all user home directories e.g. - saved files,personal settings by user
+/lib64 :	64 bit library files
+/mnt :	mounted file system
+/proc :	process information files
+/run :	kernel(runtime) files
+/srv :	server specific service files e.g. - data and scripts for web server
+/tmp :	temporary files(deleted when system reboots)
+/var :	variable size files
+/boot :	static files of boot loader
+/etc :	configuration files e.g. - shutdown, startup shell scripts
+/lib :	shared libraries(essential for the binaries)
+/media :	removable device e.g. - CD Rom, Floppy
+/opt :	add-on application software package(optional software/3rd party files)
+/root :	home of root user
+/sbin :	system binaries/binary used by super user e.g. - iconfig, fdisk, reboot etc
+/sys :	system data(hardware and firmware related)
+/usr :	user utilities and application data(secondary heirarchy)																				
+
+Ques 2. 
+
+-> Create 5 directories under /root/edac_os
+
+dir1
+dir2
+dir3
+dir4
+dir5
+
+Solution
+========
+
+[root@localhost edac_os]# mkdir -p dir{1..5}
+[root@localhost edac_os]# ls
+dir1  dir2  dir3  dir4  dir5
+
+-> Create the following files under each directory
+
+dir1 --> file1
+dir2 --> file2
+dir3 --> file3
+dir4 --> file4
+dir5 --> file5
+
+Solution
+========
+
+[root@localhost edac_os]# touch dir1/file1
+[root@localhost edac_os]# touch dir2/file2
+[root@localhost edac_os]# touch dir3/file3
+[root@localhost edac_os]# touch dir4/file4
+[root@localhost edac_os]# touch dir5/file5
+[root@localhost edac_os]# ls dir1
+file1
+[root@localhost edac_os]# ls dir2
+file2
+[root@localhost edac_os]# ls dir3
+file3
+[root@localhost edac_os]# ls dir4
+file4
+[root@localhost edac_os]# ls dir5
+file5
+
+-> Create file6 and file7 under dir4
+
+Solution
+========
+
+[root@localhost edac_os]# touch dir4/file{6..7}
+[root@localhost edac_os]# ls dir4
+file4  file6  file7
+
+-> Delete file1 under dir1
+
+Solution
+========
+
+[root@localhost edac_os]# cd dir1
+[root@localhost dir1]# ls
+file1
+[root@localhost dir1]# rm -rf *
+[root@localhost dir1]# ls
+[root@localhost dir1]# 
+[root@localhost dir1]# 
+
+-> Copy all files from dir4 to dir1
+
+Solution
+========
+
+[root@localhost dir1]# cp -r /root/edac_os/dir4/* .
+[root@localhost dir1]# ls
+file4  file6  file7
+[root@localhost dir1]# ls ../dir4
+file4  file6  file7
+
+-> Move all files from dir1 to dir2
+
+Solution
+========
+
+[root@localhost dir1]# mv * /root/edac_os/dir2
+[root@localhost dir1]# ls
+[root@localhost dir1]# ls ../dir2
+file2  file4  file6  file7
+
+-> Delete file1 from dir2
+
+Solution
+========
+
+[root@localhost dir1]# cd ../dir2
+[root@localhost dir2]# rm -rf file1
+[root@localhost dir2]# rm file1
+rm: cannot remove ‘file1’: No such file or directory
+
+-> Remove all the directories except dir2
+
+Solution
+========
+
+[root@localhost dir2]# cd ..
+[root@localhost edac_os]# rm -rf dir1
+[root@localhost edac_os]# rm -rf dir{3..5}
+[root@localhost edac_os]# ls
+dir2
+
+-> Rename dir2 ro finaldir
+
+Solution
+========
+
+[root@localhost edac_os]# mv dir2 finaldir
+
+-> List the files under finaldir
+
+Solution
+========
+
+[root@localhost edac_os]# ls finaldir
+file2  file4  file6  file7
+
+
+-> Each file under finaldir should have the following content - 'I'm a file under finaldir'
+
+Solution
+========
+
+[root@localhost edac_os]# echo "I'm a file under finaldir" > finaldir/file2
+[root@localhost edac_os]# echo "I'm a file under finaldir" > finaldir/file4
+[root@localhost edac_os]# echo "I'm a file under finaldir" > finaldir/file6
+[root@localhost edac_os]# echo "I'm a file under finaldir" > finaldir/file7
+[root@localhost edac_os]# cat finaldir/file2
+I'm a file under finaldir
+[root@localhost edac_os]# cat finaldir/file4
+I'm a file under finaldir
+[root@localhost edac_os]# cat finaldir/file6
+I'm a file under finaldir
+[root@localhost edac_os]# cat finaldir/file7
+I'm a file under finaldir

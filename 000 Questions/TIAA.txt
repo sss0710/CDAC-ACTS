@@ -1,0 +1,61 @@
+TIAA
+
+1st technical:-
+1.  Tell me about yourself?
+2.  Tell me about projects that you have worked on?
+    (some project related quetions)
+3.  what is oops?
+4.  pillars of oops?
+5.  types of polymorphism?
+6.  method overloading and overriding?
+7.  what is exception?
+8.  draw exception hierarchy
+9.  checked and unchecked exception
+7.  write a program: i will provide you a string and the function should tell no of character occurrence
+    (ex:"akshay"-> a=2 k=1 s=1)
+8.  write a same program using hashmap
+9.  what is hashmap?
+10. collection hierarchy
+10. diffrance between arraylist and linkedlist
+11. what is controller?
+12. what is service?
+13. what is hibernate?
+14. what is jpa repository?
+15. REST api
+15. i have a 100 balls and 100 floors, at a perticular floor ball breaks. 
+    how to get that floor using minimum balls
+
+
+2nd technical:-
+1.  Tell me about yourself?
+2.  Tell me about your project?
+3.  your favorite module
+4.  what main method returns in java?
+5.  can we make main method private?
+6.  what is static variable?
+7.  what is instance variable?
+8.  what is oops and pillars of oops ?
+9.  diffrance between abstract class and interface
+10. write a program for prime number
+11. what is merge sort
+12. write a program for merge sort(just a main part)
+13. write a query for counting the no. of employees department wise
+14. draw venn drigrams of all joins
+15. if i design a OS on which parameter you will judge the that OS
+16. list the scheduling algorithms
+17. what is statestics?
+18. what is 1/sinθ?
+19. how to calculate area of circle
+20. perimeter of circle
+21. if there are 10 birds in on a tree one died how many left?
+22. now if i fire a gun shot how many left?
+
+
+managerial round:-
+1. tell me about yourself and about your hobbies?
+2. what data modeling you would use while devloping UBER app?
+2. what is your strength?
+3. about your weakness
+4. tell me about your project
+5. write a program to check if it is a circular linkedlist ?
+6. drawn extra node outside the circular linkedlist and asked how to traverse it(just approach not code)

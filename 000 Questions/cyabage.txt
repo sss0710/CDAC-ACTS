@@ -1,0 +1,41 @@
+                                             AZHARUDDIN JALGAONKAR
+
+***********Technical Round************
+
+Q)What are the technologies you know?
+Q) Difference between C++ and JAVA?
+Q) Features added in JAVA 8?
+Q) What is Stream API with example.
+Q) What is Functional Interface?
+Q) How Compiler comes to know that our Interface is Functional?
+Q)OOPS Concepts (explain with codes)
+Q)Heirarchy of exception.
+Q)Heirarchy of Collections and explain each.
+Q)How will you Sort a List (Syntax).
+Q)If there are 2 Lists L1 and L2 how will you find common data between them?
+Q)Difference between Map and Set.
+Q)how will you sort a Set?
+Q)What is Linked List Explain all the 3 types.
+Q)How will you identify that tree is a Binary Search tree?
+Q)Write A Program to reverse a String (2 ways).
+Q)what are aggregate functions in mysql?
+Q)Why Spring boot?
+Q)Which is inbuilt server in Springboot?
+Q)Which is inbuilt database in Sprinboot?
+Q)How can you change port number of Tomcat Server in Springboot?
+Q)How can you read the port number of Server in Springboot?
+
+
+
+
+*************HR ROUND********************
+
+Q)Introduce yourself
+Q)What do you learn From CDACs journey?
+Q)What Challanges you faced being a Team Leader?
+Q)One thing that you want to change in Yourself?
+Q)what do You Know about our Company?
+Q)Tell me few words about the essay you wrote in aptitude test round.
+Q)Have you been to any other recruitment process and what do you think why you were rejected there?
+Q)what thoughts or plans you had before appearing for a Technical Round?
+Q)You dont know much about our company what if I reject you for this Point?

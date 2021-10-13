@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "System Information : "
+
+echo "version name ----> `uname -v`"
+echo "OS details -----> `uname -o`"
+echo "machine details ----> `uname -m`"

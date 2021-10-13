@@ -1,0 +1,51 @@
+javac -d ./bin src/Hello.java
+
+classpath : is for java virtual machine, used to locate class files for exection.
+
+path : is for OS
+
+1. IDE ( STS/Eclipse)
+   http://dist.springsource.com/release/STS/index.html
+   Workbench
+     Editor Area
+	 Views
+	 
+  ctrl + space
+   
+2. Loops
+
+    1 2 3 4 5
+	1 2 3 4 5
+	1 2 3 4 5
+	1 2 3 4 5
+	1 2 3 4 5
+
+3. Arrays
+4. Methods
+
+Naming conventions: 
+1. Class name starts with upper case, followed by camel casing
+  Hello
+  HelloWorld
+  HelloWorldProgram
+  MyTestFile
+  
+2. Variable name starts with lower case, followed by camel casing
+  int avg;
+  int avgOfTwo;
+  int sumOfThreeNumbers;
+
+
+===========================
+JDK + Text Editor
+IDE : Integrated Development Environment
+   -> Eclipse 60%
+   -> Spring Tool Suite - customize/modified eclipse 
+   -> Intellij  30%
+   
+   
+i++   i = i+1
+++i   i = i+1  
+
+i--
+--i 

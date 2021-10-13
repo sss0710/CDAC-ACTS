@@ -1,0 +1,24 @@
+Q1.Explain  the 2 programs which you solved in coding round?
+
+Q2.Explain your project and What is your role in the project?
+
+Q3 What is Spring Boot?
+
+Q4 Where have you deployed your application What does deployment means?
+
+Q5 Explain is internal folder structure of tomcat server?
+
+Q6 How have you used AWS cloud?
+
+Q7 Explain 1 problem from hackerRank?
+
+Q8 Which platform you use for solving dataStructure Problems?
+
+Q9 Explain life circle of Servlet AND have you ever used Destroy() method in Servlet and who call Destroy()
+
+Q10 What is TypeScript?
+
+Q11 What is Stream API Why do we use it ?
+
+Q12 Can you work with javaScript and Nodejs?
+

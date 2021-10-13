@@ -1,0 +1,2 @@
+1) Open Pattern folder and open pattern.html in you browser.
+2) Open Pattern folder and open table.html in you browser.

@@ -1,0 +1,126 @@
+
+1.Redirect the output of ls -l to file.txt		
+		
+	ls -l > file.txt
+---------------------------------------------------------------------------------
+
+2.Append the output of dmesg command to file.txt	
+		
+	dmesg >> file.txt
+
+---------------------------------------------------------------------------------
+
+3.Copy the content of file.txt to new_file.txt	
+
+	cat file.txt > new_file.txt
+
+---------------------------------------------------------------------------------
+
+4.Find number of lines in new_file.txt					
+	grep -c "." new_file.txt	
+		OR	
+	cat new_file.txt | wc -l
+
+---------------------------------------------------------------------------------
+
+5.Find all lines starting with 'd' in file.txt
+	cat file.txt | grep "^d"
+---------------------------------------------------------------------------------
+
+6.Find 'cpu' character in file.txt
+
+	cat file.txt | grep -w "cpu"
+
+---------------------------------------------------------------------------------
+
+7.Find "CPU0",CPU1,CPU2, word in file.txt	
+			
+	cat file.txt | grep "CPU0\|CPU1\|CPU2"	
+			OR	
+	cat file.txt | grep -E "CPU0|CPU1|CPU2"
+
+---------------------------------------------------------------------------------
+
+8.Find "acpi" in file.txt						
+	cat file.txt | grep "acpi"
+
+---------------------------------------------------------------------------------
+
+9.Find all words starting with '0x' and ending with 0 in file.txt	
+
+	cat file.txt | grep "^0x.*0$"
+
+---------------------------------------------------------------------------------
+
+1.Write a script which take input from user and calculate the addition
+
+
+#! /bin/bash
+
+read -p "enter first number:" num1
+read -p "enter second number:" num2
+
+var=$(($num1+$num2))
+echo "addition:$var"
+
+
+2.Write a script which take input from user and calculate the substraction
+
+
+#! /bin/bash
+
+read -p "enter first number:" num1
+read -p "enter second number:" num2
+
+var=$(($num1-$num2))
+echo "subtraction:$var"
+
+3.Write a script which take input from user and calculate the multiplication
+
+
+#! /bin/bash
+
+read -p "enter first number:" num1
+read -p "enter second number:" num2
+
+var=$(($num1*$num2))
+echo "multiplication:$var"
+
+
+4.Write a script to find the greatest number in three number.
+
+
+#! /bin/bash
+
+ 
+read -p "Enter first number:" no1
+read -p "Enter second number:" no2
+read -p "Enter third number:" no3
+
+if [ $no1 -gt $no2 ] && [ $no1 -gt $no3 ]
+then 
+	echo "$no1 is greater"
+elif [ $no2 -gt $no3 ] && [ $no2 -gt $no1 ]
+then
+	echo "$no2 is greater"
+else
+	echo "$no3 is greater"
+fi
+
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+
+5.Write a script to find the given number is even or odd
+
+#! /bin/bash
+
+read -p "enter number:" num
+
+if [ $(expr $num % 2 ) == 0 ]
+then 
+	echo "EVEN NUMBER"
+else
+	echo "ODD NUMBER"
+fi
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------

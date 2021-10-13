@@ -1,0 +1,105 @@
+1. Create a script that creates the firefox process and then stop the firefox process using SIGKILL sign
+
+firefox &
+
+var=$(pidof firefox)
+
+for i in $var
+	do
+		kill -9 $i
+done
+------------------------------------------------------------------------------------------------------------------------
+
+#!/bin/bash
+
+#create firefox process & then stop the process using SIGKILL sign
+
+firefox &
+
+echo "Firefox On"
+sleep 15s
+var=$(pidof firefox)
+
+for i in $var
+    do    
+        kill -9 $i
+        echo "Process $i Killed"
+    done
+
+echo "Firefox Off"
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Create a script that takes the process name and displays it's pid? - It should throw the error if process name enetered is incorrect or doesnt exist on the system
+
+read -p "Enter the process name- " var
+echo "The pid of $var is : $(pidof $var)"
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Create a script that takes a pid and displays the process name.
+Solution:
+
+ps -p <pid> | grep -v "TTY" | awk '{print $NF}'
+
+#!/bin/best
+
+read -p "enter the process id : " prcs
+
+ps -eo pid,cmd | grep "$prcs" | head -n 1 | awk '{$1=""; print $0}'
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Create a script that asks for a command name - then displays it's absolute path and the runs it and displays the output?
+
+read -p "Enter the command name- " var
+echo "The absolute path of $var is : $(which $var)"
+echo "$var"
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+5. Perform Q1 - change: script will ask for multiple process names this time. User enters multiple processes(comma separeted) and then system initiates and then kills those processes. eg: firefox,vi,top
+
+#!/bin/bash
+
+prc=$1
+IFS=','
+for i in $prc
+do
+	var=$(pidof $i)
+	#echo $var
+	IFS=' '
+	for pid in ${var}
+	do
+		echo $pid
+		kill -9 $pid
+	done
+IFS=','
+done
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6. File1	File2
+	cat		dog
+	mat		car
+	dog		poor
+	note	man
+	bag		bat
+	bat		ball
+Create a script that tells if the items present under file2 are there in file1 or not. Need to parse through each item.
+
+#!/bin/bash
+
+read -p "enter the path of file1 :" file1
+read -p "enter the path of file2 :" file2
+
+for word in $(cat $file1)
+do
+
+	var=$(cat $file2 | grep $word)
+ 
+		if [[ -z $var   ]]
+		then
+		echo " $word not present"
+		fi
+ 
+done
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+

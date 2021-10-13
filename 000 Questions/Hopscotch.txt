@@ -1,0 +1,63 @@
+Tech Interviwe Round-1
+
+Q1.Tell me about urself
+Q2.Difference between ArrayList And LinkedList
+Q3.What is Array.
+
+Codding:
+Q1.-2nd max salary query(Write and Explain)
+
+Q2.-pattern sole in java(Write and Explain)
+1 3 5 7 9
+1 3 5 7
+1 3 5
+1 3
+1
+
+
+Q3.-Program for Armstrong no (no of digits in number unknown)(Write and Explain)
+
+
+Q4.-Given arr[] , negative integers should be placed in left and positive to the right(no sorted output)
+i/p-{5,2,-5,10,-1,13,-7}
+o/p-{-5,-1,-7,5,2,10,13} 
+(Write and Explain)
+
+Tech Interviwe Round-2
+
+Q1.Tell me about urself
+Q2.Why Mechanical to CS/IT
+Q3.Tell me about Your project
+Q4.Which technologies used
+Q5.Which version of java,angular,mysql used
+Q6.What are the changes in java8
+Q7.Show DemoRun of ur project
+Q8.Explain Annotaions
+Q9.Method overloading and Method overriding used in project
+Q10.Why this controller,services,repositories are used
+Q11.What is JPARepository
+Q12.What is CURDreopository
+Q13.Explain @GetMapping @CrossOrigin
+Q14.How to fetch data from db using sercvice in springboot
+Q15.What is polymorphism
+Q16.Write a code for polymorphism(&Explain) 
+Q17.What is http,https,tcp
+Q18.Give some Http code u know(ie201,200,301,302,404..etc (Which code for what purpose)) 
+Q19.Routing in angular(How to navigate from one page to the other)
+Q20.How to test ur middletire API(ie.without angular) for eg:-POSTMAN
+Q21.What are GET,PUT,POST,DELETE operations
+Q22.basic cmds of git
+Q23.What other online Challenges u have done in programming (ie.HackerRank etc);
+Q24.Show ur Hacker Rank Profile(Some sort of ques on HackerRank Challenges about badges and all).
+
+
+HR Interview
+
+Q1.Tell me about urself
+Q2.Tell me ur strengths
+Q3.Tell me about the things ur are lack of and how do u overcome them
+Q4.If you have short time and you have to complete number of workes to submit them.How will u handle this situation.
+Q5.Stressful situation you came across ur life
+Q6.What do u think about team work
+Q7.Why Mech to CS/IT.
+Q8.What other things u like to do in ur free time

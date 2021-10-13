@@ -1,0 +1,25 @@
+LAB ASSIGNMENT 01 - 22/09/2021
+==============================
+
+1.Create a directory sample																														
+2.Go inside  sample directory
+3.Create directory with your name
+4.Check the list of directories here
+5.Go outside of current directory
+
+6.Create data1->data2->data3->data4 directory
+7.Go to data4
+8.Create data5 dir inside data3
+9.Create a.txt,b.txt file inside data1
+10.Create c.txt d.txt file inside data5
+11.Go to data5
+12.Copy d.txt to data4
+13.Move c.txt to data4
+14.Copy a.txt to data3
+15.Move b.txt to data4
+
+16.Go to data4
+17.Move a.txt to data2
+18.Go to data1
+19.Copy data5 to data2
+20.Move data4 to data5
