@@ -3742,7 +3742,7 @@ Topics to be covered
 3. System calls and their tracing
 4. Running simple c programs via bash
 5. Deadlock and it's avoidance
-
+```
 ==
 Arrays in Linux
 ---------------
@@ -4257,7 +4257,7 @@ Bank example
 Total amount -> Rs 1000
 Account holders -> Rs 900
 You go there for asking loan --> Rs 100
-
+```
 
 
 
